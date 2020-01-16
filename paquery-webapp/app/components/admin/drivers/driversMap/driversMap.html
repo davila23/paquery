@@ -1,0 +1,75 @@
+<section id="admin-package-detail-view" class="page-view">
+    <div class="ng-scope">
+        <div class="card" id="profile-main">
+            <div class="card-header bgm-bluegray" style="z-index:1;">
+                <h2>Mapa de paquers</h2>
+            </div>
+            <div class="clearfix">
+                <div class="pmb-block">
+                    <dl class="dl-horizontal">
+                        <dt class="p-t-10">Operador Logistico</dt>
+                        <dd>
+                            <div class="fg-line">
+                                <select chosen class="form-control" ng-model="vm.logisticOperator" ng-options="logisticOperators.name for logisticOperators in vm.logisticOperators track by logisticOperators.id" data-placeholder="Seleccione un operador log�stico..."></select>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                <br>
+
+                <data class="ng-scope">
+                    <div class="pmb-block ng-scope">
+                        <!--<dl class="dl-horizontal p-t-10">
+                            <button class="btn btn-primary waves-effect" ng-click="vm.showMap(!vm.showme)">{{vm.showme?'Ocultar Mapa':'Ver Mapa'}}</button>
+                        </dl>-->
+                        <div class="pmbb-body p-l-30">
+                            <form class="pmbb-edit">
+                                <input id="destiny-address" type="hidden" />
+                                <dl class="dl-horizontal p-t-10">
+                                    <google-map style="margin:0 auto;" single-marker="true" stopdrag="true" multiple-address="true" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" wizard-step="2" single-marker="vm.singleMarker" just-show="true"></google-map>
+                                    <!--<paquery-map style="margin:0 auto;" single-marker="true" stopdrag="true" multiple-address="true" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" wizard-step="2" single-marker="vm.singleMarker" just-show="true"></paquery-map>-->
+                                </dl>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-info back-button" ng-click="vm.goBack()">Volver</button>
+                    </div>
+                </data>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table ng-table="vm.tableSorting" class="table" ng-class="{'hide-header': vm.drivers.length==0}">
+                            <tr ng-repeat="driver in vm.drivers">
+                                <td data-title="'Paquer'" sortable="'Paquer'">
+                                    {{ driver.driver.name + " " + driver.driver.lastName}}
+                                </td>
+                                <td data-title="'Paquetes'" sortable="'Paquetes'">
+                                    <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle" ng-class="{'hide-header': true}" >
+                                        <tr ng-repeat="packageModel in driver.packages">
+                                            <td>
+                                                <a href="#" ng-click="vm.showPackage(packageModel)">{{"#" + packageModel.package.externalCode }}</a>
+                                            </td>
+                                            <td>
+                                                {{ packageModel.shippingScheduleDestination.scheduledDate | date: 'dd-MM-yyyy HH:mm' }}
+                                            </td>
+                                        </tr>
+
+                                        <tr ng-show="driver.packages.length==0" >
+                                            <td>
+                                                No tiene paquetes pendiente de entrega
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+    </div>
+</section>

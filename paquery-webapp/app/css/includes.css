@@ -1,0 +1,7 @@
+@import url("../components/admin/sidebar/sidebar.css");
+@import url("../components/admin/drivers/driver/driver.css");
+@import url("../components/admin/users/user/user.css");
+/*@import url("../components/admin/packages/package/package.css");*/
+@import url("../components/admin/login/login.css");
+
+@import url("../components/front/login/login.css");

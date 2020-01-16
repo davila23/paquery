@@ -1,0 +1,140 @@
+.linkMesFilter{
+    cursor: pointer !important;
+    &:hover {
+        color: $default-primary-color !important;
+    }
+}
+
+.rowOfButtons{
+    margin: 0 auto;
+    padding:0px 9px 3px 9px;
+    display: inline-block;
+}
+
+.dimension-chart{
+    width: 100%;
+    min-height: 340px;
+}
+
+.margin-top-responsive {
+    margin-top: 0px;
+}
+.chart-left-group-responsive{
+    padding-left: 10px;
+    padding-right: 0px;
+}
+
+.chart-right-group-responsive{
+    padding-right: 10px;
+    padding-left: 0px;
+}
+
+@media screen and (max-width: $col-md) {
+    .margin-top-responsive {
+        margin-top: 30px;
+    }
+    .chart-left-group-responsive{
+        padding-right: 10px;
+    }
+    .chart-right-group-responsive{
+        padding-left: 10px;
+    }
+}
+
+.widget {
+    margin-bottom: 20px;
+    cursor:pointer;
+    display: table;
+    width: 100%;
+    padding: 10px;
+    border-radius: 1px;
+    .widget-icon {
+        background-position: center;
+        background-size: 40px 40px;
+        background-repeat: no-repeat;
+        top: 9px !important;
+        display: inline-block;
+        vertical-align: middle;
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+    }
+    .widget-title {
+        display: block;
+        font-size: 20px;
+        line-height: 1;
+        color: #484848;
+    }
+    .widget-subtitle {
+        font-size: 12px;
+        color: #7a7a7a;
+    }
+    .widget-icon.pull-left {
+        margin-right: 10px;
+    }
+}
+
+.bg-white {
+    color: #616161;
+    background-color: #fff;
+}
+
+.bg-blue {
+    color: #fff;
+    background-color: #2196f3;
+}
+
+.bg-pendiente-retiro {
+    color: #fff;
+    background-color: $color-estado-pendiente-retiro;
+}
+
+.bg-pendiente {
+    color: #fff;
+    background-color: $color-estado-pendiente;
+}
+
+.bg-cancelado {
+    color: #fff;
+    background-color: $color-estado-cancelado;
+}
+
+.bg-pendiente-entrega {
+    color: #fff;
+    background-color: $color-estado-pendiente-entrega;
+}
+
+.bg-entregado {
+    color: #fff;
+    background-color: $color-estado-entregado;
+}
+
+.bg-pendiente-programar {
+    color: #fff;
+    background-color: $color-estado-pendiente-programar;
+}
+
+.bg-nextDay {
+    color: #fff;
+    background-color: #373435;
+}
+
+.bg-paquery {
+    color: #fff;
+    background-color: $default-primary-color;
+}
+
+.bg-sameDay {
+    color: #fff;
+    background-color: #0db8b2;
+}
+
+.litte-select{
+    min-width: 58px;
+    border-radius: 0px 0px 2px 2px;
+    background: #FFF;
+    color: #254370;
+    border: none;
+    padding: 0px 1px 0px 2px;
+    font-weight: 500;
+}

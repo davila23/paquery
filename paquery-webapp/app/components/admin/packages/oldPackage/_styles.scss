@@ -1,0 +1,21 @@
+#package-view {
+  .unselected-type {
+    background: #556C90 !important;
+  }
+  .driver-name-container {
+    color: #fff;
+    background-color: #254370;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;	
+  }
+  .driver-name-container:hover {
+  	cursor: default;
+  }
+  .zmdi-close-circle {
+    font-size: 22px;
+  }
+  .zmdi-close-circle:hover {
+  	cursor: pointer;
+  }
+}

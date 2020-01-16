@@ -1,0 +1,216 @@
+<section id="content" class="page-view logistic-operator-detail-view">
+    <div ng-cloack ng-if="vm.checkSubmit ?      formPaqueryPoint.$invalid : false"
+         class="alert alert-danger alert-dismissible paquery-error-mesaje" role="alert">
+        <span>Los datos ingresados son incorrectos</span>
+    </div>
+    <div ng-if="vm.errorPP ? true : false" class="alert alert-danger alert-dismissible paquery-error-mesaje"
+         role="alert">
+        <span>{{vm.errorPP}}</span>
+    </div>
+    <div>
+        <div class="card" id="profile-main">
+            <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar"
+                 style="overflow: visible;">
+                <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                     tabindex="0">
+                    <div id="mCSB_1_container"
+                         class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y"
+                         style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                        <div class="pmo-pic">
+                            <div photo-selector photo="vm.driver.avatar" photo-name="vm.driver.avatarName"
+                                 photo-async-comes="vm.driver.photoAsyncComes"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pm-body clearfix">
+                <ul class="tab-nav tn-justified">
+                    <li class="btn-wave tab-selected"><a>Paquery Point</a></li>
+                </ul>
+                <data>
+                    <div class="pmb-block ng-scope">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-person m-r-5"></i> Información básica</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <form class="pmbb-edit" name="formPaqueryPoint" novalidate>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Nombre del Paquery Point</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.nameInput.$invalid : false}">
+                                            <input data-ng-model="vm.paqueryPoint.name" type="text" class="form-control"
+                                                   name="nameInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Dirección</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.addressInput.$invalid : false}">
+                                            <input data-ng-model="vm.paqueryPoint.locationAddress.address" type="text"
+                                                   class="form-control" name="addressInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Detalles</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.detailInput.$invalid : false}">
+                                            <input data-ng-model="vm.paqueryPoint.detail" type="text"
+                                                   class="form-control" name="detailInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Teléfono</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.phoneInput.$invalid : false}">
+                                            <input data-ng-model="vm.paqueryPoint.phone" type="text"
+                                                   class="form-control" name="phoneInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Nombre del Responsable</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.contactNameInput.$invalid : false}">
+                                            <input data-ng-model="vm.paqueryPoint.contactName" type="text"
+                                                   class="form-control" name="contactNameInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Volumen de Almacenamiento</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.volumeInput.$invalid : false}">
+                                            <input data-ng-model="vm.paqueryPoint.volume" type="text"
+                                                   class="form-control" name="volumeInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="vm.paqueryPoint.active">
+                                        <i class="input-helper"></i> Activo
+                                    </label>
+                                </div>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Servicios</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control"
+                                                    ng-model="vm.paqueryPoint.currentService"
+                                                    ng-options="svs.name for svs in vm.currentServices track by svs.value"
+                                                    data-placeholder="Seleccione Servicios..."></select>
+                                            <button class="btn btn-primary waves-effect"
+                                                    ng-click="vm.addService()">Añadir
+                                            </button>
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <div style="width:100%">
+                                    <div class="mp-selector-continer"
+                                         ng-repeat="service in vm.paqueryPoint.currentServices">
+                                         <span class="mp-name-container ng-binding"
+                                               ng-bind=service.name></span>
+                                        <a class="zmdi zmdi-close-circle" ng-click="vm.removeService(service)"></a>
+                                    </div>
+                                </div>
+                                <br><br>
+
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-time m-r-5"></i>Horarios de Atencíon</h2>
+                                </div>
+
+
+                                <div class="dl-horizontal"
+                                     ng-repeat="scheduleTime in vm.paqueryPoint.workingScheduleTimes">
+                                    <working-schedule-time schedule-time="scheduleTime"/>
+                                </div>
+
+
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-phone m-r-5"></i>Informacion de Contacto</h2>
+                                </div>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Código Postal</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.postalCodeInput.$invalid : false}">
+                                            <input data-ng-model="vm.paqueryPoint.locationAddress.postalCode"
+                                                   type="text"
+                                                   class="form-control" name="postalCodeInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">País</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.ccountryInput.$invalid : false}">
+                                            <select chosen class="form-control w-100"
+                                                    name="ccountryInput"
+                                                    ng-model="vm.paqueryPoint.locationAddress.country"
+                                                    ng-options="country.name for country in vm.countries track by country.id"
+                                                    data-placeholder="Seleccione un país.." required></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Ciudad</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error':   vm.checkSubmit ? formPaqueryPoint.cityInput.$invalid : false}">
+                                            <select chosen class="form-control w-100"
+                                                    name="cityInput"
+                                                    ng-model="vm.paqueryPoint.locationAddress.city"
+                                                    ng-options="city.name for city in vm.cities track by city.id"
+                                                    data-placeholder="Seleccione una ciudad.." required></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div class="pmbb-header">
+                                    <h2><i class="zmdi zmdi-pin m-r-5"></i>Zona de trabajo</h2>
+                                </div>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Zonas</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control" ng-model="vm.paqueryPoint.zone"
+                                                    ng-options="zone.name for zone in vm.zones track by zone.id"
+                                                    data-placeholder="Seleccione zonas..."></select>
+                                            <button class="btn btn-primary waves-effect"
+                                                    ng-click="vm.addZone()">Añadir
+                                            </button>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div style="width:100%">
+                                    <div class="mp-selector-continer"
+                                         ng-repeat="zone in vm.paqueryPoint.zones">
+                                        <span class="mp-name-container ng-binding"
+                                              ng-bind="zone.name"></span>
+                                        <a class="zmdi zmdi-close-circle" ng-click="vm.removeZone(zone)"></a>
+                                    </div>
+                                </div>
+                                <br><br>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-default waves-effect" ui-sref="admin.paqueryPoints">Cancelar</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vm.save(formPaqueryPoint)">Guardar
+                        </button>
+                    </div>
+                </data>
+            </div>
+        </div>
+    </div>
+</section>

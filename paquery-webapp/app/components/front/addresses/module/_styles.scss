@@ -1,0 +1,45 @@
+#front-addresses {
+  padding: 20px;
+  margin: 0;
+  .filter-box {
+    font-size: 16px;
+    .filter {
+      cursor: pointer;
+      display: inline-block;
+      span {
+        margin-left: 10px;
+      }
+    }
+  }
+  h2 {
+    margin: 20px 0px;
+  }
+  .table {
+    margin-top: 30px;
+    td {
+      vertical-align: middle;
+      text-align: center;
+    }
+    th {
+      text-align: center;
+    }
+    i.zmdi-caret-right-circle {
+      font-size: 32px;
+      cursor: pointer;
+    }
+    .actions-container {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      .actions-icon {
+        font-size: 20px;
+      }
+    }
+  }
+  .package-icon {
+    height: 30px;
+    width: 30px;
+    top: 5px;
+    right: 5px !important;
+  }
+}

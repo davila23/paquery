@@ -1,0 +1,236 @@
+<section id="front-package-detail-view" class="page-view">
+    <div class="ng-scope">
+        <div class="card" id="profile-main">
+            <div class="card-header bgm-bluegray" style="z-index:1;">
+                <h2>Informacion del Paquete <small>Verifica la información de tu paquete</small></h2>
+            </div>
+            <div class="pm-body clearfix">
+                <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+                    <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+                        <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                            <div class="pmo-pic" style="margin-top:8em;">
+                                <div photo-selector photo="vm.package.photo" disable-selection="true"></div>
+                            </div>
+                            <button class="btn btn-primary waves-effect" ng-click="vm.openStatusModal()" style="margin-top: 15px;" ng-if="vm.package.status === 3 ||  vm.package.status === 2">Verificar</button>
+                            <button ng-if="vm.package.status===30" class="btn btn-primary waves-effect pay-button" ng-click="vm.openMLModal()" style="margin-top: 15px;">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- uiView:  -->
+                <data class="ng-scope">
+                    <div class="pmb-block ng-scope">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-person m-r-5"></i> Información del paquete</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <form class="pmbb-edit">
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Artículo</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.package.caption" type="text" class="form-control" disabled>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Estado</dt>
+                                    <dd>
+                                        <select class="form-control w-100" ng-model="vm.package.currentPackageStatus" ng-options="packageStatus.name for packageStatus in vm.packagesStatus track by packageStatus.value" disabled></select>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Tamaño</dt>
+                                    <dd>
+                                        <select class="form-control w-100" ng-model="vm.package.packageSize" ng-options="packageSize.name for packageSize in vm.packageSizes track by packageSize.value" disabled></select>
+                                    </dd>
+                                </dl>
+                                <!--<dl ng-if="vm.package.rate" class="dl-horizontal">
+                                    <dt class="p-t-10">Precio</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.package.rate" type="number" class="form-control" disabled>
+                                        </div>
+                                    </dd>
+                                </dl>-->
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Tipo</dt>
+                                    <dd>
+                                        <select class="form-control w-100" ng-model="vm.package.currentType" ng-options="packageType.name for packageType in vm.packagesTypes track by packageType.value" disabled></select>
+                                    </dd>
+                                </dl>
+                                <dl ng-if="vm.package.detail" class="dl-horizontal">
+                                    <dt class="p-t-10">Comentarios</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.package.detail" type="text" class="form-control" disabled>
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <dl ng-if="vm.package.externalCode" class="dl-horizontal">
+                                    <dt class="p-t-10">Num. paquete externo</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.package.externalCode" type="text" class="form-control" disabled>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Fecha de entrega</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input type="datetime-local" id="scheduledDate" class="form-control" ng-model="vm.scheduledDate" ng-disabled="vm.criterioDisabledFechas()" placeholder="dd-MM-yyyyTHH:mm:ss"/>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Fecha programada</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input type="datetime-local" id="scheduledDateRetiro" class="form-control" ng-model="vm.scheduledDateRetiro" ng-disabled="vm.criterioDisabledFechas()" placeholder="dd-MM-yyyyTHH:mm:ss"/>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal col-sm-6" ng-if="vm.package.shippingScheduleOrigin">
+                                    <dt class="p-t-10">Usuario origen</dt>
+                                    <div class="fg-line">
+                                        <input data-ng-model="vm.package.shippingScheduleOrigin.name" type="text" class="form-control" disabled>
+                                    </div>
+                                    <dl ng-show="vm.package.shippingScheduleOrigin.comment" class="dl-horizontal">
+                                        <dt class="p-t-10">Comentarios adicionales</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control input-sm google-maps-input address-input" ng-model="vm.package.shippingScheduleOrigin.comment" autocomplete="off" disabled>
+                                            </div>
+                                        </div>
+                                    </dl>
+                                    <!--<dl ng-show="vm.origin.addressInformation.address" class="dl-horizontal">
+                                        <dt class="p-t-10">Dirección origen</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input id="origin-address" type="text" class="form-control input-sm google-maps-input address-input" ng-model="vm.origin.addressInformation.address" autocomplete="off" disabled>
+                                            </div>
+                                        </div>
+                                    </dl>
+                                    <dl ng-show="vm.origin.addressInformation.w3w" class="dl-horizontal">
+                                        <dt class="p-t-10">w3w</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input id="w3w-origin-input" type="text" class="form-control input-sm" ng-model="vm.origin.addressInformation.w3w" disabled>
+                                            </div>
+                                        </div>
+                                    </dl>
+                                    <dl ng-show="vm.package.shippingScheduleOrigin.shippingAddress.comment"  class="dl-horizontal">
+                                        <dt class="p-t-10">Comentarios adicionales</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control input-sm google-maps-input address-input" ng-model="vm.package.shippingScheduleOrigin.shippingAddress.comment" autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                    </dl>-->
+                                    <dl ng-show="!vm.origin.addressInformation.immediately.status" class="dl-horizontal">
+                                        <dt class="p-t-10">Fecha de origen</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line input-date">
+                                                <input style="width:90%; display:inline-block" type="text" class="form-control input-sm input-date" ng-model="vm.origin.addressInformation.immediately.date" readonly id="dateDestiny" >
+                                                <button ng-if="vm.package.status === 5 || vm.package.status === 1" style="padding:0; background:transparent;display:inline-block; box-shadow: none;" type="button" class="btn btn-default waves-effect" ng-click="vm.origin.datepicker.open = !vm.origin.datepicker.open"><i class="zmdi zmdi-calendar zmdi-hc-2x"></i></button>
+                                            </div>
+                                            <datetimepicker ng-if="vm.package.status === 5 || vm.package.status === 1" ng-style="vm.origin.datepicker.show" style="position:absolute; z-index:1;" ng-model="vm.date.origin" before-render="vm.beforeDateSetOrigin($dates, $view)" on-set-time="vm.onDateSetOrigin(newDate, oldDate)" datetimepicker-config="{ renderOn: 'origin-date-changed' }"></datetimepicker>
+                                        </div>
+                                    </dl>
+                                </dl>
+
+                                <dl class="dl-horizontal" ng-class="{ 'col-sm-6': vm.package.shippingScheduleOrigin, 'col-sm-12': !vm.package.shippingScheduleOrigin }" ng-if="vm.package.shippingScheduleDestination">
+                                    <dt class="p-t-10">Usuario destino</dt>
+                                    <div class="fg-line">
+                                        <input data-ng-model="vm.package.shippingScheduleDestination.name" type="text" class="form-control" disabled>
+                                    </div>
+                                    <dl ng-show="vm.package.shippingScheduleDestination.comment"  class="dl-horizontal">
+                                        <dt class="p-t-10">Comentarios adicionales</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control input-sm google-maps-input address-input" ng-model="vm.package.shippingScheduleDestination.comment" autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                    </dl>
+                                    <dl ng-show="!vm.showDestinyW3W"  class="dl-horizontal">
+                                        <dt class="p-t-10">Dirección destino</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input id="destiny-address" type="text" class="form-control input-sm google-maps-input address-input" ng-model="vm.destiny.addressInformation.address" autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                    </dl>
+                                    <dl ng-show="vm.destiny.addressInformation.w3w" class="dl-horizontal">
+                                        <dt class="p-t-10">w3w</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input id="w3w-destiny-input" type="text" class="form-control input-sm" ng-model="vm.destiny.addressInformation.w3w">
+                                            </div>
+                                        </div>
+                                    </dl>
+                                    <dl ng-show="vm.package.shippingScheduleDestination.shippingAddress.comment"  class="dl-horizontal">
+                                        <dt class="p-t-10">Comentarios adicionales</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input type="text" class="form-control input-sm google-maps-input address-input" ng-model="vm.package.shippingScheduleDestination.shippingAddress.comment" autocomplete="off" readonly>
+                                            </div>
+                                        </div>
+                                    </dl>
+                                    <dl ng-show="!vm.destiny.addressInformation.immediately.status" class="dl-horizontal">
+                                        <dt class="p-t-10">Fecha de destino</dt>
+                                        <div class="form-group fg-float">
+                                            <div class="fg-line">
+                                                <input style="width:90%; display:inline-block" type="text" class="form-control input-sm" ng-model="vm.destiny.addressInformation.immediately.date" ng-click="vm.destiny.datepicker.open = !vm.destiny.datepicker.open" readonly>
+                                                <button ng-if="vm.package.status === 5 || vm.package.status === 1" style="padding:0; background:transparent;display:inline-block; box-shadow:none;" type="button" class="btn btn-default waves-effect" ng-click="vm.destiny.datepicker.open = !vm.destiny.datepicker.open"><i class="zmdi zmdi-calendar zmdi-hc-2x"></i></button>
+                                            </div>
+                                        </div>
+                                        <datetimepicker ng-if="vm.package.status === 5 || vm.package.status === 1" ng-style="vm.destiny.datepicker.show" style="position:absolute; z-index:1;" ng-model="vm.date.destiny" before-render="vm.beforeDateSetDestiny($dates, $view)" on-set-time="vm.onDateSetDestiny(newDate, oldDate)" datetimepicker-config="{ renderOn: 'destiny-date-changed' }"></datetimepicker>
+                                    </dl>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                        <div class="fg-line">
+                                          <button class="btn btn-primary waves-effect" ng-if="vm.date.update" ng-click="vm.update()">Actualizar fecha</button>
+                                        </div>
+                                </dl>
+                                <dl ng-show="vm.destiny.addressInformation.address" class="dl-horizontal">
+                                    <dt class="p-t-10">Paquer</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <img ng-src="{{ vm.package.driverImg }}" alt="">
+                                            <input data-ng-model="vm.package.driver" type="text" class="form-control" disabled>
+                                        </div>
+                                    </dd>
+                                    <dt class="p-t-10">Calificación</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.package.driverRating" type="text" class="form-control" disabled>
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <dl class="dl-horizontal col-sm-6" ng-show="vm.criterioDisabledFechas()">
+                                    <dt class="p-t-10"><a style="font-size: 17px;" href="{{vm.package.remitoUrl}}">Descargar Remito</a></dt>
+                                </dl>
+
+                                <dl class="dl-horizontal p-t-10">
+                                    <!--<google-map style="margin:0 auto;" stopdrag="true" origin="vm.origin.addressInformation" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" wizard-step="2" single-marker="vm.singleMarker" just-show="true"></google-map>-->
+                                    <paquery-map style="margin:0 auto;" stopdrag="true" origin="vm.origin.addressInformation" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" wizard-step="2" single-marker="vm.singleMarker" just-show="true"></paquery-map>
+                                </dl>
+                            </form>
+                        </div>
+                    </div>
+                    <!--<div class="row save-buttton-container">-->
+                        <!--<button class="btn btn-danger waves-effect" ui-sref="front.dashboard">Cancelar</button>-->
+                        <!--<button class="btn btn-primary waves-effect" ng-click="vm.submit()">Reprogramar</button>-->
+                    <!--</div>-->
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-info back-button" ng-click="vm.goBack()">Volver</button>
+                        <button ng-show="!vm.criterioDisabledFechas()" class="btn btn-primary waves-effect" ng-click="vm.update()">Reprogramar</button>
+                    </div>
+                </data>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="//secure.mlstatic.com/mptools/render.js"></script>

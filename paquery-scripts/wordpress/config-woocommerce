@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export WP_DB_ROOT_PASS="paquery2017"
+export WP_DB_NAME="pquser"
+export WP_DB_USER="pquser2019"
+export WP_DB_PASS="pquser2019!01"
+
+export WP_NET_DOCKER="pq-woocommerce-net"
+
+export DB_VOLUME_DEFAULT="/root/woocommerce/db"
+export DB_NAME_CONTAINER="pq-woocommerce-db"
+
+export WP_VOLUME_DEFAULT="/root/woocommerce/html"
+export WP_NAME_CONTAINER="pq-woocommerce"
+export WP_PORT="81"

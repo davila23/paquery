@@ -1,0 +1,104 @@
+<div class="tracking-package-view">
+
+    <div class="content">
+
+
+        <div class="container-consulta-paquete" id="form-consulta-paquete">
+
+            <div class="clearfix">
+                <ul class="tab-nav tn-justified">
+                    <li class="btn-wave tab-selected"><a>Consulta de estado de paquete</a></li>
+                </ul>
+                <data>
+                    <div class="pmb-block ng-scope">
+
+                        <div class="pmbb-body p-l-30">
+                            <form class="pmbb-edit" name="formMarket" ng-submit="formMarket.$valid && vm.getInfoPackage()" novalidate>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Codigo de paquete</dt>
+                                    <dd>
+                                        <input ng-hide="true" id="destiny-address" type="text" ng-model="vm.destiny.addressInformation.address" autocomplete="off">
+                                        <div class="fg-line" ng-class="{'has-error': formMarket.$submitted && formMarket.nameInput.$invalid}">
+                                            <input data-ng-model="vm.codePackage" type="text" class="form-control" name="nameInput" required>
+                                            <div class="help-block" ng-show="formMarket.$submitted && formMarket.nameInput.$invalid">Ingrese c&oacute;digo de paquete</div>
+                                        </div>
+
+                                        <div vc-recaptcha
+                                             class="margin-top-10"
+                                             key="model.key"
+                                             on-create="setWidgetId(widgetId)"
+                                             on-success="setResponse(response)"
+                                             on-expire="cbExpiration()">
+                                        </div>
+                                        <div class="fg-line" ng-class="{'has-error': formMarket.$submitted && formMarket.$error.recaptcha.length >= 1}">
+                                            <div class="help-block" ng-show="formMarket.$submitted && formMarket.$error.recaptcha.length >= 1 && vm.showForReset">Ingrese captcha</div>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div class="row buttton-container-consultar">
+                                    <button type="submit" class="btn btn-primary waves-effect" ng-click="vm.showForReset = true">Consultar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </data>
+            </div>
+        </div>
+
+        <div ng-if="vm.package">
+
+            <div class="content2">
+                <div class="content2-header1">
+                    <p>Destino : <span>{{vm.packageDestino}}</span></p>
+                </div>
+
+                <div class="content2-header1">
+                    <p>Estado : <span>{{vm.packageStatus}}</span></p>
+                </div>
+
+                <div class="clear"></div>
+            </div>
+
+            <div class="content2">
+
+                <div class="content2-header1">
+                    <p>Alias W3W : <span>{{vm.packageAliasW3W}}</span></p>
+                </div>
+
+                <div class="content2-header1">
+                    <p>Entrega estimada : <span>{{vm.packageFechaEntrega | date : 'dd-MM-yyyy'}}</span></p>
+                </div>
+
+                <div class="clear"></div>
+                <dl class="dl-horizontal col-sm-6" ng-show="vm.packageStatus === 20">
+                    <dt class="p-t-10"><a style="font-size: 17px;" ng-href="{{vm.remitoUrl}}">Descargar Remito</a></dt>
+                </dl>
+            </div>
+
+
+            <div class="content3">
+                <div class="shipment">
+
+                    <div class="state" ng-repeat="st in vm.statusList track by st.orden">
+
+                        <div class="imgcircle" ng-class="{'state-confirm': vm.stateConfirm(st)}">
+                            <img ng-src="img/tracking/{{st.image}}.png" alt="confirm order">
+                        </div>
+
+                        <span class="line" ng-class="{'line-confirm': st.confirm }" ng-if="!st.fin"></span>
+
+                        <p>{{st.desc}}</p>
+
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+            </div>
+            <div class="mapCenter" ng-if="vm.showMap">
+                <!--<google-map single-marker="true" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" wizard-step="1" destiny-w3w="vm.destiny.addressInformation.w3w"></google-map>-->
+                <paquery-map single-marker="true" custom-icon-marker="package" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" wizard-step="1" destiny-w3w="vm.destiny.addressInformation.w3w"></paquery-map>
+            </div>
+        </div>
+    </div>
+
+</div>

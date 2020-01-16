@@ -1,0 +1,5 @@
+<div ng-show="userType === 'admin' || !localLoad">
+<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBzlIu7od6laIyJdrHTK32iimF4Zkurk_0&libraries=places&callback=initMap'></script>
+</div>
+
+<div id="{{mapId ? 'map' + mapId : 'map'}}"></div>

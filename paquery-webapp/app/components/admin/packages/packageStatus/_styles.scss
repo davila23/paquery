@@ -1,0 +1,105 @@
+#admin-package-status-view {
+    .card-header {
+        background-color: #254370 !important;
+    }
+    .rating {
+        width: 226px;
+        margin: 0 auto 1em;
+        font-size: 45px;
+        overflow: hidden;
+    }
+    .rating a.act {
+        color: orange;
+        cursor: pointer;
+    }
+    .rating a:hover {
+        color: orange;
+        cursor: pointer;
+    }
+    .rating2 {
+        direction: rtl;
+    }
+    .rating2 a {
+        float: none
+    }
+    .mg-b-2 {
+        margin-bottom: 2em;
+    }
+    .google-maps-input {
+        margin-bottom: 15px;
+    }
+    #map {
+        margin-left: 0;
+        width: 100%;
+    }
+    fieldset {
+        text-align: center;
+    }
+    google-map {
+        #map2 {
+            height: 300px !important;
+        }
+    }
+    .pmbb-header h2 {
+        text-align: center;
+    }
+    .pmo-pic {
+        text-align: center;
+        margin: 0;
+        img {
+            padding: 0 30px;
+            max-height: 300px;
+            max-width: 300px;
+        }
+    }
+    .code-container {
+        padding: 0 30px;
+        input {
+            color: #000;
+        }
+    }
+    .qr-code-container {
+        padding-top: 0;
+        .qr-code-title {
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+.containterShareButtons{
+    text-align: center;
+}
+
+.subtitle{
+    font-weight: bold;
+    color: #5E5E5E;
+}
+
+.shareButton{
+    display: inline;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.facebookButton{
+    color: #4267b2;
+}
+.twitterButton{
+    color: #1da1f2;
+}
+
+.buttonURL{
+    width: 55%;
+    background: #f8f9f9;
+    padding: 5px 10px;
+    border: 2px solid #ffffff;
+    border-radius: 3px;
+    &:hover{
+        border-color: #e0e0e0;
+    }
+    &:focus{
+        background: #ffffff;
+        border-color: #0db8b2;
+    }
+}

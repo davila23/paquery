@@ -1,0 +1,290 @@
+<div class="row" id="send-package-view">
+    <div class="user-selector-continer col-xs-12" ng-show="vm.checkVisibilityUserSelector()">
+        <span ng-show="vm.package.selectedUser" class="user-name-container">{{vm.package.selectedUser.name + ' ' + vm.package.selectedUser.lastName}}</span>
+        <i ng-show="vm.package.selectedUser" class="zmdi zmdi-close-circle" ng-click="vm.package.selectedUser = ''"></i>
+        <button class="btn btn-primary waves-effect" ng-click="vm.openUsersModal()">Seleccione un usuario</button>
+    </div>
+
+    <div class="user-selector-continer col-xs-12" ng-show="vm.checkVisibilityPaquerSelector()">
+        <span ng-show="vm.package.selectedPaquer" class="user-name-container">{{vm.package.selectedPaquer.name + ' ' + vm.package.selectedPaquer.lastName}}</span>
+        <i ng-show="vm.package.selectedPaquer" class="zmdi zmdi-close-circle" ng-click="vm.package.selectedPaquer = ''"></i>
+        <button class="btn btn-primary waves-effect" ng-click="vm.openUsersModal()">Seleccione un Paquer</button>
+    </div>
+
+    <div class="user-selector-continer col-xs-12" ng-show="vm.checkVisibilityOPLSelector()">
+        <span ng-show="vm.package.selectedOPL" class="user-name-container">{{vm.package.selectedOPL.name}}</span>
+        <i ng-show="vm.package.selectedOPL" class="zmdi zmdi-close-circle" ng-click="vm.package.selectedOPL = ''"></i>
+        <button class="btn btn-primary waves-effect" ng-click="vm.openOPLModal()">Seleccione un Operador Logístico</button>
+    </div>
+
+    <div ng-show="vm.wizardStep === 1">
+        <form name="sendPackageFirstStepForm">
+            <div class="col-sm-6 col-xs-12">
+                <div class="card z-depth-4-top">
+                    <div class="card-header ch-alt bgm-bluegray">
+                        <h2>Datos del paquete</h2>
+                    </div>
+                    <div class="card-body card-padding">
+                        <div class="pmo-pic">
+                            <div photo-selector photo="vm.package.photo" ng-class="{'selected-photo':vm.package.photo}"></div>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-sm" ng-model="vm.package.content" required>
+                                <label class="fg-label control-label">Contenido</label>
+                            </div>
+                        </div>
+                        <!--<div class="form-group fg-float m-b-30">-->
+                            <!--<div class="fg-line">-->
+                                <!--<input type="text" class="form-control input-sm" ng-model="vm.package.comments">-->
+                                <!--<label class="fg-label">Comentarios adicionales 1</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <textarea ng-model="vm.package.comments" class="form-control input-sm" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea>
+                                <label class="fg-label">Comentarios adicionales del paquete</label>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="number" class="form-control input-sm" ng-model="vm.package.stimatedValue">
+                                <label class="fg-label">Valor estimado del contenido</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-sm" ng-model="vm.package.externalCode" required>
+                                <label class="fg-label control-label">Numero de paquete externo</label>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group fg-float m-b-30 toggle-switch">
+                        <label for="aditional-secure" class="ts-label pointer">Seguro adicional por $ XX</label>
+                        <input id="aditional-secure" type="checkbox" hidden="hidden" ng-model="vm.package.aditionalSecure">
+                        <label for="aditional-secure" class="ts-helper"></label>
+                    </div>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card z-depth-4-top">
+                    <div class="card-header ch-alt bgm-bluegray">
+                        <h2>Tamaño del paquete</h2>
+                    </div>
+                    <div class="card-body card-padding">
+                        <div class="list-group">
+                            <a class="form-control w-100 list-group-item size-item" ng-repeat="packageSize in vm.packagesSizes track by $index" ng-click="vm.package.size=vm.packagesSizes[$index]" ng-class="{'size-selected': packageSize.value === vm.package.size.value}">
+                              <span><strong> {{packageSize.name}}</strong></span>
+                              <p ng-if="packageSize.value === 1">({{ vm.packagePayment[$index] | currency}}) Entra en una mochila y pesa menos de 5 kilos.</p>
+
+                              <p ng-if="packageSize.value === 2">({{ vm.packagePayment[$index] | currency}}) Entra en el asiento de atrás o baúl de un auto y pesa menos de 20 kilos.</p>
+
+                              <p ng-if="packageSize.value === 3">({{ vm.packagePayment[$index] | currency}}) Entra en la caja de una camioneta y pesa menos de 40 kilos</p>
+
+                              <p ng-if="packageSize.value === 4"></p>
+
+                              <i class="paquery-icon paquery-blue-packages" ng-class="{ 'lite': packageSize.value === 1, 'middle':packageSize.value === 2, 'big': packageSize.value === 3, 'custom': packageSize.value === 4}"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card z-depth-4-top">
+                    <div class="card-body card-padding min-no-height">
+                        <div class="list-group">
+                            <div class="fileinput fileinput-new attached-file" data-provides="fileinput">
+                                <span class="btn btn-primary waves-effect btn-file">
+                                    <span>Adjuntar un archivo</span>
+                                    <input type="file" id="file1" name="file" ng-files="getTheFiles($files)"/>
+                                </span>
+                                <span class="fileinput-filename"></span><span class="fileinput-new">No se eligió archivo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <button class="btn btn-info submit-button next-button" ng-disabled="vm.disableNextStepButton(sendPackageFirstStepForm)" ng-click="vm.wizardStep = 2">Siguiente</button>
+    </div>
+    <div ng-show="vm.wizardStep === 2">
+        <form name="sendPackageSecondStepForm">
+            <div ng-cloack ng-if="vm.googleMapsErrorMessage" class="alert alert-danger alert-dismissible google-maps-error-container" role="alert">
+                <span ng-bind="vm.googleMapsErrorMessage"></span>
+            </div>
+            <div class="col-sm-6">
+                <div class="card z-depth-4-top">
+                    <div class="card-header ch-alt bgm-bluegray">
+                        <h2><span class="title">A - Origen</span></h2>
+                    </div>
+                    <div class="card-body card-padding">
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line" ng-class="{'has-error': sendPackageSecondStepForm.completeName.$invalid}">
+                                <input id="completeName" type="text" class="form-control input-sm" ng-model="vm.origin.personalInformation.completeName" required>
+                                <label class="fg-label control-label">Nombre y apellido</label>
+                            </div>
+                        </div>
+                        <!--<div class="form-group fg-float m-b-30">-->
+                            <!--<div class="fg-line">-->
+                                <!--<input type="text" class="form-control input-sm" ng-model="vm.origin.personalInformation.comments">-->
+                                <!--<label class="fg-label">Comentarios adicionales 2</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <textarea ng-model="vm.origin.personalInformation.comments" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea>
+                                <label class="fg-label">Información adicional de la persona de origen</label>
+                            </div>
+                        </div>
+                        <!--<div class="form-group fg-float m-b-30">-->
+                            <!--<div id="origin-side-container" class="fg-line">-->
+                                <!--<input id="origin-address" type="text" class="form-control input-sm google-maps-input" ng-model="vm.origin.addressInformation.address" autocomplete="off">-->
+                                <!--<label class="fg-label">Dirección</label>-->
+                            <!--</div>-->
+                            <!--<span ng-if="vm.originIsNotInArg">La dirección ingresada no pertenece a Argentina, ingrese una dirección correcta.</span>-->
+                        <!--</div>-->
+
+                        <div class="form-group fg-float m-b-30">
+                            <div id="origin-side-container" class="fg-line">
+                                <input-address id="origin-address" input-class="form-control input-sm google-maps-input"
+                                               address="vm.origin.addressInformation.address"
+                                               location="vm.origin.addressInformation.location"
+                                               w3w="vm.origin.addressInformation.w3w" id-w3w-container="origin-w3w-container"></input-address>
+                                <label class="fg-label">Buscar Dirección</label>
+                            </div>
+                            <span ng-if="vm.originIsNotInArg">La dirección ingresada no pertenece a Argentina, ingrese una dirección correcta.</span>
+                        </div>
+
+                        <!--<div class="form-group fg-float m-b-30">-->
+                            <!--<div class="fg-line">-->
+                                <!--<input type="text" class="form-control input-sm" ng-model="vm.origin.addressInformation.comments">-->
+                                <!--<label class="fg-label">Comentarios adicionales 3</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <textarea ng-model="vm.origin.addressInformation.comments" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea>
+                                <label class="fg-label">Comentarios adicionales de la dirección de origen</label>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                            <div id="origin-w3w-container" class="fg-line w3w">
+                                <input id="w3w-origin-input" type="text" class="form-control input-sm" ng-model="vm.origin.addressInformation.w3w" required>
+                                <label class="fg-label control-label">w3w</label>
+                                <button type="button" class="btn btn-default waves-effect" ng-click="vm.geoLocationOrigin()" ng-disabled="vm.disabledOriginGeoW3w"><i class="paquery-icon paquery-w3w"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30 " ng-if="!vm.immediately.status">
+                            <div class="fg-line w3w input-date" id="dateOrigin">
+                                <input type="text" class="form-control input-sm input-date" ng-model="vm.origin.addressInformation.immediately.date" readonly>
+                                <label class="fg-label">Fecha</label>
+                                <button style="padding:0; background:transparent;" type="button" class="btn btn-default waves-effect" ng-click="vm.origin.datepicker.open = !vm.origin.datepicker.open"><i class="zmdi zmdi-calendar zmdi-hc-2x"></i></button>
+                            </div>
+                            <datetimepicker ng-style="vm.origin.datepicker.show" style="position:absolute; z-index:1;" ng-model="vm.date.origin" before-render="vm.beforeDateSetOrigin($dates, $view)" on-set-time="vm.onDateSetOrigin(newDate, oldDate)" datetimepicker-config="{ renderOn: 'origin-date-changed' }"></datetimepicker>
+                        </div>
+                        <div class="form-group fg-float m-b-30" style="width:30%">
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" ng-model="vm.immediately.status">
+                              <i class="input-helper"></i> {{ vm.immediately.status ? "Inmediato" : "Programado" }}
+                            </label>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card z-depth-4-top">
+                    <div class="card-header ch-alt bgm-bluegray">
+                        <h2><span class="title">B - Destino</span></h2>
+                    </div>
+                    <div class="card-body card-padding">
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-sm" ng-model="vm.destiny.personalInformation.completeName" required>
+                                <label class="fg-label control-label">Nombre y apellido</label>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="email" class="form-control input-sm" ng-model="vm.destiny.personalInformation.email" required>
+                                <label class="fg-label control-label">Email</label>
+                            </div>
+                        </div>
+                        <!--<div class="form-group fg-float m-b-30">-->
+                            <!--<div class="fg-line">-->
+                                <!--<input type="text" class="form-control input-sm" ng-model="vm.destiny.personalInformation.comments">-->
+                                <!--<label class="fg-label">Comentarios adicionales 4</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <textarea ng-model="vm.destiny.personalInformation.comments" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea>
+                                <label class="fg-label">Información adicional de la persona de destino</label>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                            <div id="destiny-side-container" class="fg-line">
+                                <!--<input id="destiny-address" type="text" class="form-control input-sm" ng-model="vm.destiny.addressInformation.address" autocomplete="off">-->
+                                <input-address id="destiny-address" input-class="form-control input-sm google-maps-input"
+                                               address="vm.destiny.addressInformation.address"
+                                               location="vm.destiny.addressInformation.location"
+                                               w3w="vm.destiny.addressInformation.w3w" id-w3w-container="destiny-w3w-container"></input-address>
+                                <label class="fg-label">Dirección</label>
+                            </div>
+                            <span ng-if="vm.destinyIsNotInArg">La dirección ingresada no pertenece a Argentina, ingrese una dirección correcta.</span>
+                        </div>
+                        <!--<div class="form-group fg-float m-b-30">-->
+                            <!--<div class="fg-line">-->
+                                <!--<input type="text" class="form-control input-sm" ng-model="vm.destiny.addressInformation.comments">-->
+                                <!--<label class="fg-label">Comentarios adicionales 5</label>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <textarea ng-model="vm.destiny.addressInformation.comments" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea>
+                                <label class="fg-label">Comentarios adicionales de la dirección de destino</label>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                            <div id="destiny-w3w-container" class="fg-line w3w">
+                                <input id="w3w-destiny-input" type="text" class="form-control input-sm" ng-model="vm.destiny.addressInformation.w3w" required>
+                                <label class="fg-label control-label">w3w</label>
+                                <button type="button" class="btn btn-default waves-effect" ng-click="vm.geoLocationDestiny()" ng-disabled="vm.disabledDestinyGeoW3w"><i class="paquery-icon paquery-w3w"></i></button>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30" ng-if="!vm.immediately.status">
+                            <div class="fg-line w3w input-date" id="dateDestiny">
+                                <input type="text" class="form-control input-sm" ng-model="vm.destiny.addressInformation.immediately.date" ng-focus="vm.destiny.datepicker.open = true" ng-blur="vm.destiny.datepicker.open = false" readonly>
+                                <label class="fg-label">Fecha</label>
+                                <button style="padding:0; background:transparent;" type="button" class="btn btn-default waves-effect" ng-click="vm.destiny.datepicker.open = !vm.destiny.datepicker.open"><i class="zmdi zmdi-calendar zmdi-hc-2x"></i></button>
+                            </div>
+                            <datetimepicker ng-style="vm.destiny.datepicker.show" style="position:absolute; z-index:1;"  ng-model="vm.date.destiny" on-set-time="vm.onDateSetDestiny($dates, newDate, oldDate)" datetimepicker-config="{ renderOn: 'destiny-date-changed' }" before-render="vm.beforeDateSetDestiny($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="col-sm-12" style="margin-top:2em;">
+            <button class="btn btn-info back-button" ng-click="vm.wizardStep = 1">Volver</button>
+            <button class="btn btn-info submit-button" ng-click="vm.submit()" ng-disabled="vm.disableConfirmation(sendPackageFirstStepForm, sendPackageSecondStepForm)">Confirmar</button>
+            <button class="btn btn-info submit-button cancel-button" ui-sref="front.dashboard">Cancelar</button>
+        </div>
+        <div class="col-sm-12">
+          <!-- <div class="col-sm-6">
+            <pre>{{ vm.origin | json }}</pre>
+          </div>
+          <div class="col-sm-6">
+            <pre>{{ vm.destiny | json }}</pre>
+          </div> -->
+            <!--<google-map style="margin:0 auto;" origin="vm.origin.addressInformation" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" wizard-step="vm.wizardStep" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" error-message="vm.googleMapsErrorMessage"></google-map>-->
+
+        </div>
+    </div>
+
+    <div ng-if="vm.wizardStep === 2" class="col-sm-12">
+        <paquery-map style="margin:0 auto;" origin="vm.origin.addressInformation" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" wizard-step="vm.wizardStep" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" error-message="vm.googleMapsErrorMessage"></paquery-map>
+    </div>
+</div>

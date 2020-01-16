@@ -1,0 +1,3 @@
+# comando para deployar vtex en preprod
+
+./run-custom-ms.sh --name integration-vtex -e "DATABASE_CONNECTION_URL=jdbc:mysql://10.84.87.3:3306/vtex-preprod?serverTimezone=UTC"  -e DATABASE_USERNAME=vtex-preprod  -e 'DATABASE_PASSWORD=vt3xpr3pr0dpq!' -e INTEGRATION_VTEX_PAQUERY_APP_LOG_LEVEL=INFO -e INTEGRATION_VTEX_PAQUERY_SPRING_LOG_LEVEL=INFO  -e INTEGRATION_VTEX_PAQUERY_HIBERNATE_LOG_LEVEL=INFO  -e WEBHOOK_ORDERS_DOMAIN=msp-api-preprod.paquery.com/vtex/ -e PAQUERY_DOMAIN=ms-api-preprod.paquery.com/caronte/integration/ -e DEFAULT_APP_USERNAME=vtex -e 'DEFAULT_APP_PASSWORD=vt3xp@20!9' -e SPRING_PROFILES_ACTIVE=preprod us.icr.io/paquery/integration-vtex:1.0.0

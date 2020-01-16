@@ -1,0 +1,38 @@
+<div id="loginSocial-front" class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+        <div class="lc-block lc-block-social-reg" id="l-login">
+            <div class="logo-container"><img src="img/logo-iso-blue.png">
+                <div class="register-word"><em>Complete su Registro</em></div>
+                <p></p>
+            </div>
+            <form name="loginForm">
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-cean-white-phone"></i></span>
+                    <select chosen class="form-control w-100" ng-options="'('+country.dialingCode+') '+country.name for country in vm.countries track by country.id" data-placeholder="Seleccione un país.." ng-model="vm.userInfo.country" ng-change="vm.getCity(vm.userInfo.country.id)"></select>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-cean-white-phone"></i></span>
+                    <select chosen class="form-control w-100" ng-options="city.name for city in vm.citys track by city.id" data-placeholder="Seleccione una ciudad.." ng-model="vm.userInfo.city"></select>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-cean-white-phone"></i></span>
+
+                    <div class="fg-line" ng-class="{'has-error':  vm.submitClicked && loginForm.mobileInput.$invalid || vm.submitClicked && vm.errorMessages.mobileInvalid}">
+                        <input ng-model="vm.userInfo.mobile" type="number" class="form-control" name="mobileInput"
+                               id="phone"
+                               placeholder="Telefono(1199999999)"
+                               required
+                               ng-change="vm.errorMessages.mobileInvalid = false;"
+                               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                               minlength="10" maxlength="12">
+                        <div class="help-block" ng-show="vm.submitClicked && vm.errorMessages.mobileInvalid">El teléfono móvil ingresado no es válido</div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="login-btn-container m-b-20">
+                    <button ng-click="vm.save()" ng-disabled="!loginForm.$valid" class="btn bgm-green waves-effect login-button">Siguiente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

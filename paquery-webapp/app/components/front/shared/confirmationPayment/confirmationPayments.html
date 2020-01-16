@@ -1,0 +1,13 @@
+<div id="confirmation-payment">
+    <div class="modal-header"></div>
+    <div class="modal-body" style="text-align:center">
+        <h4 ng-if="text">{{ text }}</h4>
+        <h4 ng-if="text2">{{ text2 }}</h4>
+        <p ng-if="text3">{{ text3 }}</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link ok-button" ng-click="vm.ok()">OK</button>
+        <button ng-if="btnCancel" class="btn btn-link" ng-click="vm.cancel()">Cancel</button>
+    </div>
+    <script type="text/javascript" src="//secure.mlstatic.com/mptools/render.js"></script>
+</div>

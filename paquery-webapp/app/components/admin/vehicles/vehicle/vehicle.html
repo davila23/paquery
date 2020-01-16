@@ -1,0 +1,124 @@
+<section id="content" class="page-view ng-scope vehicle-view">
+    <div ng-cloack ng-if="vm.submitClicked ? !vm.isFormValid(vehicleForm) : false" class="alert alert-danger alert-dismissible paquery-error-mesaje" role="alert">
+        <span>Los datos ingresados son incorrectos</span>
+    </div>
+    <div class="ng-scope">
+        <div class="card ng-scope" id="profile-main">
+            <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+                <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+                    <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                        <div class="pmo-pic">
+                            <div photo-selector photo="vm.vehicle.photo" disable-selection="true"></div>
+                            <div class="pmo-stat">
+                                <h2 class="m-0 c-white">{{vm.vehicle.vehicleBrand + ' ' + vm.vehicle.model}}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--
+        <div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;">
+          <div class="mCSB_draggerContainer">
+            <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 0px; max-height: 821px; top: 0px;" oncontextmenu="return false;">
+              <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+            </div>
+            <div class="mCSB_draggerRail"></div>
+          </div>
+        </div>-->
+            </div>
+            <div class="pm-body clearfix">
+                <!-- uiView:  -->
+                <data class="ng-scope">
+                    <div class="pmb-block ng-scope">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-person m-r-5"></i> Información básica</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <form name="vehicleForm" class="pmbb-edit" novalidate>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Tipo</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control w-100" ng-options="carType.name for carType in vm.carTypes track by carType.value" ng-model="vm.vehicle.vehicleTypeObject" data-placeholder="Seleccione un tipo de vehículo.." required></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Marca</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error': vm.submitClicked && vehicleForm.brandInput.$invalid}">
+                                            <input name="brandInput" data-ng-model="vm.vehicle.vehicleBrand" type="text" class="form-control" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Modelo</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error': vm.submitClicked && vehicleForm.modelInput.$invalid}">
+                                            <input name="modelInput" data-ng-model="vm.vehicle.model" type="text" class="form-control" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Descripción</dt>
+                                    <div class="form-group fg-float">
+                                        <div class="fg-line">
+                                            <textarea ng-model="vm.vehicle.detail" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                                        </div>
+                                    </div>
+                                </dl>
+                                <!--
+                <dl class="dl-horizontal">
+                  <dt class="p-t-10">Aseguradora</dt>
+                  <dd>
+                    <div class="fg-line">
+                      <input required data-ng-model="vm.vehicle.insuranceName" type="text" class="form-control">
+                    </div>
+                  </dd>
+                </dl>-->
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Patente</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.vehicle.vehiclePatent" type="text" class="form-control">
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <dl class="dl-horizontal" ng-show="vm.checkVisibility('opl')">
+                                    <dt class="p-t-10">Operadores Logicos</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control" ng-model="vm.vehicle.logisticOperator" ng-options="logisticOperators.name for logisticOperators in vm.logisticOperators track by logisticOperators.id" data-placeholder="Seleccione un Operadores Logicos.."></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <!-- <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Chofer</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error': vm.submitClicked ? vm.showDriverError : false}">
+                                            <span ng-show="vm.selectedDriver" class="driver-name-container">{{vm.selectedDriver.name + ' ' + vm.selectedDriver.lastName}}</span>
+                                            <i ng-show="vm.selectedDriver" class="zmdi zmdi-close-circle" ng-click="vm.selectedDriver = ''"></i>
+                                            <button ng-show="!vm.selectedDriver" class="btn btn-primary waves-effect" ng-click="vm.openDriversModal()">Seleccione un conductor</button>
+                                            <p class="help-block" ng-if="vm.showDriverError">Por favor, seleccione un conductor</p>
+                                        </div>
+                                    </dd>
+                                </dl> -->
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" ng-model="vm.vehicle.active">
+                                    <i class="input-helper"></i> Activo
+                                  </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-default waves-effect" ui-sref="admin.vehicles">Cancelar</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vm.saveVehicle(vehicleForm)">Guardar</button>
+                    </div>
+                </data>
+            </div>
+        </div>
+    </div>
+</section>

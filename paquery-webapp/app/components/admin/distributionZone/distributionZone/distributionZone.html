@@ -1,0 +1,68 @@
+<section id="content" class="page-view ng-scope workzone-detail-view ">
+    <div ng-cloack ng-show="vm.submitClicked ? !vm.isFormValid(distributionZoneForm) : false"
+         class="alert alert-danger alert-dismissible paquery-error-mesaje" role="alert">
+        <span>{{vm.errorMessage}}</span>
+    </div>
+    <div>
+        <div class="card ng-scope" id="profile-main">
+            <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar"
+                 style="overflow: visible;">
+                <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                     tabindex="0">
+                    <div id="mCSB_1_container"
+                         class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y"
+                         style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                        <div class="pmo-pic">
+                            <div photo-selector photo="" disable-selection="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pm-body clearfix">
+                <data class="ng-scope">
+                    <form name="distributionZoneForm" novalidate>
+                        <div class="pmb-block ng-scope">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-person m-r-5"></i> Zona de Distribución</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Nombre</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':  vm.submitClicked && distributionZoneForm.nameInput.$invalid}">
+                                            <input data-ng-model="vm.distributionZone.name" type="text"
+                                                   class="form-control control-label" name="nameInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Codigo Postal</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input type="text" class="input-small span3 form-control" name="postalCode"
+                                                   data-ng-model="vm.distributionZone.postalCode">
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dd>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" ng-model="vm.distributionZone.active">
+                                            <i class="input-helper"></i> Activo
+                                        </label>
+                                    </div>
+                                </dd>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-default waves-effect" ui-sref="admin.distributionZones">Cancelar</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vm.save(distributionZoneForm)">Guardar
+                        </button>
+                    </div>
+                </data>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,20 @@
+.modal-dialog.modal-modal-lg {
+	width: 80%;
+	.selected-driver {
+		background: #254370;
+    	color: #C5CAE9;
+	}
+	tr {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	.ok-button {
+		background: #254370;
+    	color: #C5CAE9;
+	}
+	.ok-button:hover {
+		background: #254370 !important;
+    	color: #C5CAE9 !important;
+	}
+}

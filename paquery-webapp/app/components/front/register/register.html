@@ -1,0 +1,76 @@
+<div id="register-front" class="row">
+    <div class="col-sm-offset-2 col-sm-8">
+        <div class="lc-block lc-block-recovery" id="l-login">
+            <div class="logo-container"><img src="img/logo-iso-blue.png">
+                <div class="register-word"><em>{{vm.complete?'Terminá el Registro':'Registrate'}}</em></div>
+            </div>
+            <p class="text-left error-message" ng-show="vm.errorMessage" ng-bind="vm.errorMessage"></p>
+            <form name="registerForm">
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-user"></i></span>
+                    <div class="fg-line">
+                        <input type="text" class="form-control" ng-model="vm.userInfo.name" id="name" placeholder="Nombre" required>
+                    </div>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-user"></i></span>
+                    <div class="fg-line">
+                        <input type="text" class="form-control" ng-model="vm.userInfo.lastName" id="lastName" placeholder="Apellido" required>
+                    </div>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-cean-white-email"></i></span>
+                    <div class="fg-line">
+                        <input type="email" class="form-control" ng-model="vm.userInfo.email" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-password"></i></span>
+                    <div class="fg-line">
+                        <input type="password" class="form-control" ng-model="vm.userInfo.password" placeholder="Contraseña" required>
+                    </div>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-password"></i></span>
+                    <div class="fg-line">
+                        <input type="password" class="form-control" ng-model="vm.userInfo.newPasswordConfirmation" placeholder="Confirmar Contraseña" required>
+                    </div>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-cean-white-phone"></i></span>
+                    <select chosen class="form-control w-100" ng-options="'('+country.dialingCode+') '+country.name for country in vm.countries track by country.id" data-placeholder="Seleccione un país.." ng-model="vm.userInfo.country" ng-change="vm.getCity(vm.userInfo.country.id)"></select>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-cean-white-phone"></i></span>
+                    <select chosen class="form-control w-100" ng-options="city.name for city in vm.citys track by city.id" data-placeholder="Seleccione una ciudad.." ng-model="vm.userInfo.city"></select>
+                </div>
+                <div class="input-group m-b-20">
+                    <span class="input-group-addon"><i class="paquery-icon paquery-cean-white-phone"></i></span>
+                    <div class="fg-line">
+                        <input type="number" class="form-control" ng-model="vm.userInfo.mobile" id="phone" placeholder="Telefono(1199999999)"
+                               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                               minlength="10" maxlength="12">
+                    </div>
+                </div>
+                <div class="checkbox">
+                    <label style="display: inline;">
+                        <input type="checkbox" ng-model="vm.userInfo.TermsAndConditions" required>
+                        <i class="input-helper">Acepto los Términos y Condiciones.</i>
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+                <div class="login-btn-container m-b-20">
+                    <button ng-click="vm.createAccount()" ng-disabled="!registerForm.$valid" class="btn bgm-green waves-effect login-button">{{vm.complete?'Terminar registro':'Siguiente'}}</button>
+                </div>
+            </form>
+            <div class="clearfix"></div>
+            <div class="text-center">
+                <a class="already-registered-link" ui-sref="frontLogin">Tienes una cuenta? Ingresar</a>
+            </div>
+            <div class="clearfix"></div>
+            <div class="text-center">
+                <a class="already-registered-link" ng-click="vm.modalTermsAndConditions()">Terminos y condiciones</a>
+            </div>
+        </div>
+    </div>
+</div>

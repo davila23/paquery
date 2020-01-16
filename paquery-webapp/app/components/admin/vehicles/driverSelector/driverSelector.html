@@ -1,0 +1,30 @@
+<div id="driver-selector">
+    <div class="modal-header">
+        <h4 class="modal-title">Selecciona un conductor</h4>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle">
+                <tr ng-class="{'selected-driver' : vm.selectedDriver === driver}" ng-click="vm.selectedDriver !== driver ? vm.selectedDriver = driver : vm.selectedDriver = ''" ng-repeat="driver in $data">
+                    <td data-title="'Nombre'" sortable="'name'">
+                        {{ driver.name }}
+                    </td>
+                    <td data-title="'Apellido'" sortable="'lastName'">
+                        {{ driver.lastName }}
+                    </td>
+                    <td data-title="'Usuario'" sortable="'email'">
+                        {{ driver.email }}
+                    </td>
+                    <td data-title="'Estado'" sortable="'status'">
+                        {{ driver.status === 1 ? 'Activo' : 'Inactivo' }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <custom-paginator get-list="vm.getDrivers" paginable-table="vm.tableSorting"></custom-paginator>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link ok-button" ng-disabled="!vm.selectedDriver" ng-click="vm.ok()">OK</button>
+        <button class="btn btn-link" ng-click="vm.cancel()">Cancel</button>
+    </div>
+</div>

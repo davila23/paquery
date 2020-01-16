@@ -1,0 +1,167 @@
+
+server.port: 8100
+
+spring:
+  jackson:
+    date-format: "yyyy-MM-dd'T'HH:mm:ss"
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: 'com.paquery.packages.configuration.NamingStrategyDatabase'
+
+#management:
+#  security:
+#    enabled: false #Los endpoints de actuator nos estan segurizados
+
+management:
+  endpoints:
+    enabled-by-default: true
+    jmx:
+      exposure:
+        exclude: '*'
+    web:
+      exposure:
+        include: 'health,info,loggers,caches'
+  endpoint:
+    loggers:
+      enabled: true
+
+paqueryServices:
+  maps: http://maps-api:8090/
+
+paquery:
+  apiUrl: 'http://api-local.paquery.com:8080/'
+  resourceBaseUrl: 'http://api-local.paquery.com:8080/'
+  security:
+    disabled: true
+
+
+
+admin:
+  username: packages-admin
+  password: p4ck4g3s
+
+#spring:
+#  jpa:
+#    hibernate:
+#      naming:
+#        physical-strategy: 'com.paquery.maps.configuration.NamingStrategyDatabase'
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework: INFO
+    org.springframework.data: INFO
+    com.paquery: DEBUG
+
+---
+spring:
+  profiles: default
+  datasource:
+    url: 'jdbc:sqlserver://localhost\master:1433'
+    driver-class-name: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+    username: 'SA'
+    password: 'Paquery01'
+    test-on-borrow: true
+    validation-query: 'SELECT 1'
+    log-validation-errors: true
+    max-active: 20
+    initial-size: 4
+    autoReconnect: true
+    autoReconnectForPools: true
+    is-connection-validation-required: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+---
+spring:
+  profiles: backup-restored-prod
+  datasource:
+    url: 'jdbc:sqlserver://localhost:1433;databaseName=paqueryRestoredDB'
+    driver-class-name: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+    username: 'SA'
+    password: 'Paquery01'
+    test-on-borrow: true
+    validation-query: 'SELECT 1'
+    log-validation-errors: true
+    max-active: 20
+    initial-size: 4
+    autoReconnect: true
+    autoReconnectForPools: true
+    is-connection-validation-required: true
+hibernate:
+  hbm2ddlAuto: 'none'
+  showSql: true
+
+paqueryServices:
+  maps: 'http://localhost:8090/w3w'
+
+---
+spring:
+  profiles: preprod
+  datasource:
+    url: 'jdbc:sqlserver://10.84.87.3:1433;databaseName=paquery-preprod-db'
+    driver-class-name: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+    username: 'paquery-preprod-db'
+    password: 'qXE5nv6u4cRuVXty'
+    test-on-borrow: true
+    validation-query: 'SELECT 1'
+    log-validation-errors: true
+    max-active: 20
+    initial-size: 4
+    autoReconnect: true
+    autoReconnectForPools: true
+    is-connection-validation-required: true
+hibernate:
+  hbm2ddlAuto: 'none'
+  showSql: true
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework: INFO
+    org.springframework.data: INFO
+    com.paquery: DEBUG
+
+paquery:
+  apiUrl: https://api-pre.paquery.com
+  resourceBaseUrl: 'https://api-pre.paquery.com/'
+  security:
+    disabled: false
+
+---
+spring:
+  profiles: production
+  datasource:
+    url: 'jdbc:sqlserver://10.209.85.194:1433;databaseName=paquery-prod-db'
+    driver-class-name: 'com.microsoft.sqlserver.jdbc.SQLServerDriver'
+    username: 'paquery-prod-db'
+    password: 'sn5eswJjN5XmALWVCJXf'
+    test-on-borrow: true
+    validation-query: 'SELECT 1'
+    log-validation-errors: true
+    max-active: 20
+    initial-size: 4
+    autoReconnect: true
+    autoReconnectForPools: true
+    is-connection-validation-required: true
+hibernate:
+  hbm2ddlAuto: 'none'
+  showSql: true
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework: INFO
+    org.springframework.data: INFO
+    com.paquery: INFO
+
+admin:
+  username: packages-admin
+  password: p@ck@g3spr0d01pQ!
+
+paquery:
+  apiUrl: https://api.paquery.com
+  resourceBaseUrl: 'https://api.paquery.com/'

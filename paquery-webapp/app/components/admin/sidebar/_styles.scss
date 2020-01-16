@@ -1,0 +1,13 @@
+#admin-sidebar {
+  li {
+    a {
+      color: #304C77;
+    }
+    a::before {
+    	color: #304C77;
+    }
+    a::after {
+    	color: #304C77;
+    }
+  }
+}

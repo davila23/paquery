@@ -1,0 +1,27 @@
+#edit-address {
+  .modal-header {
+    text-align: center;
+  }
+  #map {
+    height: 300px;
+  }
+  .fg-line.w3w{
+    width: 100%;
+    display: inline-flex;
+    input{
+      width: 90%;
+    }
+    button{
+      width: 10%;
+      box-shadow: 0px 0px 0px;
+    }
+    .paquery-w3w{
+      height: 60px;
+      width: 40px;
+    }
+  }
+}
+
+.pac-container {
+  z-index: 1200 !important;
+}

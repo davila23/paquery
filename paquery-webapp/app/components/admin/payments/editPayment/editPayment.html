@@ -1,0 +1,59 @@
+<div id="edit-payment">
+  <div class="modal-header">
+    <h4 class="modal-title">Payment</h4>
+  </div>
+  <div class="modal-body">
+    <form class="pmbb-edit">
+      <dl class="dl-horizontal">
+        <dt>Usuario</dt>
+        <dd>
+          <div class="fg-line">
+            <span ng-bind="vm.editedPayment.user.email"></span>
+          </div>
+        </dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Tipo</dt>
+        <dd>
+          <div class="fg-line">
+            <span ng-bind="vm.editedPayment.paymentType | keyValueFilter:vm.paymentTypes"></span>
+          </div>
+        </dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Estado</dt>
+        <dd>
+          <div class="fg-line">
+            <span ng-bind="vm.editedPayment.paymentStatus === 1 ? 'Éxito' : 'Error'"></span>
+          </div>
+        </dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Monto</dt>
+        <dd>
+          <div class="fg-line">
+            <span ng-bind="vm.editedPayment.amount"></span>
+          </div>
+        </dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Detalles</dt>
+        <dd>
+          <div class="fg-line">
+            <span ng-bind="vm.editedPayment.infoError"></span>
+          </div>
+        </dd>
+      </dl>
+      <dl class="dl-horizontal" ng-show="vm.editedPayment.packageID">
+        <dt>Paquete</dt>
+        <dd>
+            <button type="button" class="waves-effect btn btn-default zoom-button" ng-click="vm.showPackage(vm.editedPayment.packageID)"><i class="zmdi zmdi-eye"></i> Ver paquete</button>
+        </dd>
+      </dl>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-link" ng-click="vm.ok()">OK</button>
+    <button class="btn btn-link" ng-click="vm.cancel()">Cancel</button>
+  </div>
+</div>

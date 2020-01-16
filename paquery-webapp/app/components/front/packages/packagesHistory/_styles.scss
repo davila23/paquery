@@ -1,0 +1,23 @@
+#packages-history {
+    .card {
+        box-shadow: none;
+    }
+    .card-body {
+        .input-group.date input:hover {
+            cursor: pointer !important;
+        }
+        .filter-button {
+            margin-top: 35px;
+        }
+        .search-input-container {
+            padding-left: 40px;
+        }
+        .zoom-button {
+            padding: 4px 9px 3px 9px;
+        }
+        .zmdi.zmdi-zoom-in {
+            color: rgb(13, 184, 178);
+            font-size: 23px;
+        }
+    }
+}

@@ -1,0 +1,60 @@
+<div class="card" id="front-addresses">
+    <div class="card-header bgm-cyan">
+        <h2>Agregar Nueva Dirección</h2>
+    </div>
+    <div class="card-body body_space">
+        <div class="row">
+            <div ng-cloack ng-if="vm.googleMapsErrorMessage" class="alert alert-danger alert-dismissible google-maps-error-container" role="alert">
+                <span ng-bind="vm.googleMapsErrorMessage"></span>
+            </div>
+        <form name="AddressForm">
+            <div class="col-sm-6">
+                <div class="card z-depth-4-top">
+                    <div class="card-header ch-alt bgm-bluegray">
+                        <h2><span class="title">Nueva dirección</span></h2>
+                    </div>
+                    <div class="card-body card-padding">
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-sm google-maps-input" ng-model="vm.destiny.addressModel.title" autocomplete="off">
+                                <label class="fg-label">Titulo</label>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                            <div id="destiny-side-container" class="fg-line">
+                                <!--<input id="destiny-address" type="text" class="form-control input-sm google-maps-input" ng-model="vm.destiny.addressModel.address" autocomplete="off">-->
+                                <input-address id="destiny-address" type="text" input-class="form-control input-sm google-maps-input" address="vm.destiny.addressModel.address"
+                                               location="vm.destiny.addressModel.location"
+                                               w3w="vm.destiny.addressModel.w3w" id-w3w-container="address-w3w-container"> </input-address>
+                                <label class="fg-label">Dirección</label>
+                            </div>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input type="text" class="form-control input-sm" ng-model="vm.destiny.addressModel.comments">
+                                <label class="fg-label">Comentarios adicionales</label>
+                            </div>
+                            <small>Ejemplo: Piso 3 A, oficina 86.</small>
+                        </div>
+                        <div class="form-group fg-float m-b-30">
+                          <div id="address-w3w-container" class="fg-line w3w">
+                              <input type="text" class="form-control input-sm" ng-model="vm.destiny.addressModel.w3w" id="w3w-destiny-input" required>
+                              <label class="fg-label">w3w</label>
+                              <button type="button" class="btn btn-default waves-effect" ng-click="vm.geoLocationAddress()"><i class="paquery-icon paquery-w3w"></i></button>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--<google-map local-load="true" single-marker="true" destiny-id="'destiny-address'" destiny="vm.destiny.addressModel" wizard-step="vm.wizardStep" destiny-w3w="vm.destiny.addressModel.w3w" error-message="vm.googleMapsErrorMessage"></google-map>-->
+                <paquery-map mini-map="true" single-marker="true" destiny-id="'destiny-address'" destiny="vm.destiny.addressModel" wizard-step="vm.wizardStep" destiny-w3w="vm.destiny.addressModel.w3w" error-message="vm.googleMapsErrorMessage"></paquery-map>
+            </div>
+            <div class="col-sm-12 container_buttons" style="margin-top:2em;">
+                <button class="waves-effect btn pull-right btn-info submit-button" ng-disabled="AddressForm.$invalid" ng-click="vm.submit()" ng-disabled="vm.googleMapsErrorMessage">Confirmar</button>
+                <button class="waves-effect btn pull-right btn-danger cancel-button" ui-sref="front.addresses">Cancelar</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>

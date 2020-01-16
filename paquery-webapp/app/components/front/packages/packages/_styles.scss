@@ -1,0 +1,85 @@
+#front-packages {
+    .card-header {
+        background-color: #254370 !important;
+    }
+    .bgm-red {
+        a,
+        i {
+            color: white !important;
+        }
+    }
+    margin: 0;
+    .filter-box {
+        font-size: 16px;
+        .filter {
+            cursor: pointer;
+            display: inline-block;
+            span {
+                margin-left: 10px;
+            }
+        }
+    }
+    .tab-selected {
+        border-bottom: solid 3px #254370;
+        -webkit-transition: all;
+        -o-transition: all;
+        transition: all;
+        -webkit-transition-duration: 50ms;
+        transition-duration: 100ms;
+    }
+    .table {
+        margin-top: 30px;
+        td {
+            vertical-align: middle;
+            text-align: center;
+        }
+        th {
+            text-align: center;
+        }
+        i.zmdi-caret-right-circle {
+            font-size: 32px;
+            cursor: pointer;
+        }
+        .actions-container {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            .actions-icon {
+                font-size: 20px;
+            }
+        }
+    }
+    .package-icon {
+        height: 30px;
+        width: 30px;
+        top: 5px;
+        right: 5px !important;
+    }
+    .dropdown-menu {
+        li {
+            a {
+                i.zmdi-close-circle {
+                    color: #F44336;
+                }
+            }
+            a:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.search-inputClass {
+    position: absolute;
+    width: 226px;
+    border: 1px solid #F4F4F4;
+    height: 35px;
+    top: 27px;
+    right: 27px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.package-rolled-selected{
+    background-color: #62ca00;
+}

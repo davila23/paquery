@@ -1,0 +1,26 @@
+#payments-view.card {
+    margin-bottom: 0;
+    .card {
+        margin-bottom: 0;
+    }
+    .card-header {
+        background-color: #254370 !important;
+    }
+    .card-body {
+        .input-group.date input:hover {
+            cursor: pointer !important;
+        }
+        .filter-button {
+            margin-top: 35px;
+        }
+        .search-input-container {
+            padding-left: 40px;
+        }
+        .zoom-button {
+            padding: 4px 9px 3px 9px;
+        }
+        .zmdi.zmdi-zoom-in {
+            font-size: 23px;
+        }
+    }
+}

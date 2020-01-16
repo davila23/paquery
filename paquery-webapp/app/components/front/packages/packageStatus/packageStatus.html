@@ -1,0 +1,89 @@
+<section id="front-package-status-view" class="page-view">
+    <div class="card" id="profile-main">
+        <div class="card-header bgm-bluegray" style="z-index:1;">
+            <h2>Validación</h2>
+            <ul class="actions actions-alt">
+                <li class="dropdown" uib-dropdown="">
+                    <a href="" uib-dropdown-toggle="" aria-expanded="false" class="dropdown-toggle" aria-haspopup="true">
+                        <i class="zmdi zmdi-more-vert"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li>
+                            <a href="">Refresh</a>
+                        </li>
+                        <li>
+                            <a href="">Manage Widgets</a>
+                        </li>
+                        <li>
+                            <a href="">Widgets Settings</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="clearfix">
+            <data>
+                <div class="pmb-block col-md-6 col-lg-6">
+                    <div class="pmbb-header">
+                        <h2>Tracking</h2>
+                    </div>
+                    <div class="pmbb-body p-l-30">
+                        <form class="pmbb-edit">
+                            <fieldset>
+                                <div class="row">
+                                    <p>Calificacion del PaQuer</p>
+                                </div>
+                                <div class="rating rating2"><a ng-repeat="s in vm.numStar track by $index" ng-class="{'act':$index>=vm.target}" ng-click="vm.target=$index" title="Give {{$index+1}} stars">★</a>
+                                </div>
+                            </fieldset>
+                            <dl class="dl-horizontal">
+                                <dt class="p-t-10">Comentarios</dt>
+                                <div class="form-group fg-float">
+                                    <div class="fg-line">
+                                        <textarea ng-model="vm.comment" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                                    </div>
+                                </div>
+                            </dl>
+                            <div class="col-md-12">
+                                <button class="btn btn-block btn-primary mg-b-2" ng-click="vm.confirmVerificationCode()" ng-disabled="vm.disableSaveButton">Calificar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="pmb-block col-md-6 col-lg-6" style="padding-left: 0;">
+                    <div class="pmbb-header qr-code-title">
+                        <h2>Código QR</h2>
+                    </div>
+                    <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                        <div class="pmo-pic">
+                            <img ng-src="{{'data:image/png;base64, '+vm.base}}" alt="" ng-if="vm.base">
+                        </div>
+                        <dl class="dl-horizontal code-container">
+                            <dt class="p-t-10">Codigo para el PaQuer</dt>
+                            <div class="form-group fg-float">
+                                <div class="fg-line">
+                                    <input type="text" ng-model="vm.addressSchedule.driverPairCode" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 37px;" disabled>
+                                </div>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="containterShareButtons">
+                        <div class="subtitle">Compartir:</div>
+                        <div>
+                            <div class="shareButton facebookButton"><i ng-click="vm.shareFacebook()" class="zmdi zmdi-facebook-box zmdi-hc-3x"></i></div>
+                            <div class="shareButton twitterButton"><i ng-click="vm.shareTwitter()" class="zmdi zmdi-twitter-box zmdi-hc-3x"></i></div>
+                        </div>
+                        <div>
+                            <div class="subtitle">Enlace a este c&oacute;digo QR</div>
+                            <input onclick="this.select()" readonly='readonly' type="text" class="buttonURL" ng-model="vm.urlCodigoQR"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row save-buttton-container">
+                    <button class="btn btn-danger waves-effect" ng-click="vm.cancel()">Cancelar</button>
+                </div>
+            </data>
+        </div>
+    </div>
+    </div>
+</section>

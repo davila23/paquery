@@ -1,0 +1,51 @@
+<div id="front-validate-code" class="login-content row">
+    <div class="col-sm-offset-2 col-sm-8">
+
+        <div class="lc-block" id="l-login">
+            <div class="logo-container"><img src="img/logo-iso-blue.png"></div>
+            <p>Ingrese el código que recibió por email o SMS</p>
+
+            <p class="text-left error-message" ng-show="vm.errorMessage" ng-bind="vm.errorMessage"></p>
+            <p class="success-message" ng-show="vm.successChange">Contraseña cambiada correctamente</p>
+
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="paquery-icon paquery-blue-white-ok"></i></span>
+                <div class="fg-line">
+                    <input type="text" class="form-control" ng-model="vm.code" id="validation-code" placeholder="Ingrese código de validación">
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="paquery-icon paquery-password"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" ng-model="vm.newPassword" placeholder="Nueva Contraseña" required>
+                </div>
+            </div>
+            <div class="input-group m-b-20">
+                <span class="input-group-addon"><i class="paquery-icon paquery-password"></i></span>
+                <div class="fg-line">
+                    <input type="password" class="form-control" ng-model="vm.newPasswordConfirmation" placeholder="Confirmar Contraseña" required>
+                </div>
+            </div>
+            <!--<div class="input-group m-b-20">-->
+            <!--<span class="input-group-addon"><i class="paquery-icon paquery-password"></i></span>-->
+            <!--<div class="fg-line">-->
+            <!--<input is-password="checkPassword" placeholder="Confirmar Contraseña" class="form-control" required/>-->
+            <!--<input type="checkbox" ng-model="checkPassword"/>-->
+            <!--</div>-->
+            <!--</div>-->
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="vm.tyc" required>
+                    <i class="input-helper"></i>Acepto los Términos y Condiciones.
+                </label>
+            </div>
+            <div class="clearfix"></div>
+            <div class="login-btn-container m-b-20">
+                <button ng-click="vm.validateCode(vm.code,vm.newPassword)" class="btn bgm-green waves-effect login-button">Validar</button>
+            </div>
+            <div class="TyC-link">
+                <a ng-click="vm.modalTermsAndConditions()">Terminos y condiciones</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+#package-views {
+  .chosen-container.chosen-container-single {
+    position: absolute;
+    right: 13px;
+    border: none;
+    height: 35px;
+    top: 5px;
+    padding: 10px;
+    border-radius: 3px;
+    width: 30% !important;
+  }
+}
+
+#package-views-search {
+  #search-input {
+    position: absolute;
+    right: 20px;
+    height: 35px;
+    top: 15px;
+    .input{
+      border: 1px solid #F4F4F4;
+      padding: 10px;
+      border-radius: 3px;
+    }
+  }
+}

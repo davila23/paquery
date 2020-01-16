@@ -1,0 +1,64 @@
+#front-package-status-view {
+    .card-header {
+        background-color: #254370 !important;
+    }
+    .rating {
+        width: 226px;
+        margin: 0 auto 1em;
+        font-size: 45px;
+        overflow: hidden;
+    }
+    .rating a.act {
+        color: orange;
+        cursor: pointer;
+    }
+    .rating a:hover {
+        color: orange;
+        cursor: pointer;
+    }
+    .rating2 {
+        direction: rtl;
+    }
+    .rating2 a {
+        float: none
+    }
+    .mg-b-2 {
+        margin-bottom: 2em;
+    }
+    .google-maps-input {
+        margin-bottom: 15px;
+    }
+    #map {
+        margin-left: 0;
+        width: 100%;
+    }
+    fieldset {
+        text-align: center;
+    }
+    google-map {
+        #map2 {
+            height: 300px !important;
+        }
+    }
+    .pmbb-header h2 {
+        text-align: center;
+    }
+    .pmo-pic {
+        text-align: center;
+        margin: 0;
+        img {
+            padding: 0 30px;
+            max-height: 400px;
+            max-width: 400px;
+        }
+    }
+    .code-container {
+        padding: 0 30px;
+        input {
+            color: #000;
+        }
+    }
+    .qr-code-title {
+        margin-bottom: 0 !important;
+    }
+}

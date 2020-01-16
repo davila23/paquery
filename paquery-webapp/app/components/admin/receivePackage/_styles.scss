@@ -1,0 +1,155 @@
+#admin-receive-package-view {
+    #map {
+        height: 400px !important;
+        width: 97.5%;
+        margin-left: 15px;
+    }
+    .paquery-icon{
+      height: 50px;
+      width: 50px;
+    }
+    .fg-line.w3w{
+      width: 100%;
+      display: inline-flex;
+      input{
+        width: 90%;
+      }
+      button{
+        width: 10%;
+        box-shadow: 0px 0px 0px;
+      }
+    }
+    .submit-button {
+        float: right;
+        background: $default-primary-color;
+    }
+    .submit-button.cancel-button {
+        margin-right: 15px;
+        background: $default-red-paquery;
+    }
+    .back-button {
+        background: $default-cean-paquery;
+        margin-bottom: 20px;
+    }
+    .next-button {
+        margin-right: 14px;
+    }
+    .btn-info.submit-button:hover,
+    .btn-info.submit-button:focus {
+        background: #254370 !important;
+    }
+    .card-header {
+        background-color: #254370 !important;
+        h2 {
+            color: #fff;
+        }
+        .title {
+            padding-left: 10px;
+        }
+    }
+    .zmdi.zmdi-pin.zmdi-hc-fw {
+        color: #fff !important;
+        font-size: 20px;
+    }
+    .card-body {
+        min-height: 281px;
+    }
+    .fg-float .form-control.google-maps-input {
+        z-index: 0;
+    }
+    .google-maps-error-container {
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .user-selector-continer {
+        margin-bottom: 30px;
+    }
+    .user-name-container {
+        color: #fff;
+        background-color: #254370;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+    .driver-name-container:hover {
+        cursor: default;
+    }
+    .zmdi-close-circle {
+        font-size: 22px;
+        vertical-align: bottom;
+
+    }
+    .zmdi-close-circle:hover {
+        cursor: pointer;
+    }
+    .size-selected {
+        background: $default-cean-paquery;
+        color: #FFF;
+        border-radius: 5px;
+    }
+    a.size-item {
+        padding-top: 11px;
+        padding-left: 10px;
+        border: none;
+        height: 60px;
+        font-size: 12px;
+        i.paquery-blue-packages {
+            left: 90%;
+            top: 7px !important;
+        }
+        i.lite{
+          background-size: 25px 25px;
+        }
+        i.middle{
+          background-size: 30px 30px;
+        }
+        i.big{
+          background-size: 40px 40px;
+        }
+        i.custom{
+          background-size: 40px 40px;
+        }
+    }
+    a.size-item:hover {
+        cursor: pointer;
+    }
+    .pmo-pic {
+        text-align: center;
+        div[photo-selector] {
+            padding-bottom: 25px;
+            height: 157px !important;
+            max-height: 157px !important;
+            overflow: hidden;
+            a.pmop-edit {
+                span:not(:hover) {
+                    color: #254370;
+                }
+            }
+        }
+        div[photo-selector] .fileinput-preview.thumbnail {
+            min-height: 100px;
+            width: 150px;
+            height: 100px !important;
+            border-bottom: 1px solid #EDEDED;
+            .zmdi.zmdi-camera-bw {
+                transform: translateY(126%);
+            }
+        }
+        div[photo-selector].selected-photo .image-selector .fileinput-preview {
+            border: none;
+            width: auto;
+            img {
+                margin-top: 0;
+            }
+        }
+        a.pmop-edit:hover {
+            color: #0db8b2;
+            i.zmdi {
+                color: #0db8b2;
+            }
+        }
+    }
+    .min-no-height{
+        min-height: 0px !important;
+    }
+}

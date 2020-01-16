@@ -1,0 +1,75 @@
+<div id="front-packages" class="row card">
+    <div class="card-header bgm-cyan">
+        <h2>Mis pedidos <small>Listado de los pedidos en gestion actualmente...</small></h2>
+    </div>
+    <div class="card-body">
+        <ul class="tab-nav tn-justified">
+            <li class="btn-wave" ng-click="vm.resetTableValues('schedule')" ng-class="{'tab-selected' : vm.tabSelected === 'schedule'}"><a>Agenda</a></li>
+            <li class="btn-wave" ng-click="vm.resetTableValues('pendings')" ng-class="{'tab-selected' : vm.tabSelected === 'pendings'}"><a>Pendientes</a></li>
+        </ul>
+        <div>
+            <input id="input" style="right:300px" class="search-inputClass" placeholder="Buscar..." type="text" ng-model="vm.searchWord">
+            <input id="input2" class="search-inputClass" placeholder="Buscar rolled..." type="text" ng-model="vm.searchRolled">
+        </div>
+        <div class="table-responsive">
+            <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle" ng-class="{'hide-header': !$data.length}">
+                <tr ng-repeat="package in $data" ng-class="{ 'package-rolled-selected' : package.rollContainerStatus == true }">
+                    <td data-title="'Externo'" sortable="'ExternalCode'">
+                        {{ package.externalCode }}
+                    </td>
+                    <td data-title="'Nombre destinatario'">
+                        {{ package.shippingScheduleDestination.name }}
+                    </td>
+                    <td data-title="'Descripción'" sortable="'Caption'">
+                        {{ package.caption }}
+                    </td>
+                    <td data-title="'Usuario'" sortable="'User'">
+                        {{ package.user.email }}
+                    </td>
+                    <td data-title="'Creación'" sortable="'CreationDate'">
+                        {{ package.creationDate | date: 'dd-MM-yyyy HH:mm' }}
+                    </td>
+                    <td data-title="'Roll/Pos'">
+                        {{ package.rollContainerPosition }}
+                    </td>
+                    <td data-title="'Estado'" sortable="'Status'">
+                        {{ package.status | keyValueFilter:vm.packagesStatus }}
+                    </td>
+                    <!--<td data-title="'Editar'">
+            <button type="button" class="btn btn-default" ng-click="vm.editpackage(package)"><i class="zmdi zmdi-edit"></i></button>
+          </td>
+          <td data-title="'Borrar'">
+            <button type="button" class="btn btn-default" ng-click="vm.deletepackage(package)"><i class="zmdi zmdi-delete"></i></button>
+          </td>
+        -->
+                    <td>
+                        <ul class="actions-container">
+                            <li class="dropdown" uib-dropdown>
+                                <a uib-dropdown-toggle href="" class="actions-icon"><i class="tm-icon zmdi zmdi-more"></i></a>
+                                <ul class="dropdown-menu dm-icon pull-right">
+                                    <li>
+                                        <a ng-click="vm.loadPackage(package)"><i class="zmdi zmdi-zoom-in"></i> Ver Detalle</a>
+                                    </li>
+                                    <!-- <li>
+                <a ng-click="vm.loadPackage(package,true)"><i class="zmdi zmdi-zoom-in"></i> Estado</a>
+              </li> -->
+                                    <li>
+                                        <a ng-click="vm.cancelPackage(package,$index,$data)"><i class="zmdi zmdi-close-circle"></i> Cancelar</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr ng-hide="$data.length">
+                    <td colspan="6">
+                        <div class="row">
+                            <strong>No hay paquetes registrados por el momento.</strong>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <custom-paginatorv2 get-list="vm.getPackages" paginable-table="vm.tableSorting" is-scheduled="vm.isScheduled" search="vm.searchWord"  ></custom-paginatorv2>
+    </div>
+</div>

@@ -1,0 +1,189 @@
+<div id="front-receive-package-view">
+    <div class="user-selector-continer col-xs-12">
+        <button class="btn btn-primary waves-effect" ng-click="vm.openAddressesModalDestiny()" ng-show="vm.wizardStep === 2">Seleccione dirección destino</button>
+    </div>
+    <div class="card-body">
+        <div id="receive-package-view">
+            <div class="row" ng-show="vm.wizardStep === 1">
+                <form name="receivePackageFirstStepForm">
+                    <div class="col-sm-6">
+                        <div class="card z-depth-4-top">
+                            <div class="card-header ch-alt bgm-bluegray">
+                                <h2>Datos del paquete</h2>
+                            </div>
+                            <div class="card-body card-padding">
+                                <div class="pmo-pic">
+                                    <div photo-selector photo="vm.photo" photo-name="vm.photoName" ng-class="{'selected-photo':vm.photo}"></div>
+                                </div>
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-sm" ng-model="vm.content" required>
+                                        <label class="fg-label control-label">Contenido</label>
+                                    </div>
+                                </div>
+                                <!--<div class="form-group fg-float m-b-30">-->
+                                    <!--<div class="fg-line">-->
+                                        <!--<input type="text" class="form-control input-sm" ng-model="vm.comments">-->
+                                        <!--<label class="fg-label">Comentarios adicionales 1</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="fg-line">
+                                        <textarea ng-model="vm.comments" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea>
+                                        <label class="fg-label">Comentarios adicionales del paquete</label>
+                                    </div>
+                                </div>
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="fg-line">
+                                        <input type="number" class="form-control input-sm" ng-model="vm.stimatedValue">
+                                        <label class="fg-label">Valor estimado del contenido</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-sm" ng-model="vm.externalCodePackage">
+                                        <label class="fg-label">Numero de paquete externo</label>
+                                    </div>
+                                </div>
+
+                                <!--<div class="form-group fg-float m-b-30 toggle-switch">
+                                  <label for="aditional-secure" class="ts-label pointer">Seguro adicional por $ XX</label>
+                                  <input id="aditional-secure" type="checkbox" hidden="hidden" ng-model="vm.aditionalSecure">
+                                  <label for="aditional-secure" class="ts-helper"></label>
+                              </div>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card z-depth-4-top">
+                            <div class="card-header ch-alt bgm-bluegray">
+                                <h2>Tamaño del paquete</h2>
+                            </div>
+                            <div class="card-body card-padding">
+                                <div class="list-group">
+                                    <a class="form-control w-100 list-group-item size-item" ng-repeat="packageSize in vm.packagesSizes track by $index" ng-click="vm.packageSize=vm.packagesSizes[$index]" ng-class="{'size-selected': packageSize.value === vm.packageSize.value}">
+                                        <span><strong> {{packageSize.name}}</strong></span>
+                                        <p ng-if="packageSize.value === 1">({{ vm.packagePayment[$index] | currency}}) Entra en una mochila y pesa menos de 5 kilos.</p>
+
+                                        <p ng-if="packageSize.value === 2">({{ vm.packagePayment[$index] | currency}}) Entra en el asiento de atrás o baúl de un auto y pesa menos de 20 kilos.</p>
+
+                                        <p ng-if="packageSize.value === 3">({{ vm.packagePayment[$index] | currency}}) Entra en la caja de una camioneta y pesa menos de 40 kilos</p>
+
+                                        <p ng-if="packageSize.value === 4"></p>
+
+                                        <i class="paquery-icon paquery-blue-packages" ng-class="{ 'lite': packageSize.value === 1, 'middle':packageSize.value === 2, 'big': packageSize.value === 3, 'custom': packageSize.value === 4}"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card z-depth-4-top">
+                            <div class="card-body card-padding">
+                                <div class="list-group">
+                                    <div class="fileinput fileinput-new attached-file" data-provides="fileinput">
+                                        <span class="btn btn-primary waves-effect btn-file">
+                                            <span>Adjuntar un archivo</span>
+                                            <input type="file" id="file1" name="file" ng-files="getAndUploadFile($files)" />
+                                        </span>
+                                        <span class="fileinput-filename"></span><span class="fileinput-new">No se eligió archivo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button class="waves-effect btn btn-info submit-button next-button" ng-disabled="vm.disableNextStepButton(receivePackageFirstStepForm)" ng-click="vm.wizardStep = 2">Siguiente</button>
+            </div>
+            <div class="row" ng-show="vm.wizardStep === 2">
+                <form name="receivePackageSecondStepForm">
+                    <div ng-cloack ng-if="vm.googleMapsErrorMessage" class="alert alert-danger alert-dismissible google-maps-error-container" role="alert">
+                        <span ng-bind="vm.googleMapsErrorMessage"></span>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card z-depth-4-top">
+                            <div class="card-header ch-alt bgm-bluegray">
+                                <h2><span class="title">Destino del paquete</span></h2>
+                            </div>
+                            <div class="card-body card-padding">
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-sm" ng-model="vm.destiny.personalInformation.completeName" required>
+                                        <label class="fg-label control-label">Nombre y apellido</label>
+                                    </div>
+                                </div>
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="fg-line">
+                                        <input type="text" class="form-control input-sm" ng-model="vm.destiny.personalInformation.email" required>
+                                        <label class="fg-label control-label">Email</label>
+                                    </div>
+                                </div>
+                                <!--<div class="form-group fg-float m-b-30">-->
+                                    <!--<div class="fg-line">-->
+                                        <!--<input type="text" class="form-control input-sm" ng-model="vm.destiny.personalInformation.comments">-->
+                                        <!--<label class="fg-label">Comentarios adicionales 2</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="fg-line">
+                                        <textarea ng-model="vm.destiny.personalInformation.comments" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea>
+                                        <label class="fg-label">Información adicional de la persona de destino</label>
+                                    </div>
+                                </div>
+                                <div class="form-group fg-float m-b-30">
+                                    <div id="destiny-side-container" class="fg-line">
+                                        <!--<input id="destiny-address" type="text" class="form-control input-sm google-maps-input" ng-model="vm.destiny.addressInformation.address" autocomplete="off">-->
+                                        <input-address id="destiny-address" input-class="form-control input-sm google-maps-input"
+                                                       address="vm.destiny.addressInformation.address"
+                                                       location="vm.destiny.addressInformation.location"
+                                                       w3w="vm.destiny.addressInformation.w3w" id-w3w-container="destiny-w3w-container"></input-address>
+                                        <label class="fg-label">Dirección</label>
+                                    </div>
+                                    <span ng-if="vm.destinyIsNotInArg">La dirección ingresada no pertenece a Argentina, ingrese una dirección correcta.</span>
+                                </div>
+                                <!--<div class="form-group fg-float m-b-30">-->
+                                    <!--<div class="fg-line">-->
+                                        <!--<input type="text" class="form-control input-sm" ng-model="vm.destiny.addressInformation.comments">-->
+                                        <!--<label class="fg-label">Comentarios adicionales 3</label>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="fg-line">
+                                        <textarea ng-model="vm.destiny.addressInformation.comments" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 60px;"></textarea>
+                                        <label class="fg-label">Comentarios adicionales de la dirección de destino</label>
+                                    </div>
+                                </div>
+                                <div class="form-group fg-float m-b-30">
+                                    <div id="destiny-w3w-container" class="fg-line w3w">
+                                        <input id="w3w-destiny-input" type="text" class="form-control input-sm" ng-model="vm.destiny.addressInformation.w3w" required>
+                                        <label class="fg-label control-label">w3w</label>
+                                        <button type="button" id="w3w-geolocation" class="btn btn-default waves-effect" ng-click="vm.geoLocationDestiny()"><i class="paquery-icon paquery-w3w"></i></button>
+                                    </div>
+                                </div>
+                                <div class="form-group fg-float m-b-30">
+                                    <div class="checkbox">
+                                        <label>
+                                      <input type="checkbox" ng-model="vm.destiny.addressInformation.immediately.status">
+                                      <i class="input-helper"></i> {{ vm.destiny.addressInformation.immediately.status ? "Inmediato" : "Programado" }}
+                                    </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!--<google-map single-marker="true" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" wizard-step="vm.wizardStep" destiny-w3w="vm.destiny.addressInformation.w3w" destiny-is-not-in-arg="vm.destinyIsNotInArg" error-message="vm.googleMapsErrorMessage"></google-map>-->
+                        <paquery-map single-marker="true" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" wizard-step="vm.wizardStep" destiny-w3w="vm.destiny.addressInformation.w3w" destiny-is-not-in-arg="vm.destinyIsNotInArg" error-message="vm.googleMapsErrorMessage"></paquery-map>
+                    </div>
+                </form>
+            </div>
+            <div ng-show="vm.wizardStep === 2" class="container_buttons">
+                <button class="waves-effect btn btn-info back-button" ng-click="vm.wizardStep = 1">Volver</button>
+                <button class="waves-effect btn btn-info submit-button" ng-click="vm.submit()" ng-disabled="vm.disableConfirmation(receivePackageFirstStepForm, receivePackageSecondStepForm)">Confirmar</button>
+                <button class="waves-effect btn btn-danger submit-button cancel-button" ui-sref="front.dashboard">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="//secure.mlstatic.com/mptools/render.js"></script>

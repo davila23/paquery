@@ -1,0 +1,84 @@
+<section id="package-view" class="page-view ng-scope">
+  <div class="ng-scope">
+    <div class="card ng-scope" id="profile-main">
+      <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+        <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+          <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+            <div class="pmo-pic">
+              <div photo-selector photo="vm.photo"></div>
+              <div class="pmo-stat">
+                <h2 class="m-0 c-white"></h2> <span ng-show="!photo">Seleccione una imagen para el paquete (opcional)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pm-body clearfix">
+        <!-- uiView:  -->
+        <data class="ng-scope" ng-show="vm.cardContent === 'profile'">
+          <div class="pmb-block ng-scope">
+            <div class="pmbb-header">
+              <h2><i class="zmdi zmdi-person m-r-5"></i> Información del paquete</h2>
+            </div>
+            <div class="pmbb-body p-l-30">
+              <form class="pmbb-edit">
+                <dl class="dl-horizontal">
+                  <dt class="p-t-10">Usuario</dt>
+                  <dd>
+                    <!--<select chosen class="form-control w-100" ng-model="vm.package.userSelected" ng-options="user.name for user in vm.users track by user.id" data-placeholder="Seleccione un usuario.."></select>-->
+                    <span ng-show="vm.package.selectedUser" class="driver-name-container">{{vm.package.selectedUser.name + ' ' + vm.package.selectedUser.lastName}}</span>
+                    <i ng-show="vm.package.selectedUser" class="zmdi zmdi-close-circle" ng-click="vm.package.selectedUser = ''"></i>
+                    <button ng-show="!vm.package.selectedUser" class="btn btn-primary waves-effect" ng-click="vm.openUsersModal()">Seleccione un usuario</button>
+                  </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt class="p-t-10">Tipo</dt>
+                  <dd>
+                    <select chosen class="form-control w-100" ng-model="vm.package.receiveOrSend" ng-options="packageType.name for packageType in vm.packagesTypes track by packageType.id" data-placeholder="Seleccione un tipo.."></select>
+                  </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt class="p-t-10">Descripción</dt>
+                  <div class="form-group fg-float">
+                    <div class="fg-line fg-toggled">
+                      <textarea ng-model="vm.package.description" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 37px;"></textarea>
+                      <!-- <label class="fg-label"></label> -->
+                    </div>
+                  </div>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt class="p-t-10">Comentarios</dt>
+                  <dd>
+                    <div class="fg-line">
+                      <input data-ng-model="vm.package.comments" type="text" class="form-control">
+                    </div>
+                  </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt class="p-t-10">Código</dt>
+                  <dd>
+                    <div class="fg-line">
+                      <input data-ng-model="vm.package.sellerCode" type="text" class="form-control">
+                    </div>
+                  </dd>
+                </dl>
+                <dl class="dl-horizontal">
+                  <dt class="p-t-10">Tamaño</dt>
+                  <dd>
+                    <div class="fg-line">
+                      <select chosen class="form-control w-100" ng-model="vm.package.size" ng-options="packageSize.name for packageSize in vm.packagesSizes track by packageSize.id" data-placeholder="Seleccione un tamaño.."></select>
+                    </div>
+                  </dd>
+                </dl>
+              </form>
+            </div>
+          </div>
+          <div class="row save-buttton-container">
+            <button class="btn btn-default waves-effect">Cancelar</button>
+            <button class="btn btn-primary waves-effect" ng-click="vm.submit()">Guardar</button>
+          </div>
+        </data>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+var PaQuery = angular.module('PaQuery', [
+    'ngAnimate',
+    'ngResource',
+    'ui.router',
+    'ui.bootstrap',
+    'ui.bootstrap.datetimepicker',
+    'angular-loading-bar',
+    'oc.lazyLoad',
+    'nouislider',
+    'ngTable',
+    'ngStorage',
+    'angular-web-notification',
+    'localytics.directives',
+    'ngMask',
+    'vcRecaptcha',
+    'ui.autocomplete',
+    'base64',
+    'daterangepicker',
+    'angucomplete-alt'
+]);

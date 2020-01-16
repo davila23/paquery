@@ -1,0 +1,117 @@
+<section id="content" class="page-view marketplace-detail-view">
+  <div ng-cloack ng-if="vm.checkSubmit ? formMarket.$invalid : false" class="alert alert-danger alert-dismissible paquery-error-mesaje" role="alert">
+      <span>Los datos ingresados son incorrectos</span>
+  </div>
+  <div ng-if="vm.errorOL ? true : false" class="alert alert-danger alert-dismissible paquery-error-mesaje" role="alert">
+      <span>{{vm.errorOL}}</span>
+  </div>
+  <div>
+        <div class="card" id="profile-main">
+            <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+                <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+                    <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                        <div class="pmo-pic">
+                            <div photo-selector photo="vm.marketplace.photo" disable-selection="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pm-body clearfix">
+                <ul class="tab-nav tn-justified">
+                    <li class="btn-wave tab-selected"><a>Marketplace</a></li>
+                </ul>
+                <data>
+                    <div class="pmb-block ng-scope">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-person m-r-5"></i> Información básica</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <form class="pmbb-edit" name="formMarket" novalidate>
+                                <dl class="dl-horizontal" ng-if="vm.marketplace && vm.marketplace.id">
+                                    <dt class="p-t-10">ID</dt>
+                                    <dd>
+                                        <div class="fg-line" style="padding-top: 10px">
+                                            {{ vm.marketplace.id }}
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Nombre</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error':   vm.checkSubmit ? formMarket.nameInput.$invalid : false}">
+                                            <input data-ng-model="vm.marketplace.name" type="text" class="form-control" name="nameInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Detalle</dt>
+                                    <div class="form-group fg-float">
+                                        <div class="fg-line" ng-class="{'has-error': vm.checkSubmit ? formMarket.detailInput.$invalid : false}">
+                                            <textarea ng-model="vm.marketplace.detail" name="detailInput" class="form-control input-sm" auto-size="" data-autosize-on="true" style="overflow: hidden; word-wrap: break-word; height: 37px;" required></textarea>
+                                            <!-- <label class="fg-label"></label> -->
+                                        </div>
+                                    </div>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Operadores Logicos</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control" ng-model="vm.marketplace.logisticOperator" ng-options="logisticOperators.name for logisticOperators in vm.logisticOperators track by logisticOperators.id" data-placeholder="Seleccione un Operadores Logicos.."></select>
+                                            <button class="btn btn-primary waves-effect" ng-click="vm.addlogisticOperator()">Añadir</button>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div style="width:100%">
+                                  <div class="mp-selector-continer" ng-repeat="logisticOperators in vm.marketplace.logisticOperators">
+                                      <span class="mp-name-container ng-binding" ng-bind="logisticOperators.name"></span>
+                                      <a class="zmdi zmdi-close-circle" ng-click="vm.removeLO(logisticOperators)"></a>
+                                  </div>
+                                </div>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" ng-model="vm.marketplace.published">
+                                    <i class="input-helper"></i> Publicar
+                                  </label>
+                                </div>
+
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" ng-model="vm.marketplace.sendCustomerNotifications">
+                                    <i class="input-helper"></i> Envio de notificaciones a usuarios
+                                  </label>
+                                </div>
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="vm.marketplace.stock">
+                                        <i class="input-helper"></i> Paquetes del tipo Pickup con stock
+                                    </label>
+                                </div>
+                                <!-- <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Operadores Lógicos</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control w-100" ng-model='vm.marketplace.logisticOperators' ng-options="logisticOperators.name for logisticOperators in vm.logisticOperators" data-placeholder="Seleccione un marketplace.." required></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <div class="checkbox">
+                                      <label>
+                                        <input type="checkbox" ng-model="vm.published">
+                                        <i class="input-helper"></i>Publicar
+                                      </label>
+                                </div> -->
+
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-default waves-effect" ui-sref="admin.marketplaces">Cancelar</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vm.save(formMarket)">Guardar</button>
+                    </div>
+                </data>
+            </div>
+        </div>
+    </div>
+</section>

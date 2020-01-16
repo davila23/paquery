@@ -1,0 +1,40 @@
+/*.row .form-group label.confirm-password {
+  padding-top: 0 !important;
+}
+*/
+
+.card.old-card {
+    padding-bottom: 20px;
+    margin: 0 300px;
+}
+
+.tab-nav.tn-justified:hover {
+    cursor: pointer;
+}
+
+.tab-nav.tn-justified .tab-selected {
+    border-bottom: solid 3px #254370;
+    -webkit-transition: all;
+    -o-transition: all;
+    transition: all;
+    -webkit-transition-duration: 50ms;
+    transition-duration: 100ms;
+}
+
+.save-buttton-container {
+    float: right;
+    padding: 20px 33px
+}
+
+.save-buttton-container button {
+    margin-left: 10px;
+}
+
+.mCSB_draggerRail {
+    display: none;
+}
+
+.change-password-button {
+    margin-top: 16px;
+}
+

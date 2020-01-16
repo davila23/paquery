@@ -1,0 +1,62 @@
+<div id="front-sidebar" class="sidebar-inner c-overflow">
+  <div class="profile-menu" data-ng-controller="FrontSidebarController as vm">
+    <a href="" toggle-submenu>
+      <div class="profile-pic">
+        <img id="sidebar-photo" ng-show="vm.profilePicture" alt="" ng-src="{{vm.profilePicture}}">
+        <div ng-show="!vm.profilePicture" style="height: 53px;"></div>
+      </div>
+      <div class="profile-info">
+       {{vm.userName}}
+        <i class="zmdi zmdi-caret-down"></i>
+      </div>
+    </a>
+    <ul class="main-menu">
+      <!--<li>
+        <a data-ui-sref="pages.profile.profile-about" data-ng-click="mactrl.sidebarStat($event)"><i class="paquery-icon paquery-cean-ammount"></i> Crédito $200</a>
+      </li>
+      <li>
+        <a href=""><i class="paquery-icon paquery-cean-credit-card"></i> Tarjeta de crédito</a>
+      </li>
+      <li>
+        <a href=""><i class="paquery-icon paquery-cean-phone"></i> Verificar teléfono</a>
+      </li>-->
+      <li class="logout-row">
+        <a ng-click="vm.logout()"><i class="paquery-icon paquery-cean-logout"></i> Logout</a>
+      </li>
+    </ul>
+  </div>
+  <ul class="main-menu">
+    <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('frontTrackPackage') }">
+      <a href="" toggle-submenu><i class="paquery-icon paquery-house"></i> Mis pedidos</a>
+      <ul>
+        <li><a data-ui-sref="front.trackPackage" data-ng-click="mactrl.sidebarStat($event)">Consulta de estado</a></li>
+        <li><a data-ui-sref="front.dashboard" data-ng-click="mactrl.sidebarStat($event)">Mis pedidos</a></li>
+      </ul>
+    </li>
+    <li data-ng-class="{ 'active toggled': mactrl.$state.includes('list') }">
+      <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="front.history"><i class="paquery-icon paquery-packages"></i> Historial</a>
+    </li>
+    <!--<li data-ng-class="{ 'active toggled': mactrl.$state.includes('list') }">
+      <a data-ng-click="mactrl.sidebarStat($event)" toggle-submenu href="" ui-sref="front.receivePackage"><i class="paquery-icon paquery-receive"></i>Recibir</a>
+    </li>-->
+    <li data-ng-class="{ 'active toggled': mactrl.$state.includes('list') }">
+      <a data-ng-click="mactrl.sidebarStat($event)" toggle-submenu href="" ui-sref="front.sendPackage"><i class="paquery-icon paquery-send"></i>Enviar</a>
+    </li>
+    <li data-ng-class="{ 'active toggled': mactrl.$state.includes('front.profile') }">
+      <a data-ng-click="mactrl.sidebarStat($event)" href="" toggle-submenu  ui-sref="front.profile"><i class="paquery-icon paquery-cean-white-user"></i> Perfil</a>
+    </li>
+    <li data-ng-class="{ 'active toggled': mactrl.$state.includes('vehicles') }">
+      <a data-ng-click="mactrl.sidebarStat($event)" href="" toggle-submenu ui-sref="front.payments"><i class="paquery-icon paquery-money"></i> Depósitos y Movimientos.</a>
+    </li>
+    <!--<li data-ng-class="{ 'active toggled': mactrl.$state.includes('vehicles') }">-->
+      <!--<a data-ng-click="mactrl.sidebarStat($event)" href="" toggle-submenu ui-sref="common.shops"><i class="paquery-icon paquery-exit-box"></i> Mercado Shops.</a>-->
+    <!--</li>-->
+    <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('front.addresses') }">
+      <a href="" toggle-submenu><i class="paquery-icon paquery-drivers"></i> Mis direcciones</a>
+      <ul>
+        <li><a data-ui-sref="front.newAddresses" data-ng-click="mactrl.sidebarStat($event)">Agregar Dirección</a></li>
+        <li><a data-ui-sref="front.addresses" data-ng-click="mactrl.sidebarStat($event)">Mis direcciones</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>

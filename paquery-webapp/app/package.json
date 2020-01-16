@@ -1,0 +1,30 @@
+{
+  "name": "superflat-admin",
+  "version": "0.1.0",
+  "devDependencies": {
+    "browser-sync": "^2.18.6",
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-csssplit": "^0.4.0",
+    "gulp": "^3.9.1",
+    "underscore": "^1.8.3"
+  },
+  "dependencies": {
+    "angucomplete-alt": "^3.0.0",
+    "angular-animate": "^1.4.3",
+    "angular-web-notification": "^1.2.5",
+    "angularjs-bootstrap-datetimepicker": "^1.1.4",
+    "axios": "^0.19.0",
+    "browser-sync": "^2.18.12",
+    "daterangepicker": "^2.1.27",
+    "gulp-cli": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "moment": "^2.18.1",
+    "ng-flatpickr": "^0.2.3",
+    "ng-if-bootstrap-grid": "^0.1.0",
+    "ng-mask": "^3.1.1",
+    "simple-web-notification": "^1.0.4"
+  }
+}

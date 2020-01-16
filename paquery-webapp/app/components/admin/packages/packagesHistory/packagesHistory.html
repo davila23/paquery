@@ -1,0 +1,68 @@
+<div id="packages-history" class="content animate-panel main-container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Historial de paquetes</h2>
+                    <div id="search-input">
+                        <select ng-if="vm.checkMPFilterEnabled()" chosen class="form-control w-100" ng-options="marketPlace.name for marketPlace in vm.marketplaces track by marketPlace.id" data-placeholder="Seleccione MarketPlace" data-ng-model="vm.marketPlace"></select>
+                        <input id="input" placeholder="Buscar..." type="text" ng-model="vm.searchWord">
+                        <ng-json-export-csv add="vm.getJsonData" parse="vm.getParse" filename="nombreCsv" report-fields="headerList" class="btn btn-link" title="Exportar a CSV...">
+                            <span class="glyphicon glyphicon-export"></span>
+                        </ng-json-export-csv>
+                    </div>
+                    <div class='input-group date' style="width:300px">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar color-paquery"></span>
+                        </span>
+                        <input date-range-picker name='daterange' placeholder="Selección de fechas" class="form-control date-picker" style="padding: 0px 6px 0px 0px;border-radius:8px;width:250px;border-bottom:0;background-color: #ffffff;" type="text"
+                               data-ng-model="vm.date" data-options="vm.opts" readonly='readonly' required />
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle" ng-class="{'hide-header': !$data.length}">
+                            <tr ng-repeat="d in $data">
+                                <td data-title="'Externo'" sortable="'ExternalCode'">
+                                    {{ d.package.externalCode }}
+                                </td>
+                                <td data-title="'Nombre destinatario'">
+                                    {{ d.shippingScheduleDestination.name }}
+                                </td>
+                                <td data-title="'Dirección Envío'">
+                                    {{ d.shippingAddress.addressDetail}}
+                                </td>
+                                <td data-title="'Creación'" sortable="'CreationDate'">
+                                    {{ d.package.creationDate | date: 'dd-MM-yyyy HH:mm' }}
+                                </td>
+                                <td data-title="'Fecha de entrega'">
+                                    {{ d.package.deliveryDate | date: 'dd-MM-yyyy HH:mm' }}
+                                </td>
+                                <td data-title="'Estado'" sortable="'Status'">
+                                    {{ d.package.status | keyValueFilter:vm.packagesStatus }}
+                                </td>
+                                <td data-title="'Imágen'">
+                                    <img class="avatar-image" ng-class="{'circular-picture': d.package.avatar}" ng-src="{{ d.package.avatar || '../../img/custom-icons/blue-and-white/C43-transparente-Caja.png' }}">
+                                </td>
+                                <td data-title="'Ver'">
+                                    <button type="button" class="btn btn-default" ng-click="vm.showPackage(d.package)"><i class="zmdi zmdi-zoom-in"></i></button>
+                                </td>
+                                <td data-title="'Borrar'">
+                                    <button type="button" class="btn btn-default" ng-click="vm.deletePackage(d.package)"><i class="zmdi zmdi-delete"></i></button>
+                                </td>
+                            </tr>
+                            <tr ng-hide="$data.length">
+                                <td colspan="6">
+                                    <div class="row">
+                                        <strong>No hay paquetes históricos registrados por el momento.</strong>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                        <custom-paginatorv2 get-list="vm.getPackages" paginable-table="vm.tableSorting" search="vm.searchWord" market-place="vm.marketPlace" date-range="vm.date"></custom-paginatorv2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+.modal-dialog.modal-modal-lg {
+	width: 80%;
+	.selected-element {
+		background: #254370;
+    	color: #C5CAE9;
+	}
+	tr {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	.ok-button {
+		background: #254370;
+    	color: #C5CAE9;
+	}
+	.ok-button:hover {
+		background: #254370 !important;
+    	color: #C5CAE9 !important;
+	}
+	#search-input {
+    position: absolute;
+    right: 13px;
+    border: 1px solid #F4F4F4;
+    height: 35px;
+    top: 15px;
+    padding: 10px;
+    border-radius: 3px;
+  }
+}

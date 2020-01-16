@@ -1,0 +1,36 @@
+<div id="driver-selector">
+    <div class="modal-header">
+        <h4 class="modal-title">Selecciona un vehículo</h4>
+    </div>
+    <div class="modal-body">
+        <div class="table-responsive">
+            <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle">
+                <tr ng-class="{'selected-driver' : vm.selectedVehicle === vehicle}" ng-click="vm.selectedVehicle !== vehicle ? vm.selectedVehicle = vehicle : vm.selectedVehicle = ''" ng-repeat="vehicle in $data">
+                  <td data-title="'Tipo'" sortable="'vehicleTypeName'">
+                      {{ vehicle.vehicleTypeName }}
+                  </td>
+                  <td data-title="'Marca'" sortable="'vehicleBrand'">
+                      {{ vehicle.vehicleBrand }}
+                  </td>
+                  <td data-title="'Modelo'" sortable="'model'">
+                      {{ vehicle.model }}
+                  </td>
+                  <td data-title="'Descripción'" sortable="'detail'">
+                      {{ vehicle.detail }}
+                  </td>
+                  <td data-title="'Patente'" sortable="'vehiclePatent'">
+                      {{ vehicle.vehiclePatent }}
+                  </td>
+                  <td data-title="'Status'" sortable="'status'">
+                      {{ vehicle.active ? 'Activo' : 'inactivo' }}
+                  </td>
+                </tr>
+            </table>
+        </div>
+        <custom-paginator get-list="vm.getVehicles" paginable-table="vm.tableSorting"></custom-paginator>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link ok-button" ng-disabled="!vm.selectedVehicle" ng-click="vm.ok()">OK</button>
+        <button class="btn btn-link" ng-click="vm.cancel()">Cancel</button>
+    </div>
+</div>

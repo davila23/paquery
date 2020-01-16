@@ -1,0 +1,108 @@
+<div id="admin-login" class="login-content row" ng-controller="AdminLoginController as vm">
+  <!-- Login -->
+  <div class="col-sm-offset-2 col-sm-8">
+    <div class="lc-block" id="l-login" data-ng-if="lctrl.forgot !== 1 && lctrl.register !== 1">
+      <form ng-submit="vm.login()">
+        <div class="logo-container"><img src="img/logo-iso-blue.png"></div>
+        <p class="text-left error-message" ng-show="vm.errorMessage" ng-bind="vm.errorMessage"></p>
+        <div class="input-group m-b-20">
+          <span class="input-group-addon"><i class="paquery-icon paquery-user"></i></span>
+          <div class="fg-line">
+            <input type="text" class="form-control" ng-model="vm.userAccount" placeholder="email" required>
+          </div>
+        </div>
+        <div class="input-group m-b-20">
+          <span class="input-group-addon"><i class="paquery-icon paquery-password"></i></span>
+          <div class="fg-line">
+            <input type="password" class="form-control" ng-model="vm.password" placeholder="Contraseña" required>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="vm.mc">
+            <i class="input-helper"></i> Mantenerme conectado
+          </label>
+        </div>
+        <!--<div class="checkbox">-->
+          <!--<label>-->
+            <!--<input type="checkbox" ng-model="vm.tyc" required>-->
+            <!--<i class="input-helper"></i>Acepto los Términos y Condiciones-->
+          <!--</label>-->
+        <!--</div>-->
+        <div class="login-btn-container">
+          <button ng-click="vm.login()" class="btn bgm-green waves-effect login-button">Login</button>
+        </div>
+        <div class="recovery-link">
+          <a ui-sref="adminRecoveryPassword">Restablecer Contraseña</a>
+        </div>
+      </form>
+    </div>
+    <!--
+    <div class="login-navigation" ng-show="lctrl.forgot !== 1 && lctrl.register !== 1">
+    <button data-ng-click="lctrl.forgot = 0; lctrl.register = 1" class="btn bgm-red waves-effect lower-case">Registrarme</button>
+    <button data-ng-click="lctrl.register = 0; lctrl.forgot = 1" class="btn bgm-red waves-effect bgm-orange lower-case">Olvidaste tu contraseña?</button>
+    </div>
+    -->
+    <!-- Register -->
+    <!--
+    <div class="lc-block" id="l-register" data-ng-class="{ 'toggled': lctrl.register === 1 }" data-ng-if="lctrl.register === 1">
+      <div class="input-group m-b-20">
+        <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
+        <div class="fg-line">
+          <input type="text" class="form-control" placeholder="Username">
+        </div>
+      </div>
+      <div class="input-group m-b-20">
+        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+        <div class="fg-line">
+          <input type="text" class="form-control" placeholder="Email Address">
+        </div>
+      </div>
+      <div class="input-group m-b-20">
+        <span class="input-group-addon"><i class="zmdi zmdi-male"></i></span>
+        <div class="fg-line">
+          <input type="password" class="form-control" placeholder="Password">
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="">
+          <i class="input-helper"></i> Acepto los terminos y condiciones
+        </label>
+      </div>
+
+      <div class="login-btn-container">
+        <button ng-click="vm.register()" class="btn bgm-red waves-effect login-button">Registrarme</button>
+      </div>
+
+      <div class="login-navigation">
+        <button data-ng-click="lctrl.register = 0; lctrl.login = 1" class="btn bgm-green waves-effect lower-case">Login</button>
+        <button data-ng-click="lctrl.register = 0; lctrl.forgot = 1" class="btn bgm-red waves-effect bgm-orange lower-case">Olvidaste tu contraseña?</button>
+      </div>
+    </div>
+    -->
+    <!-- Forgot Password -->
+    <!--
+    <div class="lc-block" id="l-forget-password" data-ng-class="{ 'toggled': lctrl.forgot === 1 }" data-ng-if="lctrl.forgot === 1">
+      <p class="text-left">Ingrese su correo electrónico y le enviaremos un email de recuperación de clave.</p>
+      <div class="input-group m-b-20">
+        <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
+        <div class="fg-line">
+          <input type="text" class="form-control" placeholder="Email Address">
+        </div>
+      </div>
+
+      <div class="login-btn-container">
+        <button ng-click="vm.sentEmail()" class="btn bgm-orange waves-effect login-button">Enviar</button>
+      </div>
+
+          <div class="login-navigation">
+        <button data-ng-click="lctrl.forgot = 0; lctrl.login = 1" class="btn bgm-green waves-effect lower-case">Login</button>
+        <button data-ng-click="lctrl.forgot = 0; lctrl.register = 1" class="btn bgm-red waves-effect bgm-red lower-case">Registrarme</button>
+      </div>
+    </div>
+    -->
+  </div>
+</div>

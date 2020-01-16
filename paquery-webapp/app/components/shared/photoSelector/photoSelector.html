@@ -1,0 +1,168 @@
+<div class="p-relative">
+    <div id="photo-parent-container">
+        <div id="photo-container" class="col-sm-12 photo-column">
+            <div class="fileinput row fileinput-exists" data-provides="fileinput">
+                <div class="image-selector">
+                    <div ng-cloak ng-show="photo" class="image-container">
+                        <div class="fileinput-preview thumbnail photo-div" data-trigger="fileinput">
+                        <img id="photo{{ idPhoto ? '-'+idPhoto : '' }}" class="mCS_img_loaded"></div>
+                    </div>
+                    <div ng-cloak ng-show="!photo" class="image-container" ng-click="clickElement()">
+                        <div class="fileinput-preview thumbnail no-photo" data-trigger="fileinput">
+                          <span class="zmdi zmdi-camera-bw" style="color:  #0db8b2;font-size: 30px;"></span>
+                        </div>
+                    </div>
+                    <span class="btn btn-primary btn-file waves-effect">
+                    <span class="fileinput-new">Seleccione imágen</span>
+                    <span class="fileinput-exists">Cambiar</span>
+                    <input type="file" name="">
+                    </span>
+                    <a href="#" class="btn btn-danger fileinput-exists waves-effect" data-dismiss="fileinput" ng-click="updatePhotoImage()">Remover</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a ng-if="!disableSelection" href="" class="pmop-edit" ng-click="clickElement()">
+        <i class="zmdi zmdi-camera"></i>
+        <span class="hidden-xs">Seleccionar imagen</span>
+    </a>
+</div>
+<!-- angular
+    .module('PaQuery')
+    .directive('photoSelector', photoSelector);
+
+photoSelector.$inject = ['$timeout', 'serverErrorsNotifier', '$interval', 'ENDPOINT'];
+
+function photoSelector($timeout, serverErrorsNotifier, $interval, ENDPOINT) {
+    return {
+        scope: {
+            photo: '=',
+            photoName: '=',
+            disableSelection: '=',
+            photoAsyncComes: '='
+        },
+        restrict: 'A',
+        templateUrl: 'components/shared/photoSelector/photoSelector.html',
+        link: function(scope, element, attrs) {
+
+            angular.extend(scope, {
+                clickElement: clickElement,
+                updatePhotoImage: updatePhotoImage,
+                photoAsyncComes: photoAsyncComes
+            });
+
+            init();
+
+            function photoAsyncComes(photo) {
+                if (photo) {
+                    if (photo.indexOf(ENDPOINT) > -1) {
+                        scope.photo = photo;
+                        //the front profile view case
+                        var image = angular.element('#photo');
+                        image.attr('src', photo);
+                        element.find('.zmdi-camera-bw').hide();
+                    }
+                } else {
+                    //appending the camera image to the photo container in no photo case
+                    updatePhotoImage();
+                }
+            }
+
+            function clickElement() {
+                element.find('.fileinput-preview.photo-div').click();
+            }
+
+            element.find('.fileinput-preview.photo-div').bind("click", function() {
+                var oldPhoto = scope.photo;
+                scope.selected = false;
+                if (scope.photo) {
+                    var interval = $interval(function() {
+                        var photoDiv = element.find('.fileinput-preview.thumbnail.photo-div')[0].childNodes[0];
+                        if (photoDiv) {
+                            var currentPhoto = photoDiv.src.replace('data:image/jpeg;base64,', '');
+                            if (scope.photo !== currentPhoto || scope.selected) {
+                                $interval.cancel(interval);
+                            }
+                        } else {
+                            element.find('.fileinput-preview.thumbnail.no-photo').replaceWith('<div class="fileinput-preview thumbnail no-photo"  ng-click="clickElement()" data-trigger="fileinput"> <span class="zmdi zmdi-camera-bw" style="color:  #0db8b2;font-size: 30px;"></span></div>');
+                            scope.photo = undefined;
+                            scope.photoName = undefined;
+                            $interval.cancel(interval);
+                        }
+                    }, 100);
+                }
+            })
+
+            function updatePhotoImage() {
+                $timeout(function() {
+                    element.find('.fileinput-preview.thumbnail').append('<span class="zmdi zmdi-camera-bw" style="color:  #0db8b2;font-size: 30px;"></span>');
+                }, 0);
+            }
+
+            function init() {
+                if (scope.photo) {
+                    if (scope.photo.indexOf(ENDPOINT) > -1) {
+                        //the src photo case, when the photo comes from the lists
+                        var image = angular.element('#photo');
+                        image.attr('src', scope.photo);
+                    }
+                } else {
+                    //appending the camera image to the photo container in no photo case
+                    updatePhotoImage();
+                }
+
+                if (!scope.disableSelection) {
+                    element.find('.fileinput').on("change.bs.fileinput", function(val, file) {
+                        if (file) {
+                            var correctFormat = hasCorrectFormat(file.type),
+                                correctSize = hasCorrectSize(file.size);
+                            if (correctFormat && correctSize) {
+                                scope.photo = element.find('.fileinput-preview.thumbnail')[0].childNodes[0].src.replace('data:image/jpeg;base64,', '');
+                                scope.photoName = file.name;
+                                scope.selected = true;
+                            } else {
+                                scope.photo = undefined;
+                                scope.photoName = undefined;
+                                if (!correctFormat) {
+                                    serverErrorsNotifier.notify('La imágen debe tener formato jpg o png.');
+                                } else {
+                                    if (!correctSize) {
+                                        serverErrorsNotifier.notify('La imágen supera el tamaño permitido de 2 megabytes');
+                                    }
+                                }
+                            }
+                        } else {
+                            element.find('.fileinput-preview.thumbnail.no-photo').replaceWith('<div class="fileinput-preview thumbnail no-photo"  ng-click="clickElement()" data-trigger="fileinput"> <span class="zmdi zmdi-camera-bw" style="color:  #0db8b2;font-size: 30px;"></span></div>');
+                            $timeout(function() {
+                                scope.photo = undefined;
+                                scope.photoName = undefined;
+                            });
+                            serverErrorsNotifier.notify('La imágen debe tener formato jpg o png.');
+                        }
+                    });
+                    element.find('.fileinput').on("clear.bs.fileinput", function(val) {
+                        scope.photo = undefined;
+                    });
+                } else {
+                    element.find('.fileinput-preview').on("click", function(event) {
+                        event.stopPropagation();
+                    });
+                    $timeout(function() {
+                        element.find('#mCSB_1_container .image-selector .fileinput-preview').addClass('default-cursor-on-hover');
+                    });
+                }
+            }
+
+            function hasCorrectFormat(format) {
+                format = format.toLowerCase();
+                return format.indexOf('jpg') !== -1 || format.indexOf('jpeg') !== -1 || format.indexOf('png') !== -1;
+            }
+
+            function hasCorrectSize(size) {
+                return size < 2000000;
+            }
+
+        }
+    }
+}
+ -->

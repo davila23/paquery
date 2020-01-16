@@ -1,0 +1,52 @@
+<section id="admin-package-detail-view" class="page-view">
+    <div class="ng-scope">
+        <div class="card" id="profile-main">
+            <div class="card-header bgm-bluegray" style="z-index:1;">
+                <h2>Mapa de paquetes pendientes de entrega</h2>
+            </div>
+            <div class="clearfix">
+                <div class="pmb-block">
+                    <dl class="dl-horizontal">
+                        <dt class="p-t-10">Ciudad</dt>
+                        <dd>
+                            <div class="fg-line">
+                                <input id="search-address-input" type="text" class="input-small span3 form-control" placeholder="Buscar ciudad ..." ng-model="vm.search" name="zonas"
+                                       ui-event="{autocompletecreate:'vm.changeClass(searchUser)'}" ui-autocomplete="vm.searchCities()">
+                            </div>
+                        </dd>
+                    </dl>
+                    <dl class="dl-horizontal">
+                        <dt class="p-t-10 col-xs-12 padding-0">Cuidad seleccionada:</dt>
+                    </dl>
+                    <div class="col-xs-5 padding-0 workzone-detail-view" data-ng-repeat="c in vm.cities">
+                        <div class="user-selector-continer" ng-show="true">
+                            <div ng-show="c" class="user-name-container">
+                                <span>{{c.name}}</span>
+                                <span class="pull-right">
+                                    <i ng-show="c" class="zmdi zmdi-close-circle" ng-click="vm.dropCity(c)"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <data class="ng-scope">
+                    <div class="pmb-block ng-scope">
+                        <div class="pmbb-body p-l-30">
+                            <form class="pmbb-edit">
+                                <input id="destiny-address" type="hidden" />
+                                <dl class="dl-horizontal p-t-10">
+                                    <google-map style="margin:0 auto;" single-marker="true" stopdrag="true" multiple-address="true" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" wizard-step="2" single-marker="vm.singleMarker" just-show="true"></google-map>
+                                    <!--<paquery-map style="margin:0 auto;" single-marker="true" stopdrag="true" multiple-address="true" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" wizard-step="2" single-marker="vm.singleMarker" just-show="true"></paquery-map>-->
+                                </dl>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-info back-button" ng-click="vm.goBack()">Volver</button>
+                    </div>
+                </data>
+            </div>
+        </div>
+    </div>
+</section>

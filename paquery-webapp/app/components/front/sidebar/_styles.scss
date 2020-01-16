@@ -1,0 +1,43 @@
+#front-sidebar {
+  .reversed {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+  }
+  li > a > .zmdi.zmdi-directions-run, 
+  li > a > .zmdi.receiver-arrow,
+  li > a > .zmdi.zmdi-directions-walk{
+    font-size: 20px;
+    width: 19px;
+    position: relative;
+  }
+  .action-text {
+    padding-right: 10px;
+    position: relative;
+    padding-left: 24px;
+  }
+  .receiver-arrow {
+    padding-left: 0px;
+    position: relative;
+  }
+  .send-text {
+    padding-right: 12px;
+    position: relative;
+  }
+  .sender-arrow {
+    padding-left: 3px;
+    position: relative;
+  }
+  .paquery-title {
+    font-size: 23px;
+    color: #fff;
+    padding-top: 2px;
+    position: relative;
+  }
+  .send-receive-link{
+  	padding: 0 0 0 4px;
+  }
+}

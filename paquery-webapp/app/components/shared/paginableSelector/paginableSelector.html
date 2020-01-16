@@ -1,0 +1,25 @@
+<div id="driver-selector">
+  <div class="modal-header">
+    <h4 class="modal-title">Selecciona un {{vm.elementName}}</h4>
+    <input id="search-input" placeholder="Buscar.." type="text" ng-model="vm.searchWord" ng-show="vm.elementName !== usuario">
+  </div>
+  <div class="modal-body">
+    <div class="table-responsive" >
+      <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle">
+      <th class="aling-center" ng-repeat="title in vm.titles">{{title}}</th>
+        <tr ng-class="{'selected-element' : vm.selectedElement === element}" ng-click="vm.selectedElement !== element ? vm.selectedElement = element : vm.selectedElement = ''" ng-repeat="element in $data">
+          <td ng-repeat="attr in vm.attributes" sortable="attr.field">
+            {{ element[attr.field] }}
+          </td>
+        </tr>
+      </table>
+    </div>
+    <custom-paginatorv2 get-list="vm.getList" filter-list="vm.filterList" paginable-table="vm.tableSorting" search="vm.searchWord" filter-status="vm.status" user-type="2" delivery-term="vm.deliveryTerm" status="vm.status" assigned="vm.assigned" not-expired="vm.notExpired">
+
+    </custom-paginatorv2>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-link ok-button" ng-disabled="!vm.selectedElement" ng-click="vm.ok()">OK</button>
+    <button class="btn btn-link" ng-click="vm.cancel()">Cancel</button>
+  </div>
+</div>

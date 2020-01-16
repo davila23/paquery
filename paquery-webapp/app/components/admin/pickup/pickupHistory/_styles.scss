@@ -1,0 +1,60 @@
+.btn-primary-datepicker{
+    background-color: $default-primary-color;
+    color: #ffffff;
+    margin-left: 8px;
+    &:hover{
+        color: #ffffff;
+    }
+}
+
+#packages-history {
+    #search-input {
+        position: absolute;
+        right: 20px;
+        height: 35px;
+        top: 15px;
+        #input{
+            border: 1px solid #F4F4F4;
+            padding: 10px;
+            border-radius: 3px;
+        }
+    }
+}
+
+.search-inputClass{
+    @extend #search-input;
+    top: 50px;
+}
+
+.daterangepicker .daterangepicker_input i {
+    position: absolute;
+    top: 8px;
+    left: 213px;
+    color: $default-primary-color;
+}
+
+.daterangepicker .input-mini.active {
+    border:none;
+    border-bottom: 2px solid $default-primary-color;
+    border-radius: 0;
+}
+
+.form-control:not(.fc-alt) {
+    padding: 0 0 0 5px;
+    border-radius: 0px;
+}
+
+.daterangepicker td.active, .daterangepicker td.active:hover {
+    background-color: $default-primary-color;
+}
+
+.ranges li {
+    background-color: #eeeeee;
+    border: none;
+    color: $default-grey;
+    &.active, &:hover{
+        background-color: $default-primary-color;
+        border: none;
+        color: #ffffff;
+    }
+}

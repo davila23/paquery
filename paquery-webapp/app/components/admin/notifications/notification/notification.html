@@ -1,0 +1,15 @@
+<div id="register-notification">
+  <form>
+    <div class="card">
+      <div class="form-group has-feedback">
+        <label class="control-label">Mensaje</label>
+        <div class="fg-line">
+          <input type="text" class="form-control" ng-model="vm.notification.message">
+        </div>
+        <span class="zmdi zmdi-check form-control-feedback"></span>
+      </div>
+      <button class="btn btn-default waves-effect save-button" ng-click="vm.saveNotification()">Guardar</button>
+      <button class="btn btn-default waves-effect" ng-click="vm.goToNotifications()">Cancelar</button>
+    </div>
+  </form>
+</div>

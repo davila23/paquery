@@ -1,0 +1,426 @@
+<section id="content" class="page-view ng-scope driver-detail-view">
+    <div ng-if="vm.submitClicked && !vm.formularioValido" class="alert alert-danger alert-dismissible paquery-error-mesaje" role="alert">
+        <span>Los datos ingresados son incorrectos</span>
+    </div>
+    <div ng-if="vm.errorDriver ? true : false" class="alert alert-danger alert-dismissible paquery-error-mesaje"
+         role="alert">
+        <span>{{vm.errorDriver}}</span>
+    </div>
+    <div>
+        <div class="card ng-scope" id="profile-main">
+            <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+                <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+                    <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                        <div class="pmo-pic">
+                            <!--<div photo-selector data-photo="vm.driver.avatarImage" data-photo-name="vm.driver.avatarName" data-disable-selection="false"></div>-->
+                            <div photo-selector photo="vm.driver.avatar" photo-name="vm.driver.avatarName" photo-async-comes="vm.driver.photoAsyncComes"></div>
+                            <!--<div class="pmo-stat">
+                <h2 class="m-0 c-white">$ARS 1500</h2> Monto disponible
+              </div>-->
+                        </div>
+                        <div class="pmo-block pmo-contact hidden-xs">
+                            <h2>Contacto</h2>
+                            <ul>
+                                <li ng-show="vm.driver.mobile"><i class="zmdi zmdi-phone"></i> <span ng-bind="vm.driver.mobile"></span></li>
+                                <li ng-show="vm.driver.email"><i class="zmdi zmdi-email"></i> <span ng-bind="vm.driver.email"></span></li>
+                                <li ng-show="vm.driver.city || vm.driver.country">
+                                    <i class="zmdi zmdi-pin"></i>
+                                    <address class="m-b-0 ng-binding">
+                                        <span ng-bind="vm.driver.city.name"></span><span ng-show="vm.driver.city && vm.driver.country">,</span>
+                                        <span ng-bind="vm.driver.country.name"></span>
+                                    </address>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: none;">
+          <div class="mCSB_draggerContainer">
+            <div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 0px; max-height: 821px; top: 0px;" oncontextmenu="return false;">
+              <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+            </div>
+            <div class="mCSB_draggerRail"></div>
+          </div>
+        </div>-->
+            </div>
+            <div class="pm-body clearfix">
+                <ul class="tab-nav tn-justified">
+                    <li class="btn-wave" ng-click="vm.setTabConfig('profile')" ng-class="{'tab-selected' : vm.cardContent === 'profile'}"><a>Perfil</a></li>
+                    <li ng-if="vm.action === 'update'" class="btn-wave" ng-click="vm.setTabConfig('packages')" ng-class="{'tab-selected' : vm.cardContent === 'packages'}"><a>Paquetes</a></li>
+                    <li ng-if="vm.action === 'update'" class="btn-wave" ng-click="vm.setTabConfig('packageshistory')" ng-class="{'tab-selected' : vm.cardContent === 'packageshistory'}"><a>Historial</a></li>
+                </ul>
+                <!-- uiView:  -->
+                <data class="ng-scope" ng-show="vm.cardContent === 'profile'">
+                    <form name="driverForm" novalidate>
+                        <div class="pmb-block ng-scope">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-person m-r-5"></i> Información básica</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <dl class="dl-horizontal" ng-if="vm.driver && vm.driver.id">
+                                    <dt class="p-t-10">ID</dt>
+                                    <dd>
+                                        <div class="fg-line" style="padding-top: 10px">
+                                            {{vm.driver.id}}
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Nombre</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error':  vm.submitClicked && driverForm.nameInput.$invalid}">
+                                            <input data-ng-model="vm.driver.name" type="text" class="form-control" name="nameInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Apellido</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error':  vm.submitClicked && driverForm.lastNameInput.$invalid}">
+                                            <input data-ng-model="vm.driver.lastName" type="text" name="lastNameInput" class="form-control" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Documento</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error':  vm.submitClicked && driverForm.docNumberInput.$invalid}">
+                                            <input data-ng-model="vm.driver.docNumber" type="text" name="docNumberInput" class="form-control" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">CBU</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.driver.cbu" type="text" name="cbu" class="form-control">
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">CUIL</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.driver.cuil" type="text" name="cuil" class="form-control">
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Fecha de nacimiento</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.driver.birthDate" type="text" name="birthDate" class="form-control" placeholder="(dd/mm/yyyy)">
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <!--<div class="form-group fg-float m-b-30">
+                                    <div class="fg-line input-date" id="birthDate">
+                                        <input type="text" class="form-control input-sm" ng-model="vm.driver.birthDate" ng-focus="vm.driver.datepicker.open = true" ng-blur="vm.driver.datepicker.open = false" readonly>
+                                        <label class="fg-label">Fecha de nacimiento</label>
+                                        <button style="padding:0; background:transparent;" type="button" class="btn btn-default waves-effect" ng-click="vm.driver.datepicker.open = !vm.driver.datepicker.open"><i class="zmdi zmdi-calendar zmdi-hc-2x"></i></button>
+                                    </div>
+                                    <datetimepicker ng-style="vm.driver.datepicker.show" style="position:absolute; z-index:1;" ng-model="vm.date.birthDate" on-set-time="vm.onDateSetDestiny($dates, newDate, oldDate)" datetimepicker-config="{ renderOn: 'destiny-date-changed' }" before-render="vm.beforeDateSetDestiny($view, $dates, $leftDate, $upDate, $rightDate)"></datetimepicker>
+                                </div>-->
+                                                            <!-- <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Marketplace</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control" ng-model="vm.driver.marketplace" ng-options="marketplace.name for marketplace in vm.marketplaces track by marketplace.id" data-placeholder="Seleccione un marketplace.." required></select>
+                                        </div>
+                                    </dd>
+                                </dl> -->
+<!--                                <dl class="dl-horizontal" ng-if="vm.pageAuth.length === 0">-->
+<!--                                    <dt class="p-t-10">Operadores Logicos</dt>-->
+<!--                                    <dd>-->
+<!--                                        <div class="fg-line">-->
+<!--                                            <select chosen class="form-control" ng-model="vm.driver.logisticOperator" ng-options="logisticOperators.name for logisticOperators in vm.logisticOperators track by logisticOperators.id" data-placeholder="Seleccione un Operadores Logicos.."></select>-->
+<!--                                            <button class="btn btn-primary waves-effect" ng-click="vm.addlogisticOperator()">Añadir</button>-->
+<!--                                        </div>-->
+<!--                                    </dd>-->
+<!--                                    <div style="width:100%">-->
+<!--                                        <div class="driver-selector-continer" ng-repeat="logisticOperators in vm.driver.logisticOperators">-->
+<!--                                            <span class="driver-name-container ng-binding" ng-bind="logisticOperators.name"></span>-->
+<!--                                            <a class="zmdi zmdi-close-circle" ng-click="vm.removeLO(logisticOperators)"></a>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </dl>-->
+
+
+
+
+
+
+
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Vehiculo</dt>
+
+                                    <dd>
+                                        <div class="w-100">
+                                            <label class="p-l-30" ng-show="!vm.selectedVehicle">
+                                                <input type="checkbox" ng-model="vm.driver.onwalk" ng-change="vm.vehicleSpecial('walk')">
+                                                <i class="input-helper"></i> Caminando
+                                            </label>
+                                            <label class="p-l-30" ng-show="!vm.selectedVehicle">
+                                                <input type="checkbox" ng-model="vm.driver.onbike" ng-change="vm.vehicleSpecial('bike')">
+                                                <i class="input-helper"></i> Bicicleta
+                                            </label>
+                                            <div class="col-50-r" ng-class="{'has-error': vm.submitClicked ? vm.showVehicleError : false}">
+                                                <span ng-show="vm.selectedVehicle" class="driver-name-container">{{vm.selectedVehicle.vehicleBrand + ' ' + vm.selectedVehicle.model}}</span>
+                                                <i ng-show="vm.selectedVehicle" class="zmdi zmdi-close-circle" ng-click="vm.selectedVehicle = ''"></i>
+                                                <button ng-show="!vm.selectedVehicle" class="btn btn-primary waves-effect" ng-click="vm.openVehicleModal()">Seleccione un vehiculo</button>
+                                                <p class="help-block" ng-if="vm.submitClicked ? vm.showVehicleError : false">Por favor, seleccione un vehículo</p>
+                                            </div>
+                                        </div>
+                                    </dd>
+
+
+                                </dl>
+
+                                <dl class="dl-horizontal" ng-show="vm.driver.id">
+                                    <dt class="p-t-10">Calificación</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.driver.rating" type="text" name="ratingInput" class="form-control">
+                                        </div>
+                                    </dd>
+                                </dl>
+
+                                <div class="has-error">
+                                    <button class="btn btn-primary waves-effect change-password-button" ng-click="vm.openChangePasswordModal()">Cambiar contraseña</button>
+                                    <p class="help-block" ng-if="vm.showPasswordError">Por favor, ingrese una contraseña</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pmb-block ng-scope">
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-phone m-r-5"></i>Información de contacto</h2>
+                            </div>
+                            <div class="pmbb-body p-l-30">
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Móvil</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error':  vm.submitClicked && driverForm.mobileInput.$invalid || vm.submitClicked && vm.errorMessages.mobileInvalid}">
+                                            <input ng-model="vm.driver.mobile" type="number" class="form-control" name="mobileInput"
+                                                   placeholder="Ej: 1199999999"
+                                                   ng-change="vm.errorMessages.mobileInvalid = false;"
+                                                   required
+                                                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                   minlength="10" maxlength="12">
+                                            <div class="help-block" ng-show="vm.submitClicked && vm.errorMessages.mobileInvalid">El teléfono móvil ingresado no es válido</div>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Email</dt>
+                                    <dd>
+                                        <div class="fg-line" ng-class="{'has-error':  vm.submitClicked && driverForm.emailInput.$invalid}">
+                                            <input data-ng-model="vm.driver.email" type="email" name="emailInput" class="form-control" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">País</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control w-100" ng-model="vm.driver.country" ng-options="country.name for country in vm.countries track by country.id" data-placeholder="Seleccione un país.."></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Ciudad</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control w-100" ng-model="vm.driver.city" ng-options="city.name for city in vm.cities track by city.id" data-placeholder="Seleccione una ciudad.."></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div class="checkbox">
+                                  <label>
+                                    <input type="checkbox" ng-model="vm.driver.active">
+                                    <i class="input-helper"></i> Activo
+                                  </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pmb-block ng-scope">
+
+
+                            <div class="pmbb-header">
+                                <h2><i class="zmdi zmdi-pin m-r-5"></i>Zona de trabajo</h2>
+                            </div>
+
+                            <dl class="dl-horizontal" ng-if="vm.pageAuth.length === 0">
+                                <dt class="p-t-10">Paquery Points</dt>
+                                <dd>
+                                    <div class="fg-line">
+                                        <select chosen class="form-control" ng-model="vm.paqueryPoint" ng-options="ppoint.name for ppoint in vm.paqueryPoints track by ppoint.id" data-placeholder="Asociar Zonas de los Paquery Points..."></select>
+                                        <button class="btn btn-primary waves-effect" ng-click="vm.addPaqueryPoint()">Añadir</button>
+                                    </div>
+                                </dd>
+                                <div style="width:100%">
+                                    <div class="driver-selector-continer" ng-repeat="ppoint in vm.driver.paqueryPoints">
+                                        <span class="driver-name-container ng-binding" ng-bind="ppoint.name"></span>
+                                        <a class="zmdi zmdi-close-circle" ng-click="vm.removePaqueryPoint(ppoint)"></a>
+                                    </div>
+                                </div>
+                            </dl>
+                            <br><br>
+                            <!--<div class="pmbb-body p-l-30">
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Zonas</dt>
+                                    <dd>
+                                        <select chosen multiple class="form-control w-100" ng-model="vm.driver.workZones" ng-options="zone.name for zone in vm.availableWorkzones track by zone.id" data-placeholder="Seleccione una zona.."></select>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal p-t-10">
+                                    <button class="btn btn-primary waves-effect" ng-click="vm.showMap(!vm.showme)">{{vm.showme?'Ocultar Mapa':'Ver Mapa'}}</button>-->
+<!--                                </dl>-->
+                                <dl ng-if="vm.showme" class="dl-horizontal p-t-10">
+<!--                                    <google-map style="margin:0 auto;" stopdrag="true" origin="vm.origin.addressInformation" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" wizard-step="2" single-marker="vm.singleMarker" just-show="true"></google-map>&ndash;&gt;-->
+                                    <paquery-map style="margin:0 auto;" stopdrag="true" origin="vm.origin.addressInformation" origin-id="'origin-address'" destiny-id="'destiny-address'" destiny="vm.destiny.addressInformation" destiny-w3w="vm.destiny.addressInformation.w3w" origin-w3w="vm.origin.addressInformation.w3w" wizard-step="2" single-marker="vm.singleMarker" just-show="true"></paquery-map>
+                                </dl>
+                            </div>
+
+                            <dl class="dl-horizontal">
+                                <dt class="p-t-10">Zonas de Distribucion</dt>
+                                <dd>
+                                    <div class="fg-line">
+                                        <select chosen class="form-control" ng-model="vm.dzone"
+                                                ng-options="(dzone.name +'('+dzone.postalCode+')') for dzone in vm.distributionZones track by dzone.id"
+                                                data-placeholder="Seleccione una zona de distribucion..."></select>
+                                        <button class="btn btn-primary waves-effect"
+                                                ng-click="vm.addDistributionZone()">Añadir
+                                        </button>
+                                    </div>
+                                </dd>
+                            </dl>
+                            <div style="width:100%">
+                                <div class="list-item-selector-container" ng-repeat="dzone in vm.driver.distributionZones">
+                                    <span class="list-item-name-container ng-binding" ng-bind="dzone.name + '(' + dzone.postalCode +')'"></span>
+                                    <a class="zmdi zmdi-close-circle" ng-click="vm.removeDistributionZone(dzone)"></a>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="row save-buttton-container">
+                            <button class="btn btn-default waves-effect" ui-sref="admin.drivers">Cancelar</button>
+                            <button class="btn btn-primary waves-effect" ng-click="vm.save(driverForm)">Guardar</button>
+                        </div>
+                    </form>
+                </data>
+                <data ng-if="vm.cardContent === 'packages'">
+                    <br>
+                    <div class="search-padding">
+                        <!--pull-right-->
+                        <div id="search-input" class="search-input">
+                            <input id="input" style="left:320px;top:initial" class="search-inputClass" placeholder="Buscar..." type="text" ng-model="vm.searchWord">
+                            <input id="input2" style="left:620px;top:initial" class="search-inputClass" placeholder="Buscar retiro..." type="text" ng-model="vm.searchRolled">
+
+                            <ng-json-export-csv add="vm.getJsonData" parse="vm.getParse" filename="vm.nombreCsv" report-fields="headerList" class="btn btn-link" title="Exportar a CSV...">
+                                <span class="glyphicon glyphicon-export"></span>
+                            </ng-json-export-csv>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle" ng-class="{'hide-header': !$data.length}">
+                            <tr ng-repeat="package in $data" ng-class="{ 'package-rolled-selected' : package.rollContainerStatus == true }">
+                                <td data-title="'Externo'" sortable="'ExternalCode'">
+                                    {{ package.externalCode }}
+                                </td>
+                                <td data-title="'Dirección Envío'">
+                                    {{ package.shippingScheduleDestination.shippingAddress.addressDetail}}
+                                </td>
+                                <td data-title="'Plazo'">
+                                    {{ package.deliveryTerm | keyValueFilter:vm.deliveryTerms }}
+                                </td>
+                                <td data-title="'Creación'" sortable="'CreationDate'">
+                                    {{ package.creationDate | date: 'dd-MM-yyyy' }}
+                                </td>
+                                <td data-title="'Roll/Pos'">
+                                    {{ package.rollContainerPosition }}
+                                </td>
+                                <td data-title="'Tipo'" sortable="'PackageType'">
+                                    {{ package.packageType | keyValueFilter:vm.packagesTypes }}
+                                </td>
+                                <td data-title="'Tamaño'" sortable="'PackageSize'">
+                                    {{ package.packageSize | keyValueFilter:vm.packagesSizes }}
+                                </td>
+                                <td data-title="'Estado'" sortable="'Status'">
+                                    {{ package.status | keyValueFilter:vm.packagesStatus }}
+                                </td>
+
+                                <td data-title="'Editar'">
+                                    <button type="button" class="btn btn-default" ng-click="vm.showPackage(package)"><i class="zmdi zmdi-edit"></i></button>
+                                </td>
+                                <td data-title="'Borrar'">
+                                    <button type="button" class="btn btn-default" ng-click="vm.deletePackage(package)"><i class="zmdi zmdi-delete"></i></button>
+                                </td>
+                            </tr>
+                            <tr ng-hide="$data.length">
+                                <td colspan="6">
+                                    <div class="row">
+                                        <strong>No hay paquetes registrados para este usuario.</strong>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <custom-paginatorv2 get-list="vm.geDriverPackages" paginable-table="vm.tableSorting" user-id="vm.userId" search="vm.searchWord" search-rolled="vm.searchRolled"></custom-paginatorv2>
+                </data>
+                <data ng-if="vm.cardContent === 'packageshistory'">
+                    <div class="search-padding">
+                        <!--pull-right-->
+                        <div id="search-input-history" class="search-input">
+                            <input id="input" placeholder="Buscar..." type="text" ng-model="vm.searchWordHistory">
+                            <ng-json-export-csv add="vm.getJsonDataHistory" parse="vm.getParse" filename="vm.nombreCsvHistorial" report-fields="headerList" class="btn btn-link" title="Exportar a CSV...">
+                                <span class="glyphicon glyphicon-export"></span>
+                            </ng-json-export-csv>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table ng-table="vm.tableSortingHistory" class="table table-striped table-vmiddle" ng-class="{'hide-header': !$data.length}">
+                            <tr ng-repeat="package in $data">
+                                <td data-title="'Externo'" sortable="'ExternalCode'">
+                                    {{ package.externalCode }}
+                                </td>
+                                <td data-title="'Dirección Envío'">
+                                    {{ package.shippingScheduleDestination.shippingAddress.addressDetail}}
+                                </td>
+                                <td data-title="'Creación'" sortable="'CreationDate'">
+                                    {{ package.creationDate | date: 'dd-MM-yyyy' }}
+                                </td>
+                                <td data-title="'Tipo'" sortable="'PackageType'">
+                                    {{ package.packageType | keyValueFilter:vm.packagesTypes }}
+                                </td>
+                                <td data-title="'Tamaño'" sortable="'PackageSize'">
+                                    {{ package.packageSize | keyValueFilter:vm.packagesSizes }}
+                                </td>
+                                <td data-title="'Estado'" sortable="'Status'">
+                                    {{ package.status | keyValueFilter:vm.packagesStatus }}
+                                </td>
+
+                                <td data-title="'Editar'">
+                                    <button type="button" class="btn btn-default" ng-click="vm.showPackage(package)"><i class="zmdi zmdi-edit"></i></button>
+                                </td>
+                                <td data-title="'Borrar'">
+                                    <button type="button" class="btn btn-default" ng-click="vm.deletePackage(package)"><i class="zmdi zmdi-delete"></i></button>
+                                </td>
+                            </tr>
+                            <tr ng-hide="$data.length">
+                                <td colspan="6">
+                                    <div class="row">
+                                        <strong>No hay paquetes históricos registrados para este usuario.</strong>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <custom-paginatorv2 get-list="vm.getHistoryDriverPackages" paginable-table="vm.tableSortingHistory" user-id="vm.userId" search="vm.searchWordHistory"></custom-paginatorv2>
+                </data>
+            </div>
+        </div>
+    </div>
+</section>

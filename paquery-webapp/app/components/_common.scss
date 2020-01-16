@@ -1,0 +1,117 @@
+.paquery-error-mesaje {
+    text-align: center;
+}
+
+.container {
+    .zmdi {
+        color: $default-primary-color;
+    }
+    .zmdi.zmdi-delete {
+        color: #E83F33;
+    }
+}
+
+.modal-header {
+    text-align: center;
+}
+
+.chosen-results {
+    list-style: none !important;
+}
+
+.chosen-container {
+    a {
+        display: block;
+    }
+}
+
+table {
+    .btn:not(.btn-link) {
+        box-shadow: none;
+        background: inherit;
+        i {
+            font-size: 22px;
+        }
+        i.zmdi-edit {
+            color: rgb(13, 184, 178);
+        }
+    }
+    .btn:not(.btn-link):hover {
+        background: inherit;
+    }
+}
+
+.body_space {
+    padding: 2em;
+}
+
+.container_buttons {
+    .btn {
+        margin-left: 1em
+    }
+}
+
+.bgm-bluegray {
+    background-color: #254370 !important;
+}
+
+.default-cursor-on-hover:hover {
+    cursor: default !important;
+}
+
+img.avatar-image {
+    height: 58px;
+    width: 58px;
+}
+
+.circular-picture {
+    border-radius: 50%;
+}
+
+table.hide-header thead {
+    display: none;
+}
+
+.ng-table-pagination > li:first-child:before,
+.ng-table-pagination > li:last-child:before {
+    z-index: 2 !important;
+}
+
+#MP-Checkout-IFrame{
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.control-label:after {
+    content:" * ";
+    color: coral;
+}
+
+//PADDING
+.padding-bottom-15 {
+    padding-bottom: 15px;
+}
+.padding-left-right-10{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.padding-0{
+    padding: 0px;
+}
+//MARGIN
+.margin-top-10 {
+    margin-top: 10px;
+}
+//FONT
+.font-size-30{
+    font-size: 30px;
+}
+.aling-center{
+    text-align: center;
+}
+.attached-file{
+    height: 9px;
+}
+.color-paquery{
+    color: $default-primary-color;
+}

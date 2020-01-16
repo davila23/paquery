@@ -1,0 +1,28 @@
+<div class="card" id="front-addresses">
+    <div class="card-header bgm-cyan" style="z-index:1;">
+        <h2>Mis direcciones</h2>
+    </div>
+    <div class="card-body" id="front-addresses">
+        <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle" ng-class="{'hide-header': !$data.length}">
+            <tr ng-repeat="address in $data">
+                <td data-title="'Dirección'" sortable="'addressDetail'" ng-bind="address.addressDetail"></td>
+                <td data-title="'Comentarios'" sortable="'comment'" ng-bind="address.comment"></td>
+                <td data-title="'w3w'" sortable="'geoKey'" ng-bind="address.geoKey"></td>
+                <td data-title="'Editar'">
+                    <button type="button" class="waves-effect btn btn-default" ng-click="vm.editAddress(address,$index,$data)"><i class="zmdi zmdi-edit"></i></button>
+                </td>
+                <td data-title="'Borrar'">
+                    <button type="button" class="waves-effect btn btn-default" ng-click="vm.deleteAddress(address,$index,$data)"><i class="zmdi zmdi-delete"></i></button>
+                </td>
+            </tr>
+            <tr ng-hide="$data.length">
+                <td colspan="6">
+                    <div class="row">
+                        <strong>No hay direcciones registradas por el momento.</strong>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <custom-paginator get-list="vm.getAddresses" paginable-table="vm.tableSorting"></custom-paginator>
+    </div>
+</div>

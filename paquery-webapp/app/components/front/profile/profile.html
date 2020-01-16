@@ -1,0 +1,146 @@
+<section id="front-profile-view" class="page-view">
+    <div class="ng-scope">
+      <div ng-if="vm.successMessage" class="alert alert-success" role="alert">
+          <span ng-bind="vm.successMessage"></span>
+      </div>
+      <div ng-if="vm.checkSubmit? formProfile.$invalid : false" class="alert alert-danger" role="alert">
+          <span>Complete todos los campos</span><br>
+          <span ng-if="vm.checkSubmit && vm.errorMessages.mobileInvalid">El teléfono móvil ingresado no es válido</span>
+      </div>
+        <div class="card" id="profile-main">
+            <div class="card-header bgm-blue" style="z-index:1;">
+                <h2>Perfil de Usuario </h2>
+                <ul class="actions actions-alt">
+                    <li class="dropdown" uib-dropdown="">
+                        <a href="" uib-dropdown-toggle="" aria-expanded="false" class="dropdown-toggle" aria-haspopup="true">
+                            <i class="zmdi zmdi-more-vert"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>
+                                <a href="">Refresh</a>
+                            </li>
+                            <li>
+                                <a href="">Manage Widgets</a>
+                            </li>
+                            <li>
+                                <a href="">Widgets Settings</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="pm-body clearfix">
+                <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar" style="overflow: visible;">
+                    <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" tabindex="0">
+                        <div id="mCSB_1_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y" style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                            <div class="pmo-pic" style="margin-top:80px;">
+                                <div photo-selector photo="vm.photo.avatar" photo-name="vm.photo.photoName" photo-async-comes="vm.photoAsyncComes"></div>
+                                <!--<div class="pmo-stat">-->
+                                    <!--<h2 class="m-0 c-white">$ARS <span ng-bind="vm.ammount"></span></h2> Monto disponible-->
+                                <!--</div>-->
+                            </div>
+                            <button class="btn btn-primary waves-effect" ng-click="vm.getDepositLink()">Realizar depósito</button>
+                            <div class="pmo-block pmo-contact hidden-xs">
+                                <h2 ng-show="vm.profile.email || vm.profile.city || vm.profile.country || vm.profile.mobile">Contacto</h2>
+                                <ul>
+                                    <li class="ng-binding" ng-show="vm.profile.mobile"><i class="zmdi zmdi-phone"></i> <span ng-bind="vm.profile.mobile"></span></li>
+                                    <li class="ng-binding" ng-show="vm.profile.email"><i class="zmdi zmdi-email"></i> <span ng-bind="vm.profile.email"></span></li>
+                                    <li ng-show="vm.profile.city || vm.profile.country">
+                                        <i class="zmdi zmdi-pin"></i>
+                                        <address class="m-b-0 ng-binding">
+                                            <span ng-bind="vm.profile.city.name"></span><span ng-show="vm.profile.city && vm.profile.country">,</span>
+                                            <span ng-bind="vm.profile.country.name"></span>
+                                        </address>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          <form novalidate name="formProfile">
+                <data class="ng-scope">
+                    <div class="pmb-block">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-person m-r-5"></i> Información básica</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <div data-ng-submit="pctrl.submit('profileInfo', 'Profile Information')" class="pmbb-edit">
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Nombre</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input ng-model="vm.profile.name" type="text" class="form-control" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Apellido</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input ng-model="vm.profile.lastName" type="text" class="form-control"
+                                                   oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                                   minlength="10" maxlength="12" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pmb-block">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-phone m-r-5"></i>Información de contacto</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <div class="pmbb-edit">
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Móvil</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input ng-model="vm.profile.mobile" type="number" class="form-control" required ng-minlength="10" ng-maxlength="10" mask="9999999999" name="inputMobile">
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Email</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input ng-model="vm.profile.email" type="email" class="form-control" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">País</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control w-100" ng-change="vm.setCities(vm.profile.country)" ng-model="vm.profile.country" ng-options="country.name for country in vm.userCountries track by country.id" data-placeholder="Seleccione un país.." required></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Ciudad</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control w-100" ng-model="vm.profile.city" ng-options="city.name for city in vm.userCitys track by city.id" data-placeholder="Seleccione una ciudad.." required></select>
+                                        </div>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pmb-block change-password-block" ng-if="vm.profile.authMode === 1" >
+                        <div class="pmbb-body p-l-30">
+                            <dl class="dl-horizontal">
+                                <button class="btn btn-primary waves-effect change-password-button" ng-click="vm.openChangePasswordModal()">Cambiar contraseña</button>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-danger waves-effect" ui-sref="front.dashboard" >Cancelar</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vm.save(formProfile)">Guardar</button>
+                    </div>
+                </data>
+              </form>
+            </div>
+        </div>
+    </div>
+</section>

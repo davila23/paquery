@@ -1,0 +1,33 @@
+#front-package-detail-view {
+    #mCSB_1_container {
+        text-align: center;
+    }
+    .form-control[disabled] {
+        background-color: #fff !important;
+    }
+    .fg-line .form-control:disabled {
+        color: #000000;
+    }
+    .no-padding-left {
+        padding-left: 0;
+    }
+    .address-input {
+        height: 35px;
+    }
+    .pay-button {
+    	margin-left: 15px;
+    }
+    .pmo-pic {
+        #photo-container {
+            margin-bottom: 20px !important;
+        }
+        div[photo-selector] .fileinput-preview.thumbnail.no-photo {
+            width: 100%;
+            height: 210px !important;
+            border-bottom: 1px solid #EDEDED;
+            .zmdi.zmdi-camera-bw {
+                transform: translateY(289%);
+            }
+        }
+    }
+}

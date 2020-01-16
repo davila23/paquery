@@ -1,0 +1,12 @@
+<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'components/shared/header/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+<div ng-controller="HomeController as vm" >
+<section id="main">
+
+    <aside ng-if="vm.userType === 'admin'" id="sidebar" data-ng-include="'components/admin/sidebar/sidebar.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+    <aside ng-if="vm.userType === 'front'" id="sidebar" data-ng-include="'components/front/sidebar/sidebar.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+    <div ui-view class="container" ng-class="{'expanded-container': mainContainerExpanded} "></div>
+</section>
+<footer id="footer" data-ng-include="'components/shared/footer.html'" ng-if="vm.userType === 'front'"></footer>
+<footer id="footer" data-ng-include="'components/shared/footer.html'" ng-if="vm.userType === 'admin'"></footer>
+</div>

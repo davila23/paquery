@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<!--[if IE 9 ]>
+<html class="ie9" data-ng-app="PaQuery" data-ng-controller="PaQueryCtrl as mactrl"><![endif]-->
+<![if IE 9 ]>
+<html data-ng-app="PaQuery" data-ng-controller="PaQueryCtrl as mactrl">
+<![endif]>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="img/logo-iso-blue.png" sizes="142x142">
+    <title>PaQuery</title>
+    <!-- Vendor CSS -->
+    <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+    <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css"
+          rel="stylesheet">
+    <!--<link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">-->
+    <link href="vendors/bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet">
+    <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css"
+          rel="stylesheet">
+    <!-- CSS -->
+    <link href="vendors\bower_components\chosen\chosen.css" rel="stylesheet">
+    <link href="vendors/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <!-- HERE -->
+    <!--<meta name="viewport" content="initial-scale=1.0,width=device-width" />-->
+    <script src="https://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css?dp-version=1549984893" />
+
+    <script src="https://stuk.github.io/jszip/dist/jszip.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
+    <!--         <link src="vendors/bower_components/animate.css/animate.min.css">
+        <link src="vendors/bower_components/farbtastic/farbtastic.css">
+
+        -->
+    <!--
+
+
+ <link href="vendors/bower_components/nouislider/jquery.nouislider.css" rel="stylesheet">
+
+<link href="vendors/farbtastic/farbtastic.css" rel="stylesheet">
+
+<link href="vendors/bower_components/summernote/dist/summernote.css" rel="stylesheet">
+
+<link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<link href="vendors/bower_components/chosen/chosen.min.css" rel="stylesheet"> -->
+    <link href="css/app.min.1.css" rel="stylesheet" id="app-level">
+    <link href="css/app.min.2.css" rel="stylesheet">
+    <link href="css/demo.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/includes.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="vendors/bower_components/nouislider/jquery.nouislider.css">
+    <link href="vendors/farbtastic/farbtastic.css">
+    <link href="vendors/bower_components/summernote/dist/summernote.css">
+    <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="node_modules/angularjs-bootstrap-datetimepicker/src/css/datetimepicker.css"/>
+
+
+    <!--Etiquetas para refrescar cache de forma forzada, hasta que se solucione por build -->
+    <meta http-equiv=”Pragma” content=”no-cache”>
+    <meta http-equiv=”Expires” content=”-1″>
+    <meta http-equiv=”CACHE-CONTROL” content=”NO-CACHE”>
+    <meta http-equiv="pragma" content="no-cache" />
+
+</head>
+
+<body>
+    <data ui-view></data>
+    <!-- Older IE warning message -->
+    <!--[if lt IE 9]>
+            <div class="ie-warning">
+                <h1 class="c-white">Warning!!</h1>
+                <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+                <div class="iew-container">
+                    <ul class="iew-download">
+                        <li>
+                            <a href="http://www.google.com/chrome/">
+                                <img src="img/browsers/chrome.png" alt="">
+                                <div>Chrome</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.mozilla.org/en-US/firefox/new/">
+                                <img src="img/browsers/firefox.png" alt="">
+                                <div>Firefox</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.opera.com">
+                                <img src="img/browsers/opera.png" alt="">
+                                <div>Opera</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.apple.com/safari/">
+                                <img src="img/browsers/safari.png" alt="">
+                                <div>Safari</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                                <img src="img/browsers/ie.png" alt="">
+                                <div>IE (New)</div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>Sorry for the inconvenience!</p>
+            </div>
+        <![endif]-->
+    <!-- Core -->
+    <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="vendors/bower_components/jquery-ui/jquery-ui.js"></script>
+    <!-- Angular -->
+    <script src="vendors/bower_components/angular/angular.min.js"></script>
+    <script src="vendors/bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="vendors/bower_components/angular-resource/angular-resource.min.js"></script>
+    <!-- Angular Modules -->
+    <script src="vendors/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="vendors/bower_components/angular-loading-bar/src/loading-bar.js"></script>
+    <script src="vendors/bower_components/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="vendors/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <!-- Common Vendors -->
+    <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!--<script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>-->
+    <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+    <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+    <script src="vendors/bower_components/ng-table/dist/ng-table.min.js"></script>
+    <script type="text/javascript" src="vendors/bower_components/ui-autocomplete/autocomplete.js"></script>
+    <!-- Placeholder for IE9 -->
+    <!--[if IE 9 ]>
+            <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+    <!-- Using below vendors in order to avoid misloading on resolve -->
+    <script src="vendors/bower_components/flot/jquery.flot.js"></script>
+    <script src="vendors/bower_components/flot/jquery.flot.time.js"></script>
+    <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+    <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="vendors/bower_components/moment/min/moment.min.js"></script>
+    <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+    <script src="vendors/bower_components/flot-orderBars/js/jquery.flot.orderBars.js"></script>
+    <script src="vendors/bower_components/flot/jquery.flot.pie.js"></script>
+    <script src="vendors/bower_components/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
+    <script src="vendors/bower_components/angular-nouislider/src/nouislider.min.js"></script>
+    <script src="vendors/bower_components/ngstorage/ngStorage.js"></script>
+    <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+    <script src="node_modules/ng-mask/dist/ngMask.min.js"></script>
+    <script src="node_modules/underscore/underscore.js"></script>
+    <script src="node_modules/angucomplete-alt/dist/angucomplete-alt.min.js"></script>
+    <link href="node_modules/angucomplete-alt//angucomplete-alt.css" rel="stylesheet">
+
+    <script type="text/javascript" src="node_modules/angularjs-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+    <script type="text/javascript" src="node_modules/angularjs-bootstrap-datetimepicker/src/js/datetimepicker.templates.js"></script>
+    <script type="text/javascript" src="vendors/sparklines/jquery.sparkline.min.js"></script>
+    <!-- App level -->
+    <script src="js/app.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/run.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers/ui-bootstrap.js"></script>
+    <script src="js/controllers/table.js"></script>
+    <script src="js/directives/generic.directive.js"></script>
+    <!-- Template Modules -->
+    <script src="js/modules/template.js"></script>
+    <script src="js/modules/ui.js"></script>
+    <script src="js/modules/charts/flot.js"></script>
+    <script src="js/modules/charts/other-charts.js"></script>
+    <script src="js/modules/form.js"></script>
+    <script src="js/modules/components.js"></script>
+    <script src="js/modules/calendar.js"></script>
+    <!-- COMPONENTS -->
+    <!-- constants -->
+    <script src="components/constants/constants.js"></script>
+    <!-- /constants -->
+    <!-- admin -->
+
+<!-- recovery password -->
+<script src="components/admin/recovery/recovery.controller.js"></script>
+<script src="components/admin/recovery/recoveryCode/recoveryCode.controller.js"></script>
+<script src="components/admin/recovery/recoveryCode/recoveryCode.service.js"></script>
+<script src="components/admin/massUpload/massUpload.controller.js"></script>
+<script src="components/admin/login/login.controller.js"></script>
+<script src="components/admin/sidebar/sidebar.controller.js"></script>
+<script src="components/admin/dashboard/dashboard.controller.js"></script>
+<script src="components/admin/dashboard/dashboard.service.js"></script>
+<script src="components/admin/users/users/users.controller.js"></script>
+<script src="components/admin/users/user/user.controller.js"></script>
+<script src="components/admin/drivers/drivers/drivers.controller.js"></script>
+<script src="components/admin/drivers/driver/driver.controller.js"></script>
+<script src="components/admin/drivers/driversMap/driversMap.controller.js"></script>
+<script src="components/admin/workzone/workzones/workZones.controller.js"></script>
+<script src="components/admin/workzone/workzone/workZone.controller.js"></script>
+<script src="components/shared/geoService/geolocation.service.js"></script>
+<script src="components/admin/packages/packages/packages.controller.js"></script>
+<script src="components/admin/packages/package/package.controller.js"></script>
+<script src="components/admin/packages/packagesHistory/packagesHistory.controller.js"></script>
+<script src="components/admin/packages/packagesMap/packagesMap.controller.js"></script>
+
+<script src="components/admin/logs/logs/logs.controller.js"></script>
+<script src="components/admin/logs/exceptionModal/exception.controller.js"></script>
+<script src="components/admin/logs/logs.service.js"></script>
+<script src="components/admin/vehicles/vehicles/vehicles.controller.js"></script>
+<script src="components/admin/vehicles/vehicle/vehicle.controller.js"></script>
+<script src="components/admin/vehicles/vehicles.service.js"></script>
+<script src="components/admin/packages/packages.service.js"></script>
+<script src="components/admin/payments/editPayment/editPayment.controller.js"></script>
+<script src="components/admin/payments/payments/payments.controller.js"></script>
+<script src="components/admin/payments/payments.service.js"></script>
+<script src="components/admin/notifications/notifications/notifications.controller.js"></script>
+<script src="components/admin/notifications/notification/notification.controller.js"></script>
+<script src="components/admin/vehicles/driverSelector/driverSelector.controller.js"></script>
+<script src="components/admin/receivePackage/receivePackage.controller.js"></script>
+<script src="components/admin/sendPackage/sendPackage.controller.js"></script>
+<script src="components/admin/packages/packageStatus/packageStatus.controller.js"></script>
+<script src="components/admin/changePasswordModal/changePassword.controller.js"></script>
+<script src="components/admin/marketplaces/marketplace/marketplace.controller.js"></script>
+<script src="components/admin/marketplaces/marketplaces/marketplaces.controller.js"></script>
+<script src="components/admin/marketplaces/marketplace.service.js"></script>
+<script src="components/admin/logisticOperators/logisticOperator/logisticOperator.controller.js"></script>
+<script src="components/admin/logisticOperators/logisticOperators/logisticOperators.controller.js"></script>
+<script src="components/admin/logisticOperators/logisticOperator.service.js"></script>
+<script src="components/admin/logs/exceptionModal/exception.controller.js"></script>
+<script src="components/admin/users/users.service.js"></script>
+<script src="components/admin/drivers/vehicleModal/vehicleModal.controller.js" charset="utf-8"></script>
+<script src="components/shared/trackingService/tracking.service.js"></script>
+<script src="components/admin/tracking/trackPackage.controller.js"></script>
+<script src="components/admin/distributionZone/distributionZone/distributionZone.controller.js"></script>
+<script src="components/admin/distributionZone/distributionZones/distributionZones.controller.js"></script>
+
+<script src="components/admin/paqueryPoints/paqueryPoint/paqueryPoint.controller.js"></script>
+<script src="components/admin/paqueryPoints/paqueryPoints/paqueryPoints.controller.js"></script>
+<script src="components/admin/paqueryPoints/paqueryPoint.service.js"></script>
+<script src="components/admin/zone/zone/zone.controller.js"></script>
+<script src="components/admin/zone/zones/zones.controller.js"></script>
+<script src="components/admin/zone/zones/zones.controller.js"></script>
+
+<script src="components/admin/packages/packagesWithoutZone/packageswithoutzone.controller.js"></script>
+
+<script src="components/admin/pickup/pickupPackages/pickupPackages.controller.js"></script>
+<script src="components/admin/pickup/pickupHistory/pickupHistory.controller.js"></script>
+<script src="components/admin/pickup/pickupPackage/pickupPackage.controller.js"></script>
+<script src="components/admin/pickup/massUploadPickup/massUploadPickup.controller.js"></script>
+<script src="components/admin/pickup/pickupPackages/validateCoupon.controller.js"></script>
+
+<!-- /admin -->
+<!-- front -->
+<script src="components/front/recovery/recovery.controller.js"></script>
+<script src="components/front/recovery/recoveryCode/recoveryCode.controller.js"></script>
+<script src="components/front/recovery/recoveryCode/recoveryCode.service.js"></script>
+
+<script src="components/front/login/login.controller.js"></script>
+<script src="components/front/login/SocialLogin/socialLogin.controller.js"></script>
+<script src="components/front/login/SocialLogin/SocialLogin.service.js"></script>
+<script src="components/front/sidebar/sidebar.controller.js"></script>
+<script src="components/front/register/register.controller.js"></script>
+<script src="components/front/register/validateCode/validateCode.controller.js"></script>
+<script src="components/front/register/validateCode/validateCode.service.js"></script>
+<script src="components/front/register/register.service.js"></script>
+<script src="components/front/tracking/trackPackage.controller.js"></script>
+
+<script src="components/front/payments/editPayment/editPayment.controller.js"></script>
+<script src="components/front/payments/payments/payments.controller.js"></script>
+<script src="components/front/payments/payments.service.js"></script>
+<script src="components/front/addresses/editAddress/editAddress.controller.js"></script>
+<script src="components/front/addresses/addresses.controller.js"></script>
+<script src="components/front/profile/profile.controller.js"></script>
+<script src="components/shared/profileService/profile.service.js"></script>
+<script src="components/front/packages/packages/packages.controller.js"></script>
+<script src="components/front/packages/package/package.controller.js"></script>
+<script src="components/front/packages/packageStatus/packageStatus.controller.js"></script>
+<script src="components/front/sendPackage/sendPackage.controller.js"></script>
+<script src="components/front/receivePackage/receivePackage.controller.js"></script>
+<!--<script src="components/shared/googleMapDirective/googleMap.directive.js"></script>-->
+<script src="components/front/packages/packages.service.js"></script>
+<script src="components/front/addresses/addresses.service.js"></script>
+<script src="components/front/changePasswordModal/changePassword.controller.js"></script>
+<script src="components/front/profile/modalDeposit/modalDeposit.controller.js"></script>
+<script src="components/front/shared/resultpayment.service.js"></script>
+<script src="components/front/shared/confirmationPayment/confirmationPayments.controller.js"></script>
+<script src="components/front/packages/packagesHistory/packagesHistory.controller.js"></script>
+<!-- /front -->
+<!-- shared -->
+<script src="components/shared/urlHelper/urlHelper.js"></script>
+<script src="components/shared/twilio/twilioService.js"></script>
+<script src="components/shared/appTypes/appTypes.service.js"></script>
+<script src="components/shared/driverService/driver.service.js"></script>
+<script src="components/shared/workzoneService/workzone.service.js"></script>
+<script src="components/shared/header/header.controller.js"></script>
+<script src="components/admin/notifications/notifications.service.js"></script>
+<script src="components/shared/changePasswordService/changePassword.service.js"></script>
+<script src="components/shared/w3wService/w3w.service.js"></script>
+<script src="components/shared/singleMapDirective/singleMapDirective.js"></script>
+<script src="components/shared/paginator/paginator.directive.js"></script>
+<script src="components/shared/paginator/paginator.directive.v2.js"></script>
+<script src="components/shared/userService/user.service.js"></script>
+<script src="components/shared/sessionService/session.service.js"></script>
+<script src="components/shared/home/home.controller.js"></script>
+<script src="components/shared/photoSelector/photoSelector.directive.js"></script>
+<script src="components/shared/uploadFile/uploadFile.directive.js"></script>
+<script src="components/shared/webSocketHelper/webSocket.factory.js"></script>
+<script src="components/shared/webNotification/webNotification.factory.js"></script>
+<script src="components/shared/serverErrorNotifications/notifications.factory.js"></script>
+<script src="components/shared/idle/idleModal.controller.js"></script>
+<script src="components/shared/paginableSelector/paginableSelector.controller.js"></script>
+<script src="components/shared/keyValueFilter/keyValue.filter.js"></script>
+<script src="components/shared/UpdatePositionPackage/packagePosition.service.js"></script>
+<script src="components/shared/modalFrime/modalFrime.directive.js"></script>
+<script src="components/shared/scriptZendesk/scriptZendesk.directive.js"></script>
+<script src="components/shared/export/export.service.js"></script>
+<script src="components/shared/shops/shops.service.js"></script>
+<script src="components/shared/shops/shops.controller.js"></script>
+<script src="components/shared/distributionZone/distributionZone.service.js"></script>
+<script src="components/shared/zonesService/zones.service.js"></script>
+<script src="components/shared/workingScheduleTime/working.schedule.time.directive.js"></script>
+<script src="components/shared/dateService/date.service.js"></script>
+
+<script src="components/shared/inputAddress/inputAddress.directive.js"></script>
+<script src="components/shared/distributionZoneSelector/dzSelector.directive.js"></script>
+<script src="components/shared/paqueryMap/paqueryMap.directive.js"></script>
+<script src="components/shared/paqueryMap/paqueryMap.service.js"></script>
+<script src="components/shared/paqueryMap/mapUtils.service.js"></script>
+
+<script src="components/shared/paqueryPolygonMap/paqueryMap.directive.js"></script>
+<script src="components/shared/paqueryPolygonMap/paqueryMap.service.js"></script>
+<!--
+<script src="components/shared/paqueryPolygonMap/mapUtils.service.js"></script>
+-->
+<script src="components/shared/pickup/pickup.service.js"></script>
+<script src="components/shared/pickup/msPickup.js"></script>
+<!-- /shared -->
+
+<script-zendesk></script-zendesk>
+
+<!-- Social SDK -->
+<script id="facebook-jssdk" async="" src="//connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript" async="" src="https://apis.google.com/js/client:plusone.js"></script>
+<!-- Social SDK -->
+<!-- facebook service -->
+<script src="components/shared/socialNetworks/social.service.js"></script>
+<!-- facebook service -->
+<!-- socket -->
+<script type="text/javascript" src="vendors/signalR/jquery.signalR-2.2.1.js"></script>
+<!-- /socket -->
+<!-- web notifications -->
+<script type="text/javascript" src="node_modules/simple-web-notification/web-notification.js"></script>
+<script type="text/javascript" src="node_modules/angular-web-notification/angular-web-notification.js"></script>
+<!-- /web notifications -->
+<!-- date-picker -->
+<script type="text/javascript"
+        src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+<!-- //date-picker -->
+<!-- bootstrap-accordion -->
+<script type="text/javascript" src="vendors/bootstrap-accordion/accordion.js"></script>
+<!-- /bootstrap-accordion -->
+<script type="text/javascript" src="vendors/bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
+<!--<script src="https://www.google.com/recaptcha/api.js?onload=vcRecaptchaApiLoaded&render=explicit" async defer></script>-->
+<script type="text/javascript" src="vendors/input-mask/input-mask.min.js"></script>
+<script type="text/javascript" src="vendors/bower_components/nouislider/jquery.nouislider.min.js"></script>
+<script type="text/javascript" src="vendors/bower_components/summernote/dist/summernote.min.js"></script>
+<script type="text/javascript" src="vendors/fileinput/fileinput.min.js"></script>
+<script type="text/javascript" src="vendors/google-charts/loader.js"></script>
+<script type="text/javascript" src="vendors/bower_components/chosen/chosen.jquery.js"></script>
+<script type="text/javascript" src="vendors/bower_components/angular-chosen-localytics/chosen.js"></script>
+<script type="text/javascript" src="vendors/bower_components/angular-farbtastic/angular-farbtastic.js"></script>
+<!--<script type="text/javascript" src="vendors/bower_components/json-export-excel/src/json-export-excel.js"></script>-->
+<script type="text/javascript" src="vendors/bower_components/file-saver/FileSaver.js"></script>
+<script src="vendors/bower_components/angular-base64/angular-base64.js"></script>
+
+<script type="text/javascript"
+        src="vendors/bower_components/angular-daterangepicker/js/angular-daterangepicker.js"></script>
+<script type="text/javascript" src="vendors/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+</body>
+
+</html>

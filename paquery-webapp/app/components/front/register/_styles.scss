@@ -1,0 +1,44 @@
+#register-front {
+    top: 3%;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1.7%;
+    .logo-container img {
+        width: 142px;
+        height: 142px;
+    }
+    .already-registered-link:hover {
+        color: #254370;
+        text-decoration: underline;
+        cursor: pointer;
+    }
+    .register-word {
+        font-size: 23px;
+        padding-top: 10px;
+    }
+    .paquery-icon {
+        height: 35px;
+        width: 35px;
+        left: 4px;
+        top: 4px !important;
+        background-size: 35px 35px;
+    }
+    .chosen-container.chosen-container-single {
+        text-align: left;
+    }
+    .checkbox{
+        text-align: center;
+        margin-left: 0;
+    }
+    .checkbox input:checked + .input-helper:before {
+         background-color: #4CAF50;
+         border-color: #4CAF50;
+     }
+    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none;
+      margin: 0;
+    }
+}

@@ -1,0 +1,141 @@
+.pointer:hover {
+  cursor: pointer;
+}
+
+.main-container {
+  padding: 0 50px;
+}
+
+@media (min-width: 1200px) {
+  .sw-toggled #menu-trigger {
+    display: block;
+  }
+}
+
+table {
+  text-align: center;
+}
+
+table .ng-table-header {
+  text-align: center;
+}
+
+.abm-container .row .col-sm-6 {
+  padding-bottom: 20px;
+}
+
+.abm-container .row .col-sm-6 input {
+  padding-left: 5px;
+}
+
+.abm-container .row .col-sm-6 .btn-group,
+.abm-container .row .col-sm-6 .btn-group .dropdown,
+.abm-container .row .col-sm-6 .btn-group .dropdown .btn-primary {
+  width: 100%;
+}
+
+.abm-container .row .dropdown-container {
+  padding-left: 58px;
+}
+
+.abm-container .row .col-sm-6.aligned-right {
+  padding-right: 20px;
+}
+
+.abm-container .save-buttton-container {
+  text-align: center;
+}
+
+.abm-container .save-buttton-container button {
+  width: 20%;
+  float: right;
+  margin-right: 20px;
+}
+
+@media only screen and (max-width: 767px) {
+  .col-sm-6:not(.aligned-right) {
+    padding-right: 20px;
+  }
+}
+
+.btn-primary{
+	background: #254370 !important;
+}
+
+[data-current-skin="blue"] {
+    background-color: #254370 !important;
+}
+
+
+
+
+.image-container {
+  height: auto;
+}
+
+.fileinput-preview.thumbnail {
+    width: 100%;
+    border-radius: 0;
+    height: auto;
+    line-height: 0 !important;
+    padding: 0;
+    border-radius: 0;
+    border-bottom: 0;
+    /*min-height: 200px;*/
+}
+
+.min-height{
+  min-height: 200px;
+}
+.fileinput-preview.thumbnail .zmdi.zmdi-camera-bw {
+  color: #2196f3;
+  font-size: 30px;
+  transform: translateY(250%);
+}
+
+.fileinput.row.fileinput-new {
+  width: 100%;
+    height: auto !important;
+    margin-left: 0;
+}
+
+.image-selector {
+    text-align: center;
+}
+
+.file-upload-container {
+  padding-left: 0;
+  padding-right: 0;
+  float: right;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-upload-row {
+  margin-bottom: 20px;
+}
+
+.fileinput {
+  padding-right: 0 !important;
+  display: block !important;
+}
+
+.confirm-password {
+  margin-top: 20px;
+}
+
+.photo-column{
+  padding: 0;
+}
+
+.fileinput.row.fileinput-exists{
+  margin: 0;
+}
+
+.image-container:hover{
+  cursor: pointer;
+}
+
+.image-selector .btn{
+  display: none;
+}

@@ -1,0 +1,5 @@
+@media (min-width: 768px) {
+  #package-view .dl-horizontal dt {
+    width: auto;
+  }
+}

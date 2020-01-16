@@ -1,0 +1,44 @@
+#main-header {
+  .reversed {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+  }
+  .dm-icon > li > a > .zmdi {
+    font-size: 20px;
+    width: 19px;
+  }
+  .action-text {
+    padding-right: 10px;
+  }
+  .receiver-arrow {
+    padding-left: 6px;
+  }
+  .send-text {
+    padding-right: 12px;
+  }
+  .sender-arrow {
+    padding-left: 3px;
+  }
+  .top-menu {
+    .actions-container {
+      li {
+        a {
+          padding: 14px 20px 14px 52px;
+          display: block;
+          color: #304C77;
+          font-weight: 500;
+          position: relative;
+        }
+      }
+    }
+  }
+  .paquery-title {
+    font-size: 23px;
+    color: #fff;
+    padding-top: 2px;
+  }
+}

@@ -1,0 +1,23 @@
+<div id="modal-deposit">
+    <div class="modal-header">
+        <h4 class="modal-title">Ingrese el monto a Depositar</h4>
+    </div>
+    <div class="modal-body">
+        <p class="error-message" ng-bind="vm.error"></p>
+        <dl class="dl-horizontal">
+            <dt class="p-t-10">Monto</dt>
+            <dd>
+                <form name="depositForm" novalidate>
+                    <div class="fg-line">
+                        <input type="number" class="form-control" ng-model="vm.rate" name="inputRate" ng-change="vm.errorMessage=''" required>
+                    </div>
+                </form>
+            </dd>
+        </dl>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link ok-button" ng-click="vm.ok()" ng-disabled="vm.validDepositForm(depositForm)">OK</button>
+        <button class="btn btn-link" ng-click="vm.cancel()">Cancel</button>
+    </div>
+    <script type="text/javascript" src="//secure.mlstatic.com/mptools/render.js"></script>
+</div>

@@ -1,0 +1,56 @@
+<div>
+    <dl class="dl-horizontal">
+        <dt class="p-t-10">Días</dt>
+        <dd>
+            <div class="fg-line">
+                <select chosen class="form-control" ng-model="selectedDay"
+                        ng-options="day.name for day in days track by day.value"
+                        data-placeholder="Seleccione Dias... "></select>
+                <button class="btn btn-primary waves-effect"
+                        ng-click="addDay()">Añadir
+                </button>
+            </div>
+        </dd>
+    </dl>
+    <div class="mp-selector-continer">
+        <div class="mp-selector-continer"
+             ng-repeat="day in scheduleTime.daysOFWeek">
+                                        <span class="mp-name-container ng-binding"
+                                              ng-bind="days[day].name"></span>
+            <a class="zmdi zmdi-close-circle" ng-click="removeDay(day)"></a>
+        </div>
+
+        <dl class="dl-horizontal">
+            <dd>
+                <div class="w-100">
+                    <div class="col-30-l">
+                        <label>
+                            Horario de Apertura
+                        </label>
+                    </div>
+                    <div class="col-15-l"
+                         ng-class="{'has-error':  vm.checkSubmit ? formPaqueryPoint.initHourInput.$invalid : false}">
+                        <input data-ng-model="scheduleTime.initHour"
+                               type="number"
+                               min="0" max="23"
+                               class="form-control" name="initHourInput" required
+                               placeholder="Apertura">
+                    </div>
+                    <div class="col-20-l">
+                        <label>
+                            Horario de Cierre
+                        </label>
+                    </div>
+                    <div class="col-15-l"
+                         ng-class="{'has-error':  vm.checkSubmit ? formPaqueryPoint.finishHourInput.$invalid : false}">
+                        <input data-ng-model="scheduleTime.finishHour"
+                               type="number"
+                               min="0" max="23"
+                               class="form-control" name="finishHourInput" required
+                               placeholder="Cierre">
+                    </div>
+                </div>
+            </dd>
+        </dl>
+    </div>
+</div>

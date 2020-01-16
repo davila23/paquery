@@ -1,0 +1,106 @@
+
+<style>
+  [data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+.data-tooltip:after {
+      position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 7px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+}
+.data-tooltip{
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: -120px;
+  padding: 7px;
+  width: auto;
+  max-width: 300px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(text);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.textMessage{
+  width: 100%;
+  font-size: 12px;
+  font-weight: bold;
+}
+.textMessage .dan{
+  color:red;
+}
+.textMessage .suc{
+  color:green;
+}
+</style>
+<div id="receive-package-view">
+  <div class="row">
+  <div class="col-sm-6">
+    <div class="card z-depth-4-top">
+      <div class="card-header ch-alt bgm-bluegray">
+        <h2><span class="title">Nueva dirección</span></h2>
+      </div>
+      <div class="card-body card-padding">
+        <div class="form-group fg-float m-b-30">
+          <div class="fg-line">
+            <input type="text" validations vtype="1" size="20" class="form-control input-sm" ng-model="vm.destiny.addressModel.name">
+            <label class="fg-label">Nombre</label>
+          </div>
+        </div>
+        <div class="form-group fg-float m-b-30">
+          <div id="destiny-side-container" class="fg-line">
+            <input id="destiny-address" type="text" class="form-control input-sm google-maps-input" ng-model="vm.destiny.addressModel.address" autocomplete="off">
+            <label class="fg-label">Dirección</label>
+          </div>
+        </div>
+        <div class="form-group fg-float m-b-30">
+          <div class="fg-line">
+            <input type="text" class="form-control input-sm" ng-model="vm.destiny.addressModel.comments">
+            <label class="fg-label">Comentarios adicionales</label>
+          </div>
+        </div>
+        <div class="form-group fg-float m-b-30">
+          <div id="destiny-w3w-container" class="fg-line">
+            <input type="text" class="form-control input-sm" ng-model="vm.destiny.addressModel.w3w" id="w3w-destiny-input">
+            <label class="fg-label">w3w</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <google-map single-marker="true" destiny-id="'destiny-address'" destiny="vm.destiny.addressModel" wizard-step="vm.wizardStep" destiny-w3w="vm.destiny.addressModel.w3w"></google-map>
+  </div>
+  </div>
+  <div class="col-sm-12" style="margin-top:2em;">
+    <button class="btn btn-info back-button" ng-click="vm.wizardStep = 1">Volver</button>
+    <button class="btn btn-info submit-button" ng-click="vm.submit(vm.destiny)">Confirmar</button>
+    <button class="btn btn-info submit-button cancel-button" ui-sref="front.dashboard">Cancelar</button>
+  </div>
+
+</div>

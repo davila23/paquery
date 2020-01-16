@@ -1,0 +1,64 @@
+<div id="coupon-valid">
+    <div class="modal-header">
+        <h2 class="modal-title">
+            <i class="info-styles  zmdi zmdi-info-outline"></i>
+            Información del cupón:  {{vm.data.code}}
+        </h2>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt class="p-t-13">Codigo Externo</dt>
+            <dd>
+                <div class="fg-line">
+                    {{vm.data.code}}
+                </div>
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt class="p-t-13">Estado</dt>
+            <dd>
+                <div class="fg-line">
+                    {{vm.data.status}}
+                </div>
+            </dd>
+        </dl>
+        <dl class="dl-horizontal">
+            <dt class="p-t-13">Detalle</dt>
+            <dd>
+                <div class="fg-line">
+                    {{vm.data.statusDetail}}
+                </div>
+            </dd>
+        </dl>
+        <dl ng-if="vm.data.title" class="dl-horizontal">
+            <dt class="p-t-13">Titulo</dt>
+            <dd>
+                <div class="fg-line">
+                    {{vm.data.title}}
+                </div>
+            </dd>
+        </dl>
+        <dl ng-if="vm.data.validation_date" class="dl-horizontal">
+            <dt class="p-t-13">Fecha de Validacion</dt>
+            <dd>
+                <div class="fg-line">
+                    {{vm.data.validation_date | date : 'short'}}
+                </div>
+            </dd>
+        </dl>
+        <div class="row margin-top-10">
+            <div class="col-xs-9 text-align-center">
+                <div>
+                    <div class="font-size-30" style="display: grid;">
+                        <i ng-if="vm.valid" class="circle-ok-styles zmdi zmdi-check-circle"></i>
+                        <i ng-if="!vm.valid" class="circle-error-styles zmdi zmdi-close-circle"></i>
+                        <span>{{vm.data.statusDescription}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary waves-effect" ng-click="vm.close()">OK</button>
+    </div>
+</div>

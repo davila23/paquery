@@ -1,0 +1,57 @@
+<div id="edit-address">
+  <div class="modal-header">
+    <h4 class="modal-title">Editar dirección</h4>
+  </div>
+  <div class="modal-body">
+    <form name="addressForm" class="pmbb-edit">
+      <div ng-cloack ng-if="vm.googleMapsErrorMessage" class="alert alert-danger alert-dismissible google-maps-error-container" role="alert">
+          <span ng-bind="vm.googleMapsErrorMessage"></span>
+      </div>
+      <dl class="dl-horizontal">
+        <dt class="p-t-10">Titulo</dt>
+        <dd>
+          <div class="fg-line">
+            <input type="text" class="form-control input-sm google-maps-input" ng-model="vm.address.name" autocomplete="off">
+          </div>
+        </dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt class="p-t-10">Dirección</dt>
+        <dd>
+          <div id="address-container" class="fg-line">
+            <!--<input id="address-input" type="text" class="form-control input-sm google-maps-input" ng-model="vm.address.addressDetail" autocomplete="off">-->
+            <input-address id="address-input" input-class="form-control input-sm google-maps-input"
+                           address="vm.address.addressDetail"
+                           location="vm.address.location"
+                           w3w="vm.address.geoKey" id-w3w-container="address-w3w-container"></input-address>
+          </div>
+        </dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt class="p-t-10">Comentarios</dt>
+        <dd>
+          <div class="fg-line">
+            <input data-ng-model="vm.address.comment" type="text" class="form-control">
+          </div>
+           <small>Ejemplo: Mi casa, Mi hermano.</small>
+        </dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt class="p-t-10">w3w</dt>
+        <dd>
+          <div id="address-w3w-container" class="fg-line w3w">
+              <input id="w3w-address-input" ng-model="vm.address.geoKey" type="text" class="form-control">
+              <button type="button" class="btn btn-default waves-effect" ng-click="vm.geoLocationAddress()"><i class="paquery-icon paquery-w3w"></i></button>
+          </div>
+        </dd>
+      </dl>
+    </form>
+    <!--<script type="text/javascript" src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBzlIu7od6laIyJdrHTK32iimF4Zkurk_0&libraries=places&callback=initMap'></script>-->
+    <!--<google-map local-load="true" single-marker="true" destiny-id="'address-input'" destiny="vm.addressModel" wizard-step="vm.wizardStep"  destiny-w3w="vm.addressModel.w3w" start="true" error-message="vm.googleMapsErrorMessage"></google-map>-->
+    <paquery-map mini-map="true" single-marker="true" destiny-id="'address-input'" destiny="vm.addressModel" wizard-step="vm.wizardStep"  destiny-w3w="vm.address.geoKey" start="true" error-message="vm.googleMapsErrorMessage"></paquery-map>
+  </div>
+  <div class="modal-footer">
+    <button class="waves-effect btn btn-link" ng-click="vm.ok()" ng-disabled ="vm.disableOk(addressForm)" >OK</button>
+    <button class="waves-effect btn btn-link" ng-click="vm.cancel()">Cancel</button>
+  </div>
+</div>

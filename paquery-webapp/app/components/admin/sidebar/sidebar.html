@@ -1,0 +1,117 @@
+<div id="admin-sidebar" class="sidebar-inner c-overflow" data-ng-controller="AdminSidebarController as vm">
+  <div class="profile-menu" >
+    <a href="" toggle-submenu>
+      <div class="profile-info">{{vm.userName}}<i class="zmdi zmdi-caret-down"></i></div>
+    </a>
+    <ul class="main-menu">
+      <li class="logout-row">
+        <a ng-click="vm.logout()"><i class="paquery-icon paquery-cean-logout"></i> Logout</a>
+      </li>
+    </ul>
+  </div>
+  <div class="">
+    <ul class="main-menu" ng-if="vm.getUserFinish">
+      <li data-ng-class="{ 'active toggled': mactrl.$state.includes('user') }">
+          <a data-ng-click="mactrl.sidebarStat($event)" href="" toggle-submenu data-ui-sref="admin.user({user: vm.user, action: 'update'})"><i class="paquery-icon paquery-cean-white-user"></i> Perfil</a>
+      </li>
+      <li ng-if="vm.authentication('Dashboard')">
+          <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="admin.dashboard"><i class="paquery-icon paquery-house"></i> Dashboard</a>
+      </li>
+      <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('users') }" ng-if="vm.authentication('Usuarios')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-users"></i> Usuarios</a>
+          <ul>
+              <li><a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="admin.users">Usuarios</a></li>
+              <li><a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="admin.user({user: undefined, action: 'save'})">Agregar usuario</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('drivers') }" ng-if="vm.authentication('Paquers')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-paquer"></i> Paquers</a>
+          <ul>
+              <li><a data-ui-sref="admin.drivers" data-ng-click="mactrl.sidebarStat($event)">Listado de paquers</a></li>
+              <li><a ng-if="vm.authentication('Paquers-edit')" data-ui-sref="admin.driver({driver: undefined})" data-ng-click="mactrl.sidebarStat($event)">Agregar paquer</a></li>
+              <li ng-if="vm.authentication('Mapa Paquer')"><a data-ui-sref="admin.driversMap({driver: undefined})" data-ng-click="mactrl.sidebarStat($event)">Mapa de paquers</a></li>
+              <li><a ng-if="vm.authentication('Paquers-edit')" data-ui-sref="admin.packagesHistory({isPaquerView: true})" data-ng-click="mactrl.sidebarStat($event)">Historial Paquetes</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('zones') }" ng-if="vm.authentication('zonasModule')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-paquer"></i> Zonas</a>
+          <ul>
+            <li ng-if="vm.authentication('Zona Trabajo')"><a data-ui-sref="admin.zones" data-ng-click="mactrl.sidebarStat($event)">Listado de Zonas</a></li>
+              <li ng-if="vm.authentication('Zonas de Distribucion')"><a data-ui-sref="admin.distributionZones" data-ng-click="mactrl.sidebarStat($event)">Listado de Zonas de Distribucion</a></li>
+              <li ng-if="vm.authentication('Zona Trabajo')"><a data-ui-sref="admin.zone({driver: undefined})" data-ng-click="mactrl.sidebarStat($event)">Agregar Zonas</a></li>
+            <li ng-if="vm.authentication('Zona de Distribucion')"><a data-ui-sref="admin.distributionZone" data-ng-click="mactrl.sidebarStat($event)">Agregar Zonas De Distribucion</a></li>
+           </ul>
+      </li>
+      <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('paquerypoint') }" ng-if="vm.authentication('paqueryPointModule')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-logistic-operator"></i> PaqueryPoint</a>
+          <ul>
+              <li><a data-ui-sref="admin.paqueryPoints" data-ng-click="mactrl.sidebarStat($event)">Listado</a></li>
+              <li><a data-ui-sref="admin.paqueryPoint" data-ng-click="mactrl.sidebarStat($event)">Agregar</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('marketplaces') }" ng-show="vm.authentication('Marketplace')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-credit-card"></i> Marketplace</a>
+          <ul>
+              <li><a data-ui-sref="admin.marketplaces" data-ng-click="mactrl.sidebarStat($event)">Listado</a></li>
+              <li><a data-ui-sref="admin.marketplace" data-ng-click="mactrl.sidebarStat($event)">Agregar</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('logisticOperators') }" ng-if="vm.authentication('OPL')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-logistic-operator"></i> Operadores logísticos</a>
+          <ul>
+              <li><a data-ui-sref="admin.logisticOperators" data-ng-click="mactrl.sidebarStat($event)">Listado</a></li>
+              <li><a data-ui-sref="admin.logisticOperator" data-ng-click="mactrl.sidebarStat($event)">Agregar</a></li>
+          </ul>
+      </li>
+      <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('packages') }" ng-if="vm.authentication('Paquetes')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-packages"></i> Paquetes</a>
+          <ul>
+              <li><a data-ui-sref="admin.packages" data-ng-click="mactrl.sidebarStat($event)">Listado de paquetes</a></li>
+              <li><a data-ui-sref="admin.packagesHistory({isPaquerView: false})" data-ng-click="mactrl.sidebarStat($event)">Historial</a></li>
+              <li><a data-ui-sref="admin.trackPackage" data-ng-click="mactrl.sidebarStat($event)">Consulta de estado</a></li>
+              <li ng-if="vm.authentication('Paquetes-sinzona')"><a data-ui-sref="admin.packageswithoutzone" data-ng-click="mactrl.sidebarStat($event)">Paquetes Sin Zonas</a></li>
+
+              <!--              <li><a ng-if="vm.authentication('Paquetes-map')" data-ui-sref="admin.packagesMap" data-ng-click="mactrl.sidebarStat($event)">Mapa de paquetes P.R/P.E</a></li>-->
+          </ul>
+      </li>
+
+      <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('Pickup') }" ng-if="vm.authentication('Pickup')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-packages"></i>Pick-Up</a>
+          <ul>
+              <li><a ng-if="vm.authentication('Pickup-Lista')" data-ui-sref="admin.pickupPackages" data-ng-click="mactrl.sidebarStat($event)">Listado de paquetes </a></li>
+              <li><a ng-if="vm.authentication('Pickup-Historial')" data-ui-sref="admin.pickupHistory" data-ng-click="mactrl.sidebarStat($event)">Historial</a></li>
+              <li><a data-ui-sref="admin.massUploadPickup" data-ng-click="mactrl.sidebarStat($event)"><i class="paquery-icon paquery-up-arrow"></i>Alta Pickup</a></li>
+          </ul>
+      </li>
+
+      <li data-ng-class="{ 'active toggled': mactrl.$state.includes('admin.receivePackage') }" ng-if="!vm.auth">
+          <a data-ng-click="mactrl.sidebarStat($event)" href="" toggle-submenu ui-sref="admin.receivePackage"><i class="paquery-icon paquery-receive"></i> Recibir</a>
+      </li>
+      <li data-ng-class="{ 'active toggled': mactrl.$state.includes('admin.sendPackage') }" ng-if="vm.authentication('Enviar')">
+          <a data-ng-click="mactrl.sidebarStat($event)" href="" toggle-submenu ui-sref="admin.sendPackage"><i class="paquery-icon paquery-send"></i> Enviar</a>
+      </li>
+      <li ng-if="!vm.auth">
+          <a data-ng-click="mactrl.sidebarStat($event)" data-ui-sref="admin.logs"><i class="paquery-icon paquery-logs"></i> Logs</a>
+      </li>
+      <li ng-if="!vm.auth">
+          <a data-ui-sref="admin.payments" data-ng-click="mactrl.sidebarStat($event)"><i class="paquery-icon paquery-payments"></i> Depósitos y Movimientos.</a>
+      </li>
+      <li ng-if="vm.authentication('Mercado Shop')">
+          <a data-ui-sref="common.shops" data-ng-click="mactrl.sidebarStat($event)"><i class="paquery-icon paquery-exit-box"></i> Mercado Shops</a>
+      </li>
+
+      <li class="sub-menu" ng-if="vm.authentication('Alta Masiva')">
+          <a href="" toggle-submenu><i class="paquery-icon paquery-packages"></i>Alta Masiva</a>
+          <ul>
+              <li ng-if="vm.authentication('Alta Masiva')">
+                  <a data-ui-sref="admin.massUpload({isUpdate: false})" data-ng-click="mactrl.sidebarStat($event)"><i class="paquery-icon paquery-up-arrow"></i>Alta Temprana</a>
+              </li>
+<!--              <li ng-if="vm.authentication('Actualización Masiva')">-->
+<!--              <li>-->
+<!--              <a data-ui-sref="admin.massUpload({isUpdate: true})" data-ng-click="mactrl.sidebarStat($event)"><i class="paquery-icon paquery-up-arrow"></i>Actualización Masiva</a>-->
+<!--              </li>-->
+          </ul>
+      </li>
+  </ul>
+</div>
+</div>

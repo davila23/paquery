@@ -1,0 +1,260 @@
+
+
+
+<div class="row">
+
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(null,1,false,false)">
+                <div class="widget-icon bg-sameDay pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalPendingEntryPaquery}}</span>
+                <span class="widget-subtitle">Pendiente de Ingreso a PaQuery</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(null,22,false,false)">
+                <div class="widget-icon bg-pendiente-retiro pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalLoggedInToPaQuery}}</span>
+                <span class="widget-subtitle">Ingresado a PaQuery</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(null,2,false,false)">
+                <div class="widget-icon bg-pendiente-retiro pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalPendingPickup}}</span>
+                <span class="widget-subtitle">Ingresado a PaQuery Point</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(null,3,false,false)">
+                <div class="widget-icon bg-pendiente-retiro pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalPendingDelivery}}</span>
+                <span class="widget-subtitle">En poder del Paquer</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(null,20,false,false)">
+                <div class="widget-icon bg-pendiente-entrega pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalDelivered}}</span>
+                <span class="widget-subtitle">Entregado</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(null,21,false,false)">
+                <div class="widget-icon bg-pendiente-entrega pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalCanceled}}</span>
+                <span class="widget-subtitle">Cancelado</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(null,40,false,false)">
+                <div class="widget-icon bg-pendiente-entrega pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalReturned}}</span>
+                <span class="widget-subtitle">Devuelto</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(null,50,false,false)">
+                <div class="widget-icon bg-pendiente-entrega pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalExpired}}</span>
+                <span class="widget-subtitle">Vencidos</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(3,null,false,false)">
+                <div class="widget-icon bg-entregado pull-left paquery-package-white"></div>
+                <span class="widget-title ">{{vm.totalizadores.totalSameDay}}</span>
+                <span class="widget-subtitle">SameDay</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(3,3,true,false)">
+                <div class="widget-icon bg-entregado pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalSameDayAsigned}}</span>
+                <span class="widget-subtitle">SameDay asignados a Paquers</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(2,null,false,false)">
+                <div class="widget-icon bg-entregado pull-left paquery-package-white"></div>
+                <span class="widget-title ">{{vm.totalizadores.totalNextDay}}</span>
+                <span class="widget-subtitle">NextDay</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(2,3,true,false)">
+                <div class="widget-icon bg-entregado pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalNextDayAsigned}}</span>
+                <span class="widget-subtitle">NextDay asignados a Paquers</span>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="col-md-3 padding-left-right-10">
+        <div>
+
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(1,3,false,false)">
+                <div class="widget-icon bg-sameDay pull-left paquery-package-white"></div>
+                <span class="widget-title ">{{vm.totalizadores.total48hs}}</span>
+                <span class="widget-subtitle">48hs en poder del Paquer</span>
+            </div>
+
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(1,null,true,false)">
+                <div class="widget-icon bg-paquery pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.total48hsAsigned}}</span>
+                <span class="widget-subtitle">48hs asignados a Paquers</span>
+            </div>
+        </div>
+    </div>-->
+    <!--<div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(3,null,false,true)">
+                <div class="widget-icon bg-danger pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalSameDayNotExpired}}</span>
+                <span class="widget-subtitle">Same day por vencer</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(2,null,false,true)">
+                <div class="widget-icon bg-danger pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.totalNextDayNotExpired}}</span>
+                <span class="widget-subtitle">NextDay por vencer</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3 padding-left-right-10">
+        <div>
+            <div class="widget bg-white" ng-click="vm.openPackagesModal(1,null,false,true)">
+                <div class="widget-icon bg-danger pull-left paquery-package-white"></div>
+                <span class="widget-title">{{vm.totalizadores.total48hsNotExpired}}</span>
+                <span class="widget-subtitle">48hs por vencer</span>
+            </div>
+        </div>
+    </div>-->
+
+
+
+
+
+
+
+</div>
+
+
+
+<div class="row">
+    <div class="padding-left-right-10">
+        <label class="color-paquery">Filtrar por año: </label>
+        <select class="litte-select" ng-options="filtrosAnio.anio for filtrosAnio in vm.filtrosAnio track by filtrosAnio.anio" ng-model="vm.anioSelected" ng-change="vm.getPackageReportBy('mes');"></select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 chart-left-group-responsive">
+        <div class="dimension-chart" id="chart_div"></div>
+    </div>
+    <div class="col-md-6 chart-right-group-responsive">
+        <div class="dimension-chart" id="chart_div_BarChart_Meses"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="padding-left-right-10">
+        <label class="color-paquery">Filtrar por año: </label>
+        <select class="litte-select" ng-options="filtrosAnio.anio for filtrosAnio in vm.filtrosAnio track by filtrosAnio.anio" ng-model="vm.anioSelectedTotales" ng-change="vm.getPackageReportTotal('paquetes');"></select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 padding-left-right-10">
+        <div class="widget bg-white">
+            <div class="aling-center">
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',1)" id="enero">Enero</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',2)" id="febrero">Febrero</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',3)" id="marzo">Marzo</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',4)" id="abril">Abril</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',5)" id="mayo">Mayo</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',6)" id="junio">Junio</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',7)" id="julio">Julio</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',8)" id="agosto">Agosto</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',9)" id="septiembre">Septiembre</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',10)" id="octubre">Octubre</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',11)" id="noviembre">Noviembre</a>
+                </div>
+                <div class="rowOfButtons">
+                    <a class="linkMesFilter" ng-click="vm.getPackageReportBy('mes',12)" id="diciembre">Diciembre</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><div class="row">
+
+    <div class="col-md-6 padding-left-right-10">
+        <div class="dimension-chart" id="chart_div_paquetesTotales"></div>
+    </div>
+
+    <div class="col-md-6 padding-left-right-10 margin-top-responsive">
+        <div class="dimension-chart" id="chart_div_paquetesSemana"></div>
+    </div>
+</div>
+>

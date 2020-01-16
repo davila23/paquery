@@ -1,0 +1,109 @@
+.zone-detail-view {
+    .pmo-pic {
+        #photo-container {
+            margin-bottom: 20px !important;
+        }
+        div[photo-selector] .fileinput-preview.thumbnail.no-photo {
+            width: 100%;
+            height: 210px !important;
+            border-bottom: 1px solid #EDEDED;
+            .zmdi.zmdi-camera-bw {
+                transform: translateY(289%);
+            }
+        }
+    }
+    input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .user-name-container {
+        color: #fff;
+        background-color: #254370;
+        padding: 5px;
+        border-radius: 3px;
+        font-size: 14px;
+        //display: flex;
+        //align-items: center;
+    }
+
+    .lo-selector-continer {
+        margin-bottom: 30px;
+        display:inline-block;
+        width:auto;
+        margin:10px;
+    }
+    .lo-name-container {
+        color: #fff;
+        background-color: #254370;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+    .zmdi-close-circle {
+        font-size: 22px;
+        vertical-align: bottom;
+
+    }
+    .zmdi-close-circle:hover {
+        cursor: pointer;
+    }
+
+    .list-item-selector-container {
+        margin-bottom: 30px;
+        display:inline-block;
+        width:auto;
+        margin:10px;
+    }
+
+    .list-item-name-container {
+        color: #fff;
+        background-color: #254370;
+        padding: 5px 10px;
+        border-radius: 3px;
+        font-size: 14px;
+    }
+}
+
+.ui-autocomplete {
+    list-style: none;
+    padding:0px;
+    width: 40%;
+    background: #ffffff;
+    border: 1px solid #c7c7c7;
+    box-shadow: 2px 2px 5px #e5e5e5;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 9999;
+    li{
+        padding: 5px;
+        &:hover{
+            cursor: pointer;
+            background: #eeeeee;
+        }
+        a{
+            &:hover{
+                color: $default-primary-color;
+            }
+        }
+    }
+}
+
+.ui-state-hover,
+.ui-state-focus,
+.ui-state-active {
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    margin: -5px;
+    background: #eeeeee;
+}
+
+.user-selector-continer {
+    margin-top: 7px;
+    padding: 0px;
+}
+.size-selected {
+    background: $default-cean-paquery;
+    color: #FFFFDB;
+    border-radius: 5px;
+}

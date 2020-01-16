@@ -1,0 +1,169 @@
+<section id="content" class="page-view logistic-operator-detail-view">
+    <div ng-cloack ng-if="vm.checkSubmit ? formLogisticOperator.$invalid : false"
+         class="alert alert-danger alert-dismissible paquery-error-mesaje" role="alert">
+        <span>Los datos ingresados son incorrectos</span>
+    </div>
+    <div ng-if="vm.errorOPL ? true : false" class="alert alert-danger alert-dismissible paquery-error-mesaje"
+         role="alert">
+        <span>{{vm.errorOPL}}</span>
+    </div>
+    <div>
+        <div class="card" id="profile-main">
+            <div class="pm-overview c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar"
+                 style="overflow: visible;">
+                <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+                     tabindex="0">
+                    <div id="mCSB_1_container"
+                         class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x mCS_y_hidden mCS_no_scrollbar_y"
+                         style="position: relative; top: 0px; left: 0px; width: 100%;" dir="ltr">
+                        <div class="pmo-pic">
+                            <div photo-selector photo="vm.logisticOperator.photo" disable-selection="true"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pm-body clearfix">
+                <ul class="tab-nav tn-justified">
+                    <li class="btn-wave tab-selected"><a>Operadores logísticos</a></li>
+                </ul>
+                <data>
+                    <div class="pmb-block ng-scope">
+                        <div class="pmbb-header">
+                            <h2><i class="zmdi zmdi-person m-r-5"></i> Información básica</h2>
+                        </div>
+                        <div class="pmbb-body p-l-30">
+                            <form class="pmbb-edit" name="formLogisticOperator" novalidate>
+                                <dl class="dl-horizontal" ng-if="vm.logisticOperator && vm.logisticOperator.id">
+                                    <dt class="p-t-10">ID</dt>
+                                    <dd>
+                                        <div class="fg-line" style="padding-top: 10px">
+                                            {{vm.logisticOperator.id}}
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Nombre</dt>
+                                    <dd>
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formLogisticOperator.nameInput.$invalid : false}">
+                                            <input data-ng-model="vm.logisticOperator.name" type="text"
+                                                   class="form-control" name="nameInput" required>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Detalle</dt>
+                                    <div class="form-group fg-float">
+                                        <div class="fg-line"
+                                             ng-class="{'has-error':   vm.checkSubmit ? formLogisticOperator.detailInput.$invalid : false}">
+                                            <textarea ng-model="vm.logisticOperator.detail"
+                                                      class="form-control input-sm" auto-size="" data-autosize-on="true"
+                                                      style="overflow: hidden; word-wrap: break-word; height: 37px;"
+                                                      name="detailInput" required></textarea>
+                                        </div>
+                                    </div>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Telefono</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.logisticOperator.phone" type="text"
+                                                   class="form-control">
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Nombre de contacto</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <input data-ng-model="vm.logisticOperator.contactName" type="text"
+                                                   class="form-control">
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <!-- <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Marketplace</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control" ng-model="vm.logisticOperator.marketplace" ng-options="marketplace.name for marketplace in vm.marketplaces track by marketplace.id" data-placeholder="Seleccione un marketplace.." required></select>
+                                            <button class="btn btn-primary waves-effect" ng-click="vm.addMarketplace()">Añadir</button>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div style="width:100%">
+                                  <div class="lo-selector-continer" ng-repeat="marketplace in vm.logisticOperator.marketplaces">
+                                      <span class="lo-name-container ng-binding" ng-bind="marketplace.name"></span>
+                                      <a class="zmdi zmdi-close-circle" ng-click="vm.removeMP(marketplace)"></a>
+                                  </div>
+                                </div> -->
+
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Zonas</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control" ng-model="vm.logisticOperator.zone"
+                                                    ng-options="zone.name for zone in vm.zones track by zone.id"
+                                                    data-placeholder="Seleccione zonas..."></select>
+                                            <button class="btn btn-primary waves-effect"
+                                                    ng-click="vm.addZone()">Añadir
+                                            </button>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div style="width:100%">
+                                    <div class="list-item-selector-continer" ng-repeat="zone in vm.logisticOperator.zones">
+                                        <span class="list-item-name-container ng-binding" ng-bind="zone.name"></span>
+                                        <a class="zmdi zmdi-close-circle" ng-click="vm.removeZone(zone)"></a>
+                                    </div>
+                                </div>
+
+
+                                <dl class="dl-horizontal">
+                                    <dt class="p-t-10">Paquery Points</dt>
+                                    <dd>
+                                        <div class="fg-line">
+                                            <select chosen class="form-control"
+                                                    ng-model="vm.logisticOperator.paqueryPoint"
+                                                    ng-options="point.name for point in vm.paqueryPoints track by point.id"
+                                                    data-placeholder="Seleccione zonas..."></select>
+                                            <button class="btn btn-primary waves-effect"
+                                                    ng-click="vm.addPaqueryPoint()">Añadir
+                                            </button>
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <div style="width:100%">
+                                    <div class="list-item-selector-continer"
+                                         ng-repeat="point in vm.logisticOperator.paqueryPoints">
+                                        <span class="list-item-name-container ng-binding"
+                                              ng-bind="point.name"></span>
+                                        <a class="zmdi zmdi-close-circle" ng-click="vm.removePaqueryPoint(point)"></a>
+                                    </div>
+                                </div>
+
+
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="vm.logisticOperator.isPrivate">
+                                        <i class="input-helper"></i> ¿Es privado?
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="vm.logisticOperator.published">
+                                        <i class="input-helper"></i> Activo
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row save-buttton-container">
+                        <button class="btn btn-default waves-effect" ui-sref="admin.logisticOperators">Cancelar</button>
+                        <button class="btn btn-primary waves-effect" ng-click="vm.save(formLogisticOperator)">Guardar
+                        </button>
+                    </div>
+                </data>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,54 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.0.M2'
+	id 'java'
+}
+
+def app=[
+		name: 'ms-maps' ,
+		appVersion: '1.1.2',
+		versionType: 'SNAPSHOT'
+]
+
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.paquery'
+version = "${app.appVersion}-${app.versionType}"
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/snapshot' }
+	maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	//implementation 'org.apache.httpcomponents:4.5.1'//, name: 'httpclient', version: '4.5.3'
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
+	compile group: 'com.google.guava', name: 'guava', version: '28.0-jre'
+
+	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+//processResources {
+//	filesMatching("**/application.yml") {
+//		expand(project: properties)
+//	}
+//}
+
+bootRun {
+	systemProperties = System.properties
+}
+
+jar {
+	baseName = app.name
+	archiveBaseName = app.name
+	version = "${app.appVersion}-${app.versionType}"
+}

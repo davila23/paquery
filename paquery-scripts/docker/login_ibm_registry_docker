@@ -1,0 +1,26 @@
+
+
+# instalar IBM CLI ( Mac y Linux )
+curl -sL https://ibm.biz/idt-installer | bash
+
+
+# verificar la instalacion
+ibmcloud dev help
+
+
+###########
+
+# instalar plugin de docker registry
+ibmcloud plugin update container-registry
+
+# loguearse con cuenta de ibm
+ibmcloud login
+
+# seteo de docker registry
+ibmcloud cr login
+
+
+# namespace para paquery:
+#  us.icr.io/paquery
+# ej de docker push de una imagen
+# docker push us.icr.io/paquery/caronte:1.0.0

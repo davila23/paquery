@@ -1,0 +1,122 @@
+<div id="payments-view" class="card">
+    <div class="card-header bgm-cyan">
+        <h2>Depósitos y Movimientos</h2>
+    </div>
+    <div class="card-body">
+        <div ng-hide="true" class="container">
+            <div class="row">
+                <div class='col-sm-3'>
+                    <h5>Desde</h5>
+                    <div class="form-group">
+                        <div class='input-group date'>
+                            <input id='date-time-picker-1' type='text' class='form-control' required>
+                            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-3'>
+                    <h5>Hasta</h5>
+                    <div class="form-group">
+                        <div class='input-group date'>
+                            <input id="date-time-picker-2" type='text' class="form-control" />
+                            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                    <button ng-click="vm.filterDates()" class="btn bgm-indigo waves-effect filter-button">Filtrar</button>
+                </div>
+                <div class="col-sm-3 search-input-container">
+                    <h5>Buscar</h5>
+                    <div>
+                        <input ng-model="vm.searchTerm" type="text" class="form-control" placeholder="Palabra clave" name="searchTerm" ng-change="vm.onSearchChange(vm.searchTerm)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                      <div class="pm-body clearfix">
+                          <ul class="tab-nav tn-justified">
+                              <li class="btn-wave" ng-click="vm.setTabConfig('payments')" ng-class="{'tab-selected' : vm.cardContent === 'payments'}"><a>Depósitos</a></li>
+                              <li class="btn-wave" ng-click="vm.setTabConfig('movements')" ng-class="{'tab-selected' : vm.cardContent === 'movements'}"><a>Movimientos</a></li>
+                          </ul>
+                          <data ng-show="vm.cardContent === 'payments'">
+                              <div class="table-responsive">
+                                  <table ng-table="vm.tableSorting" class="table table-striped table-vmiddle" ng-class="{'hide-header': !$data.length}">
+                                      <tr ng-repeat="payment in $data">
+
+                                          <td data-title="'Fecha'" filter="{creationDate: 'text'}" sortable="'creationDate'">
+                                              {{ payment.creationDate | date: 'dd-MM-yyyy HH:mm'  }}
+                                          </td>
+                                          <td data-title="'Estado'" filter="{paymentStatus: 'text'}" sortable="'paymentStatus'">
+                                              {{ payment.paymentStatus === 1 ? 'Éxito' : 'Error' }}
+                                          </td>
+                                          <td data-title="'Comprobante'" sortable="'paymentType'">
+                                              {{ payment.transactionTrace.status !== "Transacción pendiente" ? payment.transactionTrace.id : "-" }}
+                                          </td>
+                                          <td data-title="'Monto'" filter="{amount: 'number'}" sortable="'amount'">
+                                              {{ payment.amount }}
+                                          </td>
+                                          <td data-title="'Detalles'">
+                                              <button type="button" class="waves-effect btn btn-default zoom-button" ng-click="vm.showPayment(payment)"><i class="zmdi zmdi-zoom-in"></i></button>
+                                          </td>
+                                      </tr>
+                                      <tr ng-hide="$data.length">
+                                          <td colspan="6">
+                                              <div class="row">
+                                                  <strong>No hay pagos registrados por el momento.</strong>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </table>
+                              </div>
+                              <custom-paginator get-list="vm.getPayments" paginable-table="vm.tableSorting"></custom-paginator>
+                          </data>
+                          <data ng-show="vm.cardContent === 'movements'">
+                          <div class="table-responsive">
+                                <table ng-table="vm.tableSorting2" class="table table-striped table-vmiddle" ng-class="{'hide-header': !$data.length}">
+                                    <tr ng-repeat="movements in $data">
+                                        <td data-title="'Fecha'" filter="{creationDate: 'text'}" sortable="'creationDate'">
+                                            {{ movements.creationDate | date: 'dd-MM-yyyy H:m' }}
+                                        </td>
+                                        <td data-title="'N° Paquete'" filter="{amount: 'number'}" sortable="'amount'">
+                                            {{ movements.package.id }}
+                                        </td>
+                                        <td data-title="'Paquete'" filter="{caption: 'text'}" sortable="'package'">
+                                            <button type="button" class="waves-effect btn btn-default zoom-button" ng-click="vm.showPackage(movements.package)"><i class="zmdi zmdi-eye"></i></button>
+                                        </td>
+                                        <td data-title="'Monto'" filter="{amount: 'number'}" sortable="'amount'">
+                                            {{ movements.amount | currency }}
+                                        </td>
+                                        <!--
+                                        <td data-title="'Ver'">
+                                            <button type="button" class="btn btn-default zoom-button" ng-click="vm.showPayment(payment)"><i class="zmdi zmdi-zoom-in"></i></button>
+                                        </td>
+                                        -->
+                                    </tr>
+
+                                    <tr ng-hide="$data.length">
+                                        <td colspan="6">
+                                            <div class="row">
+                                                <strong>No hay movimientos registrados por el momento.</strong>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <custom-paginator get-list="vm.getMovements" paginable-table="vm.tableSorting2"></custom-paginator>
+                          </data>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

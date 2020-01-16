@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ "$1" == "-h" ]; then
+  echo "v1.0"
+  echo "actualza un servicio dentro del swarm con nueva imagen"
+  echo "Uso:  update-ms.sh <nombreServicio> <nuevaImagenDocker>"
+  echo ""
+  echo "Ej: ./update-ms.sh caronte-api us.icr.io/paquery/caronte:1.0.0"
+  echo ""
+
+  exit 0
+fi;
+
+msName="$1"
+msImage="$2"
+
+echo  "pull de imagen de $msName..."
+docker pull $msImage
+
+if [ "$?" != "0" ]; then
+    echo "ERROR en docker pull"
+    exit 1
+fi
+
+echo "deployando imagen $msName..."
+
+docker service update --force \
+            --update-order start-first \
+            --with-registry-auth \
+            --image $msImage $msName

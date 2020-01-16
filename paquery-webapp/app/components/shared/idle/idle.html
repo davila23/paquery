@@ -1,0 +1,12 @@
+<div id="idle-modal">
+  <div class="modal-header">
+    <h4 class="modal-title">Session timeout</h4>
+  </div>
+  <div class="modal-body">
+    <p>La sesión ha expirado. Vuelva a iniciar sesión para continuar en paquery.</p>
+    <strong ng-show="vm.secondsCounter < 4" class="countdown">(<span ng-bind="vm.secondsCounter"></span>)&nbsp; segundos restantes</strong>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-link" ng-click="vm.ok()">OK</button>
+  </div>
+</div>
